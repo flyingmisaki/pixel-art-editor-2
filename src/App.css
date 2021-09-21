@@ -1,10 +1,10 @@
 body {
-  background-color: red;
-  text-align: center;
+  	background-color: rgba(26, 26, 26, 1);
 }
 
-canvas {
-  background-color: white;
-  image-rendering: pixelated;
+.App {
+	display: flex;
+	flex-direction: row;
+	margin: 10px;
 }
 

@@ -1,4 +1,5 @@
 import React from "react"
+import './PixelCanvas.css'
 
 export default function PixelCanvas(props) {
     console.log("canvas")
@@ -6,6 +7,7 @@ export default function PixelCanvas(props) {
     const width = props.width
     const height = props.height
     const scale = props.scale
+    const brushColor = props.brushColor
 
 
     const drawPixel = function(context, x, y, color) {
@@ -35,12 +37,12 @@ export default function PixelCanvas(props) {
             const canvasRelativeX = Math.floor(currentX/scale)
             const canvasRelativeY = Math.floor(currentY/scale)
 
-            const color = "#555555"
             
-            drawPixel(canvasContext, canvasRelativeX, canvasRelativeY, color)
+            drawPixel(canvasContext, canvasRelativeX, canvasRelativeY, brushColor)
+
+            if(props.onUpdate) props.onUpdate(canvas)
         }
         
-
         // Set up listeners
         canvas.addEventListener("mousedown", handleMouseDown)
 
@@ -50,7 +52,7 @@ export default function PixelCanvas(props) {
             console.log("cleaning up!")
             canvas.removeEventListener("mousedown", handleMouseDown)
         }
-    }, [])
+    }, [scale, brushColor])
     
     const render = function() {
 
