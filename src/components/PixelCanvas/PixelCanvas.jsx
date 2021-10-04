@@ -68,11 +68,12 @@ export default function PixelCanvas(props) {
 
         console.log(canvasStyle)
         return (
-        <canvas
-            ref={canvasRef}
-            {...props}
-            style={canvasStyle}
-        />)
+            <canvas
+                ref={canvasRef}
+                {...props}
+                style={canvasStyle}
+            />
+        )
     }
 
     return render()

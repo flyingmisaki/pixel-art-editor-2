@@ -1,10 +1,45 @@
 body {
-  	background-color: rgba(26, 26, 26, 1);
+  	background-color: rgba(55, 55, 55, 1);
 }
 
 .App {
 	display: flex;
-	flex-direction: row;
-	margin: 10px;
+	flex-direction: column;
 }
+
+.TitleBar {
+	padding: 10px;
+	background-color: rgba(25, 125, 125, 1);
+}
+
+.Workspace {
+	display: flex;
+	flex-direction: row;
+	padding: 10px;
+}
+
+.ColorPicker {
+	margin: 5px;
+}
+
+.PixelCanvas {
+	margin: 5px;
+}
+
+.ExportCanvas {
+	margin: 5px;
+}
+
+.ExportButton {
+	background-color: rgba(25, 125, 125, 1);
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+}
+
 

@@ -1,8 +1,11 @@
 import React from "react"
 import './App.css'
-import PixelCanvas from './components/PixelCanvas/PixelCanvas'
-import { ChromePicker } from 'react-color'
-import { saveAs } from 'file-saver'
+import TitleBar from "./components/TitleBar/TitleBar"
+import ToolBar from "./components/ToolBar/ToolBar"
+import PixelCanvas from "./components/PixelCanvas/PixelCanvas"
+// import ExportCanvas from "./components/ExportCanvas/ExportCanvas"
+import { ChromePicker } from "react-color"
+import { saveAs } from "file-saver"
 
 function App() {
 	const [brushColor, setBrushColor] = React.useState("#00ffff")
@@ -18,24 +21,40 @@ function App() {
   	const render = function() {
     	return (
       		<div className="App">
-				<div className="ColorPicker">
-          			<ChromePicker
-            			color={brushColor}
-            			onChangeComplete={(color) => setBrushColor(color.hex)}
-          			></ChromePicker>
-        		</div>
-        		<div className="PixelCanvas">
-          			<PixelCanvas
-            			width={16}
-            			height={16}
-            			scale={50}
-            			brushColor={brushColor}
-						onUpdate={(canvas) => canvasRef.current = canvas}
-          			></PixelCanvas>
-        		</div>
-				<div>
-					<button onClick={exportImage}>Export!</button>
+				<div className="TitleBar">
+					<TitleBar></TitleBar>
 				</div>
+				
+				<div className="Workspace">
+					
+					<div className="ToolBar">
+						<ToolBar></ToolBar>
+					</div>
+
+					<div className="ColorPicker">
+						<ChromePicker
+							color={brushColor}
+							onChangeComplete={(color) => setBrushColor(color.hex)}
+						></ChromePicker>
+					</div>
+
+					<div className="PixelCanvas">
+						<PixelCanvas
+							width={16}
+							height={16}
+							scale={50}
+							brushColor={brushColor}
+							onUpdate={(canvas) => canvasRef.current = canvas}
+						></PixelCanvas>
+					</div>
+
+					<div className="ExportCanvas">
+						<button className="ExportButton" onClick={exportImage}>Export!</button>
+						{/* <ExportCanvas></ExportCanvas> */}
+					</div>
+					
+				</div>
+				
       		</div>
     	)
   	}
