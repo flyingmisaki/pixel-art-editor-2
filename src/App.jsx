@@ -8,7 +8,7 @@ import { ChromePicker } from "react-color"
 import { saveAs } from "file-saver"
 
 function App() {
-	const [brushColor, setBrushColor] = React.useState("#00ffff")
+	const [brushColor, setBrushColor] = React.useState("#197D7DFF")
 	const canvasRef = React.useRef(null)
 
 	const exportImage = function() {

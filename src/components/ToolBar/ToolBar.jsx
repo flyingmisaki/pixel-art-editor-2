@@ -6,7 +6,10 @@ export default function ToolBar() {
     const render = function() {
         return (
             <div>
-                <div></div>
+                <div>pixel</div>
+                <div>cross</div>
+                <div>circle</div>
+                <div>line</div>
             </div>
         )
     }
