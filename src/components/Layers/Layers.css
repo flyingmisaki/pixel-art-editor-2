@@ -1,0 +1,10 @@
+.Layers {
+    width: 10rem;
+}
+
+.mockuplayer {
+    background-color: red;
+    border: 1px solid;
+    padding: 1.5rem;
+    margin:0.3rem;
+}
