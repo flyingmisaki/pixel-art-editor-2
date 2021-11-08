@@ -1,7 +1,8 @@
 import React from "react"
 import './App.css'
-import TitleBar from "./components/TitleBar/TitleBar"
-import ToolBar from "./components/ToolBar/ToolBar"
+import NavBar from "./components/NavBar/NavBar"
+import ToolBox from "./components/ToolBox/ToolBox"
+import Layers from "./components/Layers/Layers"
 import PixelCanvas from "./components/PixelCanvas/PixelCanvas"
 // import ExportCanvas from "./components/ExportCanvas/ExportCanvas"
 import { ChromePicker } from "react-color"
@@ -21,24 +22,18 @@ function App() {
   	const render = function() {
     	return (
       		<div className="App">
-				<div className="TitleBar">
-					<TitleBar></TitleBar>
+				
+				<div className="navBar">
+					<NavBar></NavBar>
 				</div>
 				
-				<div className="Workspace">
+				<div className="editor">
 					
-					<div className="ToolBar">
-						<ToolBar></ToolBar>
+					<div className="leftPanel">
+						<ToolBox></ToolBox>
 					</div>
 
-					<div className="ColorPicker">
-						<ChromePicker
-							color={brushColor}
-							onChangeComplete={(color) => setBrushColor(color.hex)}
-						></ChromePicker>
-					</div>
-
-					<div className="PixelCanvas">
+					<div className="workspace">
 						<PixelCanvas
 							width={16}
 							height={16}
@@ -48,10 +43,20 @@ function App() {
 						></PixelCanvas>
 					</div>
 
-					<div className="ExportCanvas">
-						<button className="ExportButton" onClick={exportImage}>Export!</button>
-						{/* <ExportCanvas></ExportCanvas> */}
+					<div className="rightPanel">
+						<Layers></Layers>
 					</div>
+
+					{/* <div className="ColorPicker">
+						<ChromePicker
+							color={brushColor}
+							onChangeComplete={(color) => setBrushColor(color.hex)}
+						></ChromePicker>
+					</div> */}
+
+					{/* <div className="ExportCanvas">
+						<button className="ExportButton" onClick={exportImage}>Export!</button>
+					</div> */}
 					
 				</div>
 				

@@ -1,0 +1,33 @@
+.toolBox {
+    display: flex;
+    flex-direction: row;
+}
+
+.toolBar {
+    display: flex;
+    flex-direction: column;
+}
+
+.toolBar button {
+    width: 4rem;
+    height: 4rem;
+    background-color: rgb(175, 73, 73);
+    border: 1px solid;
+    margin:0.3rem;
+}
+
+.toolOptions {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(85, 85, 85);
+    height: 100%;
+}
+
+.toolOptions div {
+    width: 15rem;
+    height: 5rem;
+    background-color: rgb(188, 255, 185);
+    border: 1px solid;
+    padding: 1.5rem;
+    margin:0.3rem;
+}
