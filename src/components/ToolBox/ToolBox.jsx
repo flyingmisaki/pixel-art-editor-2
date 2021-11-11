@@ -1,22 +1,50 @@
-import React from "react";
+import React from "react"
 import "./ToolBox.css"
+import pixel from "../../tools/Pixel.js"
+import lines from "../../tools/Lines.js"
+import shapes from "../../tools/Shapes.js"
+import fill from "../../tools/Fill.js"
+import picker from "../../tools/Picker.js"
+import erase from "../../tools/Erase"
 
-export default function ToolBox() {
+import {useBrushColor} from "../../hooks/useBrushColor"
+import {useActiveTool} from "../../hooks/useActiveTool"
+
+import { ChromePicker } from "react-color"
+
+
+export default function ToolBox(props) {
+
+    const [brushColor, setBrushColor] = useBrushColor()
+    const [activeTool, setActiveTool] = useActiveTool()
+
+    const renderToolButton = function(tool) {
+        // Check active tool and tell it its active
+        return <button
+            className={tool === activeTool ? "active" : ""}
+            onClick={() => setActiveTool(tool)}
+        >
+            {tool.name}
+        </button>
+    }
+
+    const tools = [pixel, lines, shapes, fill, picker, erase]
 
     const render = function() {
         return (
             <div className="toolBox">
                 <div className="toolBar">
-                    <button>Pixel</button>
-                    <button>Line</button>
-                    <button>Shape</button>
-                    <button>Fill</button>
-                    <button>Pick</button>
+                    {tools.map(renderToolButton)}
                 </div>
                 <div className="toolOptions">
-                    <div>ayy</div>
-                    <div>whsats</div>
-                    <div>upppp</div>
+                    <div className="ColorPicker">
+						<ChromePicker
+							color={brushColor}
+							onChangeComplete={(color) => setBrushColor(color.rgb)}
+						></ChromePicker>
+					</div>
+                    <div>Option 2</div>
+                    <div>Option 3</div>
                 </div>
             </div>
         )
