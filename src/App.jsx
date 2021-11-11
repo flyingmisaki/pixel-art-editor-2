@@ -12,6 +12,8 @@ function App() {
 	const [brushColor, setBrushColor] = React.useState("#197D7DFF")
 	const canvasRef = React.useRef(null)
 
+	const [activeTool, setActiveTool] = React.useState(null)
+
 	const exportImage = function() {
 		if(!canvasRef.current) return
 		const imageUrl = canvasRef.current.toDataURL("image/png")
@@ -30,7 +32,10 @@ function App() {
 				<div className="editor">
 					
 					<div className="leftPanel">
-						<ToolBox></ToolBox>
+						<ToolBox 
+							activeTool={activeTool}
+							onSelectTool={setActiveTool}
+						></ToolBox>
 					</div>
 
 					<div className="workspace">
@@ -39,6 +44,7 @@ function App() {
 							height={16}
 							scale={50}
 							brushColor={brushColor}
+							activeTool={activeTool}
 							onUpdate={(canvas) => canvasRef.current = canvas}
 						></PixelCanvas>
 					</div>

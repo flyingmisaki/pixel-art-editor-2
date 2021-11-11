@@ -16,6 +16,10 @@
     margin:0.3rem;
 }
 
+.toolBar button.active {
+    background-color: rgb(53, 209, 39);
+}
+
 .toolOptions {
     display: flex;
     flex-direction: column;

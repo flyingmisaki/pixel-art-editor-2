@@ -3,56 +3,58 @@ import './PixelCanvas.css'
 
 export default function PixelCanvas(props) {
     console.log("canvas")
+    const {
+        width, 
+        height, 
+        scale, 
+        activeTool, 
+        brushColor
+    } = props
+    console.log(activeTool)
+
     const canvasRef = React.useRef(null)
-    const width = props.width
-    const height = props.height
-    const scale = props.scale
-    const brushColor = props.brushColor
+
+    const handleMouseDown = function(e) {
+        const canvas = canvasRef.current
+        
+        if (canvas === null || activeTool === null) return
+
+        const canvasContext = canvas.getContext('2d')
 
 
-    const drawPixel = function(context, x, y, color) {
-        console.log(`Drawing pixel at ${x},${y}`)
-        context.fillStyle = color
-        context.fillRect(x, y, 1, 1)
+        const mouseX = e.clientX
+        const mouseY = e.clientY
+
+        const currentX = mouseX - canvas.offsetLeft
+        const currentY = mouseY - canvas.offsetTop
+
+        const canvasRelativeX = Math.floor(currentX/scale)
+        const canvasRelativeY = Math.floor(currentY/scale)
+
+        console.log(activeTool)
+        activeTool.mouseDown(canvasContext, canvasRelativeX, canvasRelativeY, brushColor)
+
+        if(props.onUpdate) props.onUpdate(canvas)
     }
 
     React.useEffect(() => {
         const canvas = canvasRef.current
-        console.log("canvas updated!")
+        
         if (canvas === null) return
 
-        console.log("setting up listeners!")
-
-        const canvasContext = canvas.getContext('2d')
-
-        const handleMouseDown = function(e) {
-            console.log("Mousedown!")
-            
-            const mouseX = e.clientX
-            const mouseY = e.clientY
-    
-            const currentX = mouseX - canvas.offsetLeft
-            const currentY = mouseY - canvas.offsetTop
-
-            const canvasRelativeX = Math.floor(currentX/scale)
-            const canvasRelativeY = Math.floor(currentY/scale)
-
-            
-            drawPixel(canvasContext, canvasRelativeX, canvasRelativeY, brushColor)
-
-            if(props.onUpdate) props.onUpdate(canvas)
-        }
-        
         // Set up listeners
         canvas.addEventListener("mousedown", handleMouseDown)
 
         return () => {
             
             // Tear down listeners
-            console.log("cleaning up!")
             canvas.removeEventListener("mousedown", handleMouseDown)
         }
-    }, [scale, brushColor])
+    }, [width, 
+        height, 
+        scale, 
+        activeTool, 
+        brushColor])
     
     const render = function() {
 
