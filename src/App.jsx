@@ -4,22 +4,23 @@ import NavBar from "./components/NavBar/NavBar"
 import ToolBox from "./components/ToolBox/ToolBox"
 import Layers from "./components/Layers/Layers"
 import PixelCanvas from "./components/PixelCanvas/PixelCanvas"
+import StatusBar from "./components/StatusBar/StatusBar"
+
 // import ExportCanvas from "./components/ExportCanvas/ExportCanvas"
-import { ChromePicker } from "react-color"
 import { saveAs } from "file-saver"
 
+import {BrushColorProvider} from "./hooks/useBrushColor"
+import {ActiveToolProvider} from "./hooks/useActiveTool"
+
 function App() {
-	const [brushColor, setBrushColor] = React.useState("#197D7DFF")
 	const canvasRef = React.useRef(null)
 
-	const [activeTool, setActiveTool] = React.useState(null)
-
-	const exportImage = function() {
-		if(!canvasRef.current) return
-		const imageUrl = canvasRef.current.toDataURL("image/png")
-		console.log("Exported to url: ", imageUrl)
-		saveAs(imageUrl, "export.png")
-	}
+	// const exportImage = function() {
+	// 	if(!canvasRef.current) return
+	// 	const imageUrl = canvasRef.current.toDataURL("image/png")
+	// 	console.log("Exported to url: ", imageUrl)
+	// 	saveAs(imageUrl, "export.png")
+	// }
 
   	const render = function() {
     	return (
@@ -32,10 +33,7 @@ function App() {
 				<div className="editor">
 					
 					<div className="leftPanel">
-						<ToolBox 
-							activeTool={activeTool}
-							onSelectTool={setActiveTool}
-						></ToolBox>
+						<ToolBox/>
 					</div>
 
 					<div className="workspace">
@@ -43,8 +41,6 @@ function App() {
 							width={16}
 							height={16}
 							scale={50}
-							brushColor={brushColor}
-							activeTool={activeTool}
 							onUpdate={(canvas) => canvasRef.current = canvas}
 						></PixelCanvas>
 					</div>
@@ -53,17 +49,14 @@ function App() {
 						<Layers></Layers>
 					</div>
 
-					{/* <div className="ColorPicker">
-						<ChromePicker
-							color={brushColor}
-							onChangeComplete={(color) => setBrushColor(color.hex)}
-						></ChromePicker>
-					</div> */}
-
 					{/* <div className="ExportCanvas">
 						<button className="ExportButton" onClick={exportImage}>Export!</button>
 					</div> */}
 					
+				</div>
+
+				<div className="statusBar">
+					<StatusBar></StatusBar>
 				</div>
 				
       		</div>
@@ -73,4 +66,12 @@ function App() {
   	return render()
 }
 
-export default App;
+export default function AppWithContext() {
+	return (
+		<ActiveToolProvider>
+			<BrushColorProvider>
+				<App/>
+			</BrushColorProvider>
+		</ActiveToolProvider>
+	)
+}

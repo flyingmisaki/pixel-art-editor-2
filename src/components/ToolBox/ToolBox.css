@@ -11,13 +11,15 @@
 .toolBar button {
     width: 4rem;
     height: 4rem;
-    background-color: rgb(175, 73, 73);
-    border: 1px solid;
-    margin:0.3rem;
+    background-color: rgb(109, 109, 109);
+    border-top: none;
+    border-left: none;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
 }
 
 .toolBar button.active {
-    background-color: rgb(53, 209, 39);
+    background-color: rgba(25, 125, 125, 1);
 }
 
 .toolOptions {
@@ -25,13 +27,4 @@
     flex-direction: column;
     background-color: rgb(85, 85, 85);
     height: 100%;
-}
-
-.toolOptions div {
-    width: 15rem;
-    height: 5rem;
-    background-color: rgb(188, 255, 185);
-    border: 1px solid;
-    padding: 1.5rem;
-    margin:0.3rem;
 }

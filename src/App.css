@@ -10,8 +10,18 @@ body {
 }
 
 .navBar {
-	padding: 0.33rem;
+	padding: 0.25rem;
 	background-color: rgba(25, 125, 125, 1);
+	border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid;
+}
+
+.statusBar {
+	padding: 0.25rem;
+	background-color: rgba(25, 125, 125, 1);
+	border-top: 1px solid;
 }
 
 .editor {

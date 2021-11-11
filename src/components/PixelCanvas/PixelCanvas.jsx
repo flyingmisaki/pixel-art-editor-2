@@ -1,16 +1,18 @@
 import React from "react"
 import './PixelCanvas.css'
+import {useActiveTool} from "../../hooks/useActiveTool"
+import {useBrushColor} from "../../hooks/useBrushColor"
 
 export default function PixelCanvas(props) {
     console.log("canvas")
     const {
         width, 
         height, 
-        scale, 
-        activeTool, 
-        brushColor
+        scale
     } = props
-    console.log(activeTool)
+
+    const [activeTool] = useActiveTool()
+    const [brushColor] = useBrushColor("#197D7DFF")
 
     const canvasRef = React.useRef(null)
 
@@ -31,7 +33,6 @@ export default function PixelCanvas(props) {
         const canvasRelativeX = Math.floor(currentX/scale)
         const canvasRelativeY = Math.floor(currentY/scale)
 
-        console.log(activeTool)
         activeTool.mouseDown(canvasContext, canvasRelativeX, canvasRelativeY, brushColor)
 
         if(props.onUpdate) props.onUpdate(canvas)

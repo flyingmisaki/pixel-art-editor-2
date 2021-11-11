@@ -7,15 +7,22 @@ import fill from "../../tools/Fill.js"
 import picker from "../../tools/Picker.js"
 import erase from "../../tools/Erase"
 
+import {useBrushColor} from "../../hooks/useBrushColor"
+import {useActiveTool} from "../../hooks/useActiveTool"
+
+import { ChromePicker } from "react-color"
+
 
 export default function ToolBox(props) {
-    const {activeTool, onSelectTool} = props
+
+    const [brushColor, setBrushColor] = useBrushColor()
+    const [activeTool, setActiveTool] = useActiveTool()
 
     const renderToolButton = function(tool) {
         // Check active tool and tell it its active
         return <button
             className={tool === activeTool ? "active" : ""}
-            onClick={() => onSelectTool(tool)}
+            onClick={() => setActiveTool(tool)}
         >
             {tool.name}
         </button>
@@ -30,9 +37,14 @@ export default function ToolBox(props) {
                     {tools.map(renderToolButton)}
                 </div>
                 <div className="toolOptions">
-                    <div>ayy</div>
-                    <div>whsats</div>
-                    <div>upppp</div>
+                    <div className="ColorPicker">
+						<ChromePicker
+							color={brushColor}
+							onChangeComplete={(color) => setBrushColor(color.rgb)}
+						></ChromePicker>
+					</div>
+                    <div>Option 2</div>
+                    <div>Option 3</div>
                 </div>
             </div>
         )
