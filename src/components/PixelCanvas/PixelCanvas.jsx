@@ -23,7 +23,6 @@ export default function PixelCanvas(props) {
 
         const canvasContext = canvas.getContext('2d')
 
-
         const mouseX = e.clientX
         const mouseY = e.clientY
 
