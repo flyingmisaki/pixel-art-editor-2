@@ -6,11 +6,14 @@
 .toolBar {
     display: flex;
     flex-direction: column;
+    border-right: 1px solid;
 }
 
 .toolBarTitle {
     text-align: center;
     color: white;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .toolBar button {
@@ -32,6 +35,8 @@
 .toolOptionsTitle {
     text-align: center;
     color: white;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .toolOptions {
@@ -42,4 +47,5 @@
 
 .colorPicker {
     margin-left: 1rem;
+    margin-right: 1rem;
 }
