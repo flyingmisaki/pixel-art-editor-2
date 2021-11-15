@@ -34,17 +34,17 @@ export default function ToolBox(props) {
         return (
             <div className="toolBox">
                 <div className="toolBar">
+                    <div className="toolBarTitle">Tools</div>
                     {tools.map(renderToolButton)}
                 </div>
                 <div className="toolOptions">
-                    <div className="ColorPicker">
+                    <div className="toolOptionsTitle">Options</div>
+                    <div className="colorPicker">
 						<ChromePicker
 							color={brushColor}
 							onChangeComplete={(color) => setBrushColor(color.rgb)}
 						></ChromePicker>
 					</div>
-                    <div>Option 2</div>
-                    <div>Option 3</div>
                 </div>
             </div>
         )

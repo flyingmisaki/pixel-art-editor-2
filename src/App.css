@@ -32,6 +32,7 @@ body {
 
 .leftPanel {
 	background-color: rgb(75, 75, 75);
+	border-right: 1px solid;
 }
 
 .workspace {
@@ -44,6 +45,7 @@ body {
 
 .rightPanel {
 	background-color: rgb(75, 75, 75);
+	border-left: 1px solid;
 }
 
 /* .ExportCanvas {
