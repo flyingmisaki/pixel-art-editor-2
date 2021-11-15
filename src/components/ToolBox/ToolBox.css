@@ -10,12 +10,14 @@
 
 .toolBarTitle {
     text-align: center;
+    color: white;
 }
 
 .toolBar button {
     width: 4rem;
     height: 4rem;
-    background-color: rgb(109, 109, 109);
+    background-color: rgb(75, 75, 75);
+    color: white;
     border: none;
 }
 
@@ -29,12 +31,12 @@
 
 .toolOptionsTitle {
     text-align: center;
+    color: white;
 }
 
 .toolOptions {
     display: flex;
     flex-direction: column;
-    background-color: rgb(85, 85, 85);
     height: 100%;
 }
 
