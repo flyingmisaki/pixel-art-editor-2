@@ -8,18 +8,27 @@
     flex-direction: column;
 }
 
+.toolBarTitle {
+    text-align: center;
+}
+
 .toolBar button {
     width: 4rem;
     height: 4rem;
     background-color: rgb(109, 109, 109);
-    border-top: none;
-    border-left: none;
-    border-right: 1px solid;
-    border-bottom: 1px solid;
+    border: none;
+}
+
+.toolBar button:hover {
+    background-color: rgba(25, 125, 125, 1);
 }
 
 .toolBar button.active {
     background-color: rgba(25, 125, 125, 1);
+}
+
+.toolOptionsTitle {
+    text-align: center;
 }
 
 .toolOptions {
@@ -27,4 +36,8 @@
     flex-direction: column;
     background-color: rgb(85, 85, 85);
     height: 100%;
+}
+
+.colorPicker {
+    margin-left: 1rem;
 }
