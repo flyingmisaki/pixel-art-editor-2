@@ -1,6 +1,12 @@
+import {BsEraser} from "react-icons/bs"
+
 class Erase {
     constructor() {
         this.name = "Erase"
+    }
+
+    renderIcon() {
+        return <BsEraser/>
     }
 
     erasePixel(context, x, y) {

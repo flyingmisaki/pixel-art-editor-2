@@ -1,9 +1,14 @@
 import { colorToCanvasColor } from "../utils/colors"
+import {BsDashLg} from "react-icons/bs"
 
 class Lines {
     constructor() {
         this.name = "Lines"
         this.startPosition = null
+    }
+
+    renderIcon() {
+        return <BsDashLg/>
     }
 
     isDrawing() {

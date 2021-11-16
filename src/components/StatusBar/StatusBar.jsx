@@ -13,7 +13,7 @@ export default function NavBar() {
 
     const render = function() {
         return (
-            <a>Tool: {activeTool?.name ?? "none"}, Color: {colorToHexColor(brushColor)}, Cursor x, y: {}, {}</a>
+            <a>Tool: {activeTool?.name ?? "none"}, Color: {colorToHexColor(brushColor)}, Cursor x, y: {"X"}, {"Y"}</a>
         )
     }
 

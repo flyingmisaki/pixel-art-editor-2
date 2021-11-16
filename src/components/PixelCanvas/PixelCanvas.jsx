@@ -55,7 +55,7 @@ export default function PixelCanvas(props) {
         scale, 
         activeTool, 
         brushColor])
-    
+        
     const render = function() {
 
         const elementWidth = width * scale
