@@ -3,40 +3,38 @@
     flex-direction: row;
 }
 
+.toolBox .optionTitle {
+    text-align: center;
+    color: var(--lightGray1);
+    padding: 0.25rem;
+}
+
 .toolBar {
     display: flex;
     flex-direction: column;
-    border-right: 1px solid;
-}
-
-.toolBarTitle {
-    text-align: center;
-    color: white;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    border-right: 1px solid var(--DarkblueGray1);
 }
 
 .toolBar button {
     width: 4rem;
     height: 4rem;
-    background-color: rgb(75, 75, 75);
-    color: white;
+    background-color: var(--blueGray1);
+    color: var(--mediumGray1);
     border: none;
 }
 
+.toolBar button svg {
+    font-size: 1.75rem;
+}
+
 .toolBar button:hover {
-    background-color: rgba(25, 125, 125, 1);
+    color: var(--lightGray1);
+    cursor: pointer;
 }
 
 .toolBar button.active {
-    background-color: rgba(25, 125, 125, 1);
-}
-
-.toolOptionsTitle {
-    text-align: center;
-    color: white;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    color: var(--lightGray1);
+    border-left: 2px solid var(--lightGray1);
 }
 
 .toolOptions {
@@ -45,7 +43,25 @@
     height: 100%;
 }
 
-.colorPicker {
+/* .colorPicker {
     margin-left: 1rem;
     margin-right: 1rem;
+} */
+
+.chrome-picker {
+    background-color: var(--blueGray2) !important;
+    border-radius: 0px !important;
+}
+
+.chrome-picker>div{
+    border-radius: 0px !important;
+}
+
+.chrome-picker input {
+    color: var(--lightGray1) !important;
+    background-color: var(--blueGray2) !important;
+}
+
+.chrome-picker label {
+    color: var(--lightGray1) !important;
 }

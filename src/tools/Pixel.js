@@ -1,8 +1,13 @@
 import {colorToCanvasColor} from "../utils/colors"
+import {BsBrush} from "react-icons/bs"
 
 class Pixel {
     constructor() {
         this.name = "Pixel"
+    }
+
+    renderIcon() {
+        return <BsBrush/>
     }
 
     drawPixel(context, x, y, color) {
