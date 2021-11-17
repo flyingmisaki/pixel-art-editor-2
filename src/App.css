@@ -16,6 +16,11 @@ body {
 	
 }
 
+button {
+	border: none;
+	background: none;
+}
+
 .App {
 	font-family: Arial, Helvetica, sans-serif;
 	display: flex;

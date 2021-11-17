@@ -6,4 +6,4 @@ class Layer {
     }
 }
 
-export default Layer()
+export default Layer

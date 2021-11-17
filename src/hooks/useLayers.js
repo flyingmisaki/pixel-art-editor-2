@@ -1,4 +1,5 @@
 import React, {useState, useContext, createContext} from "react"
+import Layer from "../core/Layer"
 
 const LayersContext = createContext()
 
@@ -15,9 +16,18 @@ export function LayersProvider(props){
         
     }
 
+    const addLayer = () => {
+        const layer = new Layer()
+
+        const newLayers = [...layers, layer]
+
+        setLayers(newLayers)
+    }
+
     const layersData = {
         layers,
-        setLayers
+        setLayers,
+        addLayer
     }
 
     return (
@@ -26,5 +36,3 @@ export function LayersProvider(props){
         </LayersContext.Provider>
     )
 }
-
-// Active layer, layer ids, add layers, remove layers aqnd change order
