@@ -2,7 +2,7 @@ import React from "react"
 import './App.css'
 import NavBar from "./components/NavBar/NavBar"
 import ToolBox from "./components/ToolBox/ToolBox"
-import Layers from "./components/Layers/Layers"
+import LayersPanel from "./components/LayersPanel/LayersPanel"
 import PixelCanvas from "./components/PixelCanvas/PixelCanvas"
 import StatusBar from "./components/StatusBar/StatusBar"
 
@@ -11,6 +11,7 @@ import { saveAs } from "file-saver"
 
 import {BrushColorProvider} from "./hooks/useBrushColor"
 import {ActiveToolProvider} from "./hooks/useActiveTool"
+import { LayersProvider } from "./hooks/useLayers"
 
 function App() {
 	const canvasRef = React.useRef(null)
@@ -46,7 +47,7 @@ function App() {
 					</div>
 
 					<div className="rightPanel">
-						<Layers></Layers>
+						<LayersPanel></LayersPanel>
 					</div>
 
 					{/* <div className="ExportCanvas">
@@ -70,7 +71,9 @@ export default function AppWithContext() {
 	return (
 		<ActiveToolProvider>
 			<BrushColorProvider>
-				<App/>
+				<LayersProvider>
+					<App/>
+				</LayersProvider>
 			</BrushColorProvider>
 		</ActiveToolProvider>
 	)
