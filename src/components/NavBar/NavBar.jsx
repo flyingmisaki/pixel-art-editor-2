@@ -5,7 +5,13 @@ export default function NavBar() {
     
     const render = function() {
         return (
-            <a>LOGO    File    Edit    Selection   View    Go</a>
+            <div className="nav">
+                <div>LOGO</div>
+                <div>File</div>
+                <div>Edit</div>
+                <div>Selection</div>
+            </div>
+            
         )
     }
 

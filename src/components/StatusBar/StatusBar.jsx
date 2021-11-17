@@ -1,7 +1,7 @@
 import React from "react"
 import "./StatusBar.css"
 
-import {colorToHexColor} from "../../utils/colors"
+import {colorToHexColor} from "../../core/utils/colors"
 
 import {useBrushColor} from "../../hooks/useBrushColor"
 import {useActiveTool} from "../../hooks/useActiveTool"

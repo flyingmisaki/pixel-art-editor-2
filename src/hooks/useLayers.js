@@ -2,20 +2,29 @@ import React, {useState, useContext, createContext} from "react"
 
 const LayersContext = createContext()
 
-export function useActiveTool(defaultTool = null){
-    const [activeTool, setActiveTool] = useContext(ActiveToolContext)
-
-    if(activeTool === undefined) setActiveTool(defaultTool)
-
-    return [activeTool, setActiveTool]
+export function useLayers(){
+    return useContext(LayersContext)
 }
 
-export function ActiveToolProvider(props){
-    const [activeTool, setActiveTool] = useState(undefined)
+export function LayersProvider(props){
+    const [layers, setLayers] = useState([])
+
+    const [activeLayerId, setActiveLayerId] = useState(null)
+
+    const getActiveLayer = () => {
+        
+    }
+
+    const layersData = {
+        layers,
+        setLayers
+    }
 
     return (
-        <ActiveToolContext.Provider value={[activeTool, setActiveTool]}>
+        <LayersContext.Provider value={layersData}>
             {props.children}
-        </ActiveToolContext.Provider>
+        </LayersContext.Provider>
     )
 }
+
+// Active layer, layer ids, add layers, remove layers aqnd change order

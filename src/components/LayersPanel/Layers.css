@@ -3,8 +3,9 @@
 }
 
 .mockuplayer {
+    font-size: 0.9rem;
     background-color: var(--blueGray2);
     border-bottom: 1px solid var(--DarkblueGray1);
     color: var(--lightGray1);
-    padding: 0.25rem;
+    padding: 0.3rem;
 }

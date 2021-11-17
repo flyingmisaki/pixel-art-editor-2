@@ -24,14 +24,14 @@ body {
 }
 
 .navBar {
-	padding: 0.25rem;
+	padding: 0.3rem;
 	background-color: var(--blueGray1);
 	color: var(--lightGray1);
     border-bottom: 1px solid var(--DarkblueGray1);
 }
 
 .statusBar {
-	padding: 0.25rem;
+	padding: 0.3rem;
 	background-color: var(--blueGray1);
 	color: var(--lightGray1);
 	border-top: 1px solid var(--DarkblueGray1);
