@@ -1,3 +1,8 @@
-div {
+.statusBarStats {
     font-size: 0.9rem;
+    color: var(--mediumGray1);
+}
+
+.statusBarStats:hover {
+    color: var(--lightGray1);
 }

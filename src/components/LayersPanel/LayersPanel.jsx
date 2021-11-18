@@ -6,14 +6,18 @@ import {BsPlusLg, BsTrashFill, BsEyeFill, BsLockFill} from "react-icons/bs";
 
 export default function LayersPanel() {
 
-    const {layers, addLayer} = useLayers()
+    const {layers, activeLayer, addLayer, setActiveLayer} = useLayers()
 
     const renderLayer = function(layer) {
+        const isActive = activeLayer?.id == layer.id
+
+        const className = `layerPreview ${isActive ? "active" : ""}`
+        
         return (
-            <div className="layerPreview">
-                <div className="previewImage"></div>
+            <div className={className} onClick={() => setActiveLayer(layer)}>
+                <div className="previewImage">preview</div>
                 <div className="layerPreviewInner">
-                    <label className="layerPreviewTitle">{layer.id}</label>
+                    <label className="layerPreviewTitle">{layer.name}</label>
                     <div>
                         <button className="layerActionButton"><BsEyeFill/></button>
                         <button className="layerActionButton"><BsLockFill/></button>
@@ -38,14 +42,14 @@ export default function LayersPanel() {
                     <button onClick={addLayer} className="addLayerButton"><BsPlusLg/></button>
                 </div>
                 <div className="layers">
-                    {layers.map(renderLayer)}
+                    {[...layers].reverse().map(renderLayer)}
                 </div>
-                <div className="exportRegionButton">
-                    <button>Export!</button>
+                <div className="exportRegion">
+                    <button className="exportButton">Export!</button>
                 </div>
             </div>
         )
     }
-
+    
     return render()
 }

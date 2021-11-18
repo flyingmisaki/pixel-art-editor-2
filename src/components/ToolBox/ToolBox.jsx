@@ -9,7 +9,9 @@ import erase from "../../core/tools/Erase"
 import {useBrushColor} from "../../hooks/useBrushColor"
 import {useActiveTool} from "../../hooks/useActiveTool"
 
-import { ChromePicker } from "react-color"
+import {ChromePicker} from "react-color"
+
+import {BsGear} from "react-icons/bs"
 
 
 export default function ToolBox(props) {
@@ -35,6 +37,7 @@ export default function ToolBox(props) {
                 <div className="toolBar">
                     {/* Iterates tool obj list and renders for each */}
                     {tools.map(renderToolButton)}
+                    <button className="settingsButton"><BsGear/></button>
                 </div>
                 <div className="toolOptions">
                     <div className="colorPicker">

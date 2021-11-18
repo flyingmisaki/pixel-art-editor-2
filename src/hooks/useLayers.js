@@ -1,4 +1,4 @@
-import React, {useState, useContext, createContext} from "react"
+import React, {useState, useContext, createContext, useRef} from "react"
 import Layer from "../core/Layer"
 
 const LayersContext = createContext()
@@ -9,25 +9,29 @@ export function useLayers(){
 
 export function LayersProvider(props){
     const [layers, setLayers] = useState([])
+    const [activeLayer, setActiveLayer] = useState(null)
 
-    const [activeLayerId, setActiveLayerId] = useState(null)
-
-    const getActiveLayer = () => {
-        
-    }
+    const layerIndexRef = useRef(0)
 
     const addLayer = () => {
-        const layer = new Layer()
+        const layerIndex = layerIndexRef.current
+        const layerName = `Layer ${layerIndex}`
+
+        const layer = new Layer(layerName)
 
         const newLayers = [...layers, layer]
+
+        layerIndexRef.current += 1
 
         setLayers(newLayers)
     }
 
     const layersData = {
         layers,
+        activeLayer,
         setLayers,
-        addLayer
+        addLayer,
+        setActiveLayer
     }
 
     return (

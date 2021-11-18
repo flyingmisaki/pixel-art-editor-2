@@ -1,11 +1,11 @@
 .toolBox {
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
 
 .toolBox .optionTitle {
     text-align: center;
-    color: var(--lightGray1);
     padding: 0.25rem;
 }
 
@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--DarkblueGray1);
+    height: 100%;
 }
 
 .toolBar button {
@@ -37,16 +38,24 @@
     border-left: 2px solid var(--lightGray1);
 }
 
+.settingsButton {
+    margin-top: auto;
+}
+
 .toolOptions {
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 
-/* .colorPicker {
-    margin-left: 1rem;
-    margin-right: 1rem;
-} */
+.colorPicker {
+    /* margin-left: 1rem;
+    margin-right: 1rem; */
+    color: var(--mediumGray1);
+}
+
+.colorPicker:hover {
+    color: var(--lightGray1);
+}
 
 .chrome-picker {
     background-color: var(--blueGray2) !important;
