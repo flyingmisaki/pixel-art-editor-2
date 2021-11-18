@@ -50,7 +50,6 @@ button {
 
 .leftPanel {
 	background-color: var(--blueGray1);
-	color: var(--lightGray1);
 	border-right: 1px solid var(--DarkblueGray1);
 }
 

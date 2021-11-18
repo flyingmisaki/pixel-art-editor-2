@@ -1,11 +1,18 @@
 .LayersPanel {
     width: 10rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.layersPanelTop {
+    border-bottom: 1px solid var(--DarkblueGray1);
 }
 
 .addLayerButton {
+    margin-top: 0.15rem;
     width: 1.5rem;
     height: 1.5rem;
-    background-color: var(--blueGray1);
     color: var(--mediumGray1);
     border: none;
 }
@@ -19,6 +26,24 @@
     cursor: pointer;
 }
 
+.exportRegion {
+    margin-top: auto;
+    border-top: 1px solid var(--DarkblueGray1);
+}
+
+.exportButton {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    margin-left: 0.3rem;
+    margin-top: 0.3rem;
+    color: var(--mediumGray1);
+}
+
+.exportButton:hover {
+    color: var(--lightGray1);
+    cursor: pointer;
+}
+
 .layerPreview {
     display: flex;
     flex-direction: row;
@@ -26,21 +51,32 @@
     font-size: 0.9rem;
     background-color: var(--blueGray1);
     border-bottom: 1px solid var(--DarkblueGray1);
-    color: var(--lightGray1);
+    color: var(--mediumGray1);
     padding: 0.3rem;
     padding-right: 0.6rem;
     height: 50px;
     justify-content: space-between;
 }
 
-.layerPreview:hover {
+.layerPreview.active {
     background-color: var(--blueGray2);
 }
 
+.layerPreview:hover {
+    background-color: var(--blueGray2);
+    color: var(--lightGray1);
+}
+
 .layerPreview .previewImage {
-    background-color: red;
     width: 50px;
     height: 100%;
+    background: #eee url('data:image/svg+xml,\
+    <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" fill-opacity=".25" >\
+        <rect x="200" width="200" height="200" />\
+        <rect y="200" width="200" height="200" />\
+        </svg>');
+    background-size: 5px 5px;
+    
 }
 
 .layerPreviewInner {

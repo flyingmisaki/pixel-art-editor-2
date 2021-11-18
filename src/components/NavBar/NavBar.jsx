@@ -10,6 +10,7 @@ export default function NavBar() {
                 <div>File</div>
                 <div>Edit</div>
                 <div>Selection</div>
+                <div>View</div>
             </div>
             
         )
