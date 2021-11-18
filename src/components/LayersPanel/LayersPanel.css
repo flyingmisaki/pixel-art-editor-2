@@ -1,11 +1,17 @@
 .LayersPanel {
     width: 10rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.layersPanelTop {
+    border-bottom: 1px solid var(--DarkblueGray1);
 }
 
 .addLayerButton {
+    margin-top: 0.15rem;
     width: 1.5rem;
     height: 1.5rem;
-    background-color: var(--blueGray1);
     color: var(--mediumGray1);
     border: none;
 }
@@ -15,6 +21,20 @@
 }
 
 .addLayerButton:hover {
+    color: var(--lightGray1);
+    cursor: pointer;
+}
+
+.exportRegion button {
+    flex-direction: column;
+    align-self: flex-end;
+}
+
+.exportRegion button {
+    color: var(--mediumGray1);
+}
+
+.exportRegion button:hover {
     color: var(--lightGray1);
     cursor: pointer;
 }

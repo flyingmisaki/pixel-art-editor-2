@@ -7,21 +7,14 @@ import PixelCanvas from "./components/PixelCanvas/PixelCanvas"
 import StatusBar from "./components/StatusBar/StatusBar"
 
 // import ExportCanvas from "./components/ExportCanvas/ExportCanvas"
-import { saveAs } from "file-saver"
+
 
 import {BrushColorProvider} from "./hooks/useBrushColor"
 import {ActiveToolProvider} from "./hooks/useActiveTool"
-import { LayersProvider } from "./hooks/useLayers"
+import {LayersProvider} from "./hooks/useLayers"
 
 function App() {
 	const canvasRef = React.useRef(null)
-
-	// const exportImage = function() {
-	// 	if(!canvasRef.current) return
-	// 	const imageUrl = canvasRef.current.toDataURL("image/png")
-	// 	console.log("Exported to url: ", imageUrl)
-	// 	saveAs(imageUrl, "export.png")
-	// }
 
   	const render = function() {
     	return (
