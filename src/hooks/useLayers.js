@@ -26,6 +26,10 @@ export function LayersProvider(props){
         setLayers(newLayers)
     }
 
+    const removeLayer = () => {
+        
+    }
+
     const layersData = {
         layers,
         activeLayer,
