@@ -16,7 +16,8 @@ export default function LayersPanel() {
         
         return (
             <div className={className} onClick={() => setActiveLayer(layer)}>
-                <div className="previewImage">preview</div>
+                <div className="previewImage">
+                </div>
                 <div className="layerPreviewInner">
                     <label className="layerPreviewTitle">{layer.name}</label>
                     <div>

@@ -8,10 +8,11 @@ export function useLayers(){
 }
 
 export function LayersProvider(props){
-    const [layers, setLayers] = useState([])
-    const [activeLayer, setActiveLayer] = useState(null)
+    const defaultLayer = new Layer("Layer 0")
+    const [layers, setLayers] = useState([defaultLayer])
+    const [activeLayer, setActiveLayer] = useState(defaultLayer)
 
-    const layerIndexRef = useRef(0)
+    const layerIndexRef = useRef(1)
 
     const addLayer = () => {
         const layerIndex = layerIndexRef.current
@@ -22,6 +23,9 @@ export function LayersProvider(props){
         const newLayers = [...layers, layer]
 
         layerIndexRef.current += 1
+
+        // Sets the added layer as the active layer
+        setActiveLayer(layer)
 
         setLayers(newLayers)
     }

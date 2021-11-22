@@ -13,27 +13,27 @@ export default function PixelCanvas(props) {
 
     const pixelCanvasRef = useRef(null)
 
-    const handleMouseDown = function(event) {
-        if (!activeTool || !activeLayer) return
-        
-        const pixelCanvasElement = pixelCanvasRef.current
-
-        const mouseX = event.clientX
-        const mouseY = event.clientY
-        
-        const currentX = mouseX - pixelCanvasElement.offsetLeft
-        const currentY = mouseY - pixelCanvasElement.offsetTop
-
-        const canvasRelativeX = Math.floor(currentX/scale)
-        const canvasRelativeY = Math.floor(currentY/scale)
-
-        const layerCanvasContext = activeLayer.canvasRef.current.getContext('2d')
-
-        activeTool.mouseDown(layerCanvasContext, canvasRelativeX, canvasRelativeY, brushColor)
-    }
-
     React.useEffect(() => {
         const pixelCanvasElement = pixelCanvasRef.current
+
+        const handleMouseDown = function(event) {
+            if (!activeTool || !activeLayer) return
+            
+            const pixelCanvasElement = pixelCanvasRef.current
+    
+            const mouseX = event.clientX
+            const mouseY = event.clientY
+            
+            const currentX = mouseX - pixelCanvasElement.offsetLeft
+            const currentY = mouseY - pixelCanvasElement.offsetTop
+    
+            const canvasRelativeX = Math.floor(currentX/scale)
+            const canvasRelativeY = Math.floor(currentY/scale)
+    
+            const layerCanvasContext = activeLayer.canvasRef.current.getContext('2d')
+    
+            activeTool.mouseDown(layerCanvasContext, canvasRelativeX, canvasRelativeY, brushColor)
+        }
     
         if (pixelCanvasElement === null) return
 
@@ -46,7 +46,7 @@ export default function PixelCanvas(props) {
             pixelCanvasElement.removeEventListener("mousedown", handleMouseDown)
         }
     },  
-        [activeLayer, scale, width, height, brushColor]
+        [activeTool, activeLayer, scale, width, height, brushColor]
     )
 
     const render = function() {

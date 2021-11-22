@@ -6,17 +6,14 @@ import shapes from "../../core/tools/Shapes.js"
 import fill from "../../core/tools/Fill.js"
 import erase from "../../core/tools/Erase"
 
-import {useBrushColor} from "../../hooks/useBrushColor"
-import {useActiveTool} from "../../hooks/useActiveTool"
+import ToolOptions from "../ToolOptions/ToolOptions"
 
-import {ChromePicker} from "react-color"
+import {useActiveTool} from "../../hooks/useActiveTool"
 
 import {BsGear} from "react-icons/bs"
 
+export default function ToolBox() {
 
-export default function ToolBox(props) {
-
-    const [brushColor, setBrushColor] = useBrushColor()
     const [activeTool, setActiveTool] = useActiveTool()
 
     const renderToolButton = function(tool) {
@@ -39,15 +36,7 @@ export default function ToolBox(props) {
                     {tools.map(renderToolButton)}
                     <button className="settingsButton"><BsGear/></button>
                 </div>
-                <div className="toolOptions">
-                    <div className="colorPicker">
-                        <div className="optionTitle">Color</div>
-						<ChromePicker
-							color={brushColor}
-							onChangeComplete={(color) => setBrushColor(color.rgb)}
-						></ChromePicker>
-					</div>
-                </div>
+                <ToolOptions/>
             </div>
         )
     }
