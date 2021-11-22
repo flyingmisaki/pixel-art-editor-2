@@ -6,7 +6,7 @@ import shapes from "../../core/tools/Shapes.js"
 import fill from "../../core/tools/Fill.js"
 import erase from "../../core/tools/Erase"
 
-import ToolOptions from "../ToolOptions/ToolOptions"
+import ToolOptions from "./ToolOptions/ToolOptions"
 
 import {useActiveTool} from "../../hooks/useActiveTool"
 

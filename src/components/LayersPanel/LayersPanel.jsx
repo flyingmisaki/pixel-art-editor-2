@@ -3,32 +3,12 @@ import {useLayers} from "../../hooks/useLayers";
 import "./LayersPanel.css"
 
 // import {saveAs} from "file-saver"
-import {BsPlusLg, BsTrashFill, BsEyeFill, BsLockFill} from "react-icons/bs";
+import {BsPlusLg} from "react-icons/bs";
+import LayerPreview from "./LayerPreview/LayerPreview";
 
 export default function LayersPanel() {
 
-    const {layers, activeLayer, addLayer, setActiveLayer} = useLayers()
-
-    const renderLayer = function(layer) {
-        const isActive = activeLayer?.id === layer.id
-
-        const className = `layerPreview ${isActive ? "active" : ""}`
-        
-        return (
-            <div className={className} onClick={() => setActiveLayer(layer)}>
-                <div className="previewImage">
-                </div>
-                <div className="layerPreviewInner">
-                    <label className="layerPreviewTitle">{layer.name}</label>
-                    <div>
-                        <button className="layerActionButton"><BsEyeFill/></button>
-                        <button className="layerActionButton"><BsLockFill/></button>
-                        <button className="layerActionButton"><BsTrashFill/></button>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+    const {layers, addLayer} = useLayers()
 
     // const exportImage = function() {
 	// 	if(!canvasRef.current) return
@@ -44,7 +24,11 @@ export default function LayersPanel() {
                     <button onClick={addLayer} className="addLayerButton"><BsPlusLg/></button>
                 </div>
                 <div className="layers">
-                    {[...layers].reverse().map(renderLayer)}
+                    {[...layers].reverse().map(layer => 
+                        (<LayerPreview
+                            layer={layer}
+                        />)
+                    )}
                 </div>
                 <div className="exportRegion">
                     <button className="exportButton">Export!</button>

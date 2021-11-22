@@ -1,4 +1,4 @@
-import React, {useState, useContext, createContext, useRef} from "react"
+import React, {useState, useContext, createContext, useRef, useEffect} from "react"
 import Layer from "../core/Layer"
 
 const LayersContext = createContext()
@@ -8,30 +8,49 @@ export function useLayers(){
 }
 
 export function LayersProvider(props){
-    const defaultLayer = new Layer("Layer 0")
-    const [layers, setLayers] = useState([defaultLayer])
-    const [activeLayer, setActiveLayer] = useState(defaultLayer)
+    const [layers, setLayers] = useState([])
+    const [activeLayer, setActiveLayer] = useState(null)
 
-    const layerIndexRef = useRef(1)
+    const layersAddedTotalRef = useRef(0)
 
     const addLayer = () => {
-        const layerIndex = layerIndexRef.current
+        const layerIndex = layersAddedTotalRef.current
         const layerName = `Layer ${layerIndex}`
 
         const layer = new Layer(layerName)
 
         const newLayers = [...layers, layer]
 
-        layerIndexRef.current += 1
+        layersAddedTotalRef.current += 1
 
         // Sets the added layer as the active layer
         setActiveLayer(layer)
 
         setLayers(newLayers)
     }
+    
+    // Layers gets stuck as empty list in closure, but only runs once so its fine
+    // eslint-disable-next-line
+    useEffect(addLayer, [])
 
-    const removeLayer = () => {
+    const removeLayer = (layer) => {
+        if (layer.id === activeLayer?.id) {
+            const layerIndex = layers.indexOf(layer)
+            
+            if (layers.length === 1) {
+                setActiveLayer(null)
+            }
+            else if (layerIndex === 0) {
+                setActiveLayer(layers[layerIndex + 1])
+            }
+            else {
+                setActiveLayer(layers[layerIndex - 1])
+            }
+        }
         
+        const newLayers = layers.filter(l => l.id !== layer.id)
+        
+        setLayers(newLayers)
     }
 
     const layersData = {
@@ -39,6 +58,7 @@ export function LayersProvider(props){
         activeLayer,
         setLayers,
         addLayer,
+        removeLayer,
         setActiveLayer
     }
 
