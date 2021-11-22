@@ -4,11 +4,6 @@
     height: 100%;
 }
 
-.toolBox .optionTitle {
-    text-align: center;
-    padding: 0.25rem;
-}
-
 .toolBar {
     display: flex;
     flex-direction: column;
@@ -40,37 +35,4 @@
 
 .settingsButton {
     margin-top: auto;
-}
-
-.toolOptions {
-    display: flex;
-    flex-direction: column;
-}
-
-.colorPicker {
-    /* margin-left: 1rem;
-    margin-right: 1rem; */
-    color: var(--mediumGray1);
-}
-
-.colorPicker:hover {
-    color: var(--lightGray1);
-}
-
-.chrome-picker {
-    background-color: var(--blueGray2) !important;
-    border-radius: 0px !important;
-}
-
-.chrome-picker>div{
-    border-radius: 0px !important;
-}
-
-.chrome-picker input {
-    color: var(--lightGray1) !important;
-    background-color: var(--blueGray2) !important;
-}
-
-.chrome-picker label {
-    color: var(--lightGray1) !important;
 }

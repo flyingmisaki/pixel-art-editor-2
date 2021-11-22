@@ -1,7 +1,8 @@
 import React from "react";
 import {useLayers} from "../../hooks/useLayers";
 import "./LayersPanel.css"
-import {saveAs} from "file-saver"
+
+// import {saveAs} from "file-saver"
 import {BsPlusLg, BsTrashFill, BsEyeFill, BsLockFill} from "react-icons/bs";
 
 export default function LayersPanel() {
@@ -9,13 +10,14 @@ export default function LayersPanel() {
     const {layers, activeLayer, addLayer, setActiveLayer} = useLayers()
 
     const renderLayer = function(layer) {
-        const isActive = activeLayer?.id == layer.id
+        const isActive = activeLayer?.id === layer.id
 
         const className = `layerPreview ${isActive ? "active" : ""}`
         
         return (
             <div className={className} onClick={() => setActiveLayer(layer)}>
-                <div className="previewImage">preview</div>
+                <div className="previewImage">
+                </div>
                 <div className="layerPreviewInner">
                     <label className="layerPreviewTitle">{layer.name}</label>
                     <div>
