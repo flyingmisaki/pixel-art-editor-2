@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# React Pixel Art Editor
+
+This is the repo for my react pixel art editor
+
+## Features
+
+- Color picker
+- Layers
+- Basic drawing tools
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
