@@ -11,7 +11,7 @@ class Pixel {
     }
 
     drawPixel(context, x, y, color) {
-        console.log(`Drawing pixel at ${x},${y}`)
+        console.log(`Drawing pixel at ${x}, ${y}`)
         context.fillStyle = colorToCanvasColor(color)
         // Clears before placing color again so it doesn't add up with transparency ect...
         context.clearRect(x, y, 1, 1)

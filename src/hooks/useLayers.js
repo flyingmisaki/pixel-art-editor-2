@@ -27,6 +27,8 @@ export function LayersProvider(props){
         setActiveLayer(layer)
 
         setLayers(newLayers)
+
+        console.log(`Added layer (id = ${layer.id})`)
     }
     
     // Layers gets stuck as empty list in closure, but only runs once so its fine
@@ -34,6 +36,8 @@ export function LayersProvider(props){
     useEffect(addLayer, [])
 
     const removeLayer = (layer) => {
+        if (layer.isLocked) return
+        
         if (layer.id === activeLayer?.id) {
             const layerIndex = layers.indexOf(layer)
             
@@ -51,6 +55,8 @@ export function LayersProvider(props){
         const newLayers = layers.filter(l => l.id !== layer.id)
         
         setLayers(newLayers)
+
+        console.log(`Deleted layer (id = ${layer.id})`)
     }
 
     const layersData = {
