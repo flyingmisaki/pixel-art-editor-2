@@ -6,8 +6,9 @@ import LayersPanel from "./components/LayersPanel/LayersPanel"
 import PixelCanvas from "./components/PixelCanvas/PixelCanvas"
 import StatusBar from "./components/StatusBar/StatusBar"
 
-// import ExportCanvas from "./components/ExportCanvas/ExportCanvas"
+// import {TransformWrapper, TransformComponent} from "react-zoom-pan-pinch"
 
+// import ExportCanvas from "./components/ExportCanvas/ExportCanvas"
 
 import {BrushColorProvider} from "./hooks/useBrushColor"
 import {ActiveToolProvider} from "./hooks/useActiveTool"
@@ -21,7 +22,7 @@ function App() {
       		<div className="App">
 				
 				<div className="navBar">
-					<NavBar></NavBar>
+					<NavBar/>
 				</div>
 				
 				<div className="editor">
@@ -40,7 +41,7 @@ function App() {
 					</div>
 
 					<div className="rightPanel">
-						<LayersPanel></LayersPanel>
+						<LayersPanel/>
 					</div>
 
 					{/* <div className="ExportCanvas">
@@ -50,7 +51,7 @@ function App() {
 				</div>
 
 				<div className="statusBar">
-					<StatusBar></StatusBar>
+					<StatusBar/>
 				</div>
 				
       		</div>

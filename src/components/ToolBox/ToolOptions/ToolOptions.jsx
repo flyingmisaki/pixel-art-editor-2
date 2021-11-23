@@ -1,9 +1,11 @@
 import React from "react"
+import {ChromePicker} from "react-color"
+
+import {useBrushColor} from "../../../hooks/useBrushColor"
 import "./ToolOptions.css"
 
-import {useBrushColor} from "../../hooks/useBrushColor"
 
-import {ChromePicker} from "react-color"
+
 
 export default function ToolBox() {
 

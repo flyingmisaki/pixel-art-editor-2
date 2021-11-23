@@ -34,4 +34,5 @@
 
 .chrome-picker label {
     color: var(--lightGray1) !important;
+    font-family: Arial, Helvetica, sans-serif !important;
 }

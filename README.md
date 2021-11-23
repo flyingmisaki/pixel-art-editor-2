@@ -1,8 +1,8 @@
 # React Pixel Art Editor
 
-This is the repo for my react pixel art editor
+This is the repo for my react pixel art editor.
 
-## Features
+## Currently Implemented Features
 
 - Color picker
 - Layers
