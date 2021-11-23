@@ -4,3 +4,7 @@
     image-rendering: pixelated;
     position: absolute;
 }
+
+.canvasLayer.hidden {
+    display: none;
+}

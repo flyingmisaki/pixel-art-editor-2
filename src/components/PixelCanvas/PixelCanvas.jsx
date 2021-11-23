@@ -17,7 +17,7 @@ export default function PixelCanvas(props) {
         const pixelCanvasElement = pixelCanvasRef.current
 
         const handleMouseDown = function(event) {
-            if (!activeTool || !activeLayer) return
+            if (!activeTool || !activeLayer || activeLayer.isLocked) return
             
             const pixelCanvasElement = pixelCanvasRef.current
     

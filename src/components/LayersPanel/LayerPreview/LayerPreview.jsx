@@ -1,5 +1,7 @@
-import {BsTrashFill, BsEyeFill, BsLockFill} from "react-icons/bs";
+import {useState} from "react"
+import {BsTrashFill, BsTrash, BsEyeFill, BsEyeSlash, BsLockFill, BsUnlock} from "react-icons/bs";
 import {useLayers} from "../../../hooks/useLayers";
+import "./LayerPreview.css"
 
 export default function LayerPreview(props) {
     const layer = props.layer
@@ -7,27 +9,48 @@ export default function LayerPreview(props) {
     const {activeLayer, setActiveLayer, removeLayer} = useLayers()
 
     const isActive = activeLayer?.id === layer.id
+    const layerClassName = `layerPreview ${isActive ? "active" : ""}`
 
-    const className = `layerPreview ${isActive ? "active" : ""}`
+    const [visible, setVisible] = useState(layer.isVisible)
+    layer.addUpdateListener(() => setVisible(layer.isVisible))
+    // const visibleClassName = `layerActionButton ${visible ? "active" : ""}`
 
+    const [lock, setLock] = useState(layer.isLocked)
+    layer.addUpdateListener(() => setLock(layer.isLocked))
+    const lockedClassName = `layerActionButton ${layer.isLocked ? "inactive" : ""}`
+    
     return (
-        <div className={className} onClick={() => setActiveLayer(layer)}>
+        <div className={layerClassName} onClick={() => setActiveLayer(layer)}>
             <div className="previewImage">
             </div>
             <div className="layerPreviewInner">
                 <label className="layerPreviewTitle">{layer.name}</label>
                 <div>
-                    <button className="layerActionButton"><BsEyeFill/></button>
-                    <button className="layerActionButton"><BsLockFill/></button>
+
                     <button 
                         className="layerActionButton"
+                        onClick={() => layer.toggleVisibility()}
+                    >
+                        {layer.isVisible ? <BsEyeFill/> : <BsEyeSlash/>}
+                    </button>
+
+                    <button 
+                        className="layerActionButton"
+                        onClick={() => layer.toggleLock()}
+                    >
+                        {layer.isLocked ? <BsLockFill/> : <BsUnlock/>}
+                    </button>
+                    
+                    <button 
+                        className={lockedClassName}
                         onClick={(e) => {
                             e.stopPropagation()
                             removeLayer(layer)
                         }}
                     >
-                        <BsTrashFill/>
+                        {layer.isLocked ? <BsTrash/> : <BsTrashFill/>}
                     </button>
+
                 </div>
             </div>
         </div>
