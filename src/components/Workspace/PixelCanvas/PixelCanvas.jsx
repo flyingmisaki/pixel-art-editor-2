@@ -1,8 +1,8 @@
-import React, { useRef } from "react"
+import {React, useRef, useEffect} from "react"
 import './PixelCanvas.css'
-import {useActiveTool} from "../../hooks/useActiveTool"
-import {useBrushColor} from "../../hooks/useBrushColor"
-import {useLayers} from "../../hooks/useLayers"
+import {useActiveTool} from "../../../hooks/useActiveTool"
+import {useBrushColor} from "../../../hooks/useBrushColor"
+import {useLayers} from "../../../hooks/useLayers"
 import CanvasLayer from "./CanvasLayer/CanvasLayer"
 
 export default function PixelCanvas(props) {
@@ -13,7 +13,7 @@ export default function PixelCanvas(props) {
 
     const pixelCanvasRef = useRef(null)
 
-    React.useEffect(() => {
+    useEffect(() => {
         const pixelCanvasElement = pixelCanvasRef.current
 
         const handleMouseDown = function(event) {
@@ -61,7 +61,8 @@ export default function PixelCanvas(props) {
         return (
             <div className="pixelCanvas" ref={pixelCanvasRef} style={canvasStyle}>
                 {layers.map(layer => (
-                    <CanvasLayer 
+                    <CanvasLayer
+                        key={layer.id} 
                         layer={layer} 
                         width={width} 
                         height={height}

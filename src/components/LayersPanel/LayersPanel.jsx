@@ -26,6 +26,7 @@ export default function LayersPanel() {
                 <div className="layers">
                     {[...layers].reverse().map(layer => 
                         (<LayerPreview
+                            key={layer.id}
                             layer={layer}
                         />)
                     )}

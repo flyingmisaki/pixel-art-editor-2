@@ -1,8 +1,11 @@
 .LayersPanel {
-    width: 10rem;
+    width: 12rem;
     height: 100%;
     display: flex;
     flex-direction: column;
+    background-color: var(--blueGray1);
+	color: var(--lightGray1);
+	border-left: 1px solid var(--DarkblueGray1);
 }
 
 .layersPanelTop {
@@ -43,4 +46,3 @@
     color: var(--lightGray1);
     cursor: pointer;
 }
-

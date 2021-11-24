@@ -19,6 +19,7 @@ export default function ToolBox() {
     const renderToolButton = function(tool) {
         // Check active tool and tell it its active
         return <button
+            key={tool.name}
             className={tool === activeTool ? "active" : ""}
             onClick={() => setActiveTool(tool)}
         >
