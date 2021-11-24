@@ -11,10 +11,12 @@ export default function LayerPreview(props) {
     const isActive = activeLayer?.id === layer.id
     const layerClassName = `layerPreview ${isActive ? "active" : ""}`
 
+    // eslint-disable-next-line
     const [visible, setVisible] = useState(layer.isVisible)
     layer.addUpdateListener(() => setVisible(layer.isVisible))
     // const visibleClassName = `layerActionButton ${visible ? "active" : ""}`
 
+    // eslint-disable-next-line
     const [lock, setLock] = useState(layer.isLocked)
     layer.addUpdateListener(() => setLock(layer.isLocked))
     const lockedClassName = `layerActionButton ${layer.isLocked ? "inactive" : ""}`

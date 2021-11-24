@@ -5,6 +5,11 @@
     position: absolute;
 }
 
+.canvasLayer canvas{
+    width: 100%;
+    height: 100%;
+}
+
 .canvasLayer.hidden {
     display: none;
 }

@@ -1,8 +1,12 @@
-.statusBarStats {
+.statusBar {
+    padding: 0.3rem;
+	background-color: var(--blueGray1);
+	color: var(--lightGray1);
+	border-top: 1px solid var(--DarkblueGray1);
     font-size: 0.9rem;
     color: var(--mediumGray1);
 }
 
-.statusBarStats:hover {
+.statusBar:hover {
     color: var(--lightGray1);
 }

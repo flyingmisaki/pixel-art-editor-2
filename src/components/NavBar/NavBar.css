@@ -1,16 +1,19 @@
-.nav {
-    font-family: Arial, Helvetica, sans-serif;
+.navBar {
     font-size: 0.9rem;
     display: flex;
     flex-direction: row;
+    padding: 0.3rem;
+	background-color: var(--blueGray1);
+	color: var(--lightGray1);
+    border-bottom: 1px solid var(--DarkblueGray1);
 }
 
-.nav div {
+.navBar div {
     padding-right: 0.5rem;
     padding-left: 0.5rem;
     color: var(--mediumGray1);
 }
 
-.nav div:hover {
+.navBar div:hover {
     color: var(--lightGray1);
 }

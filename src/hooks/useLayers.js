@@ -53,10 +53,9 @@ export function LayersProvider(props){
         }
         
         const newLayers = layers.filter(l => l.id !== layer.id)
-        
         setLayers(newLayers)
 
-        console.log(`Deleted layer (id = ${layer.id})`)
+        console.log(`Deleted layer (index = ${layers.indexOf(layer)}, id = ${layer.id})`)
     }
 
     const layersData = {
