@@ -9,7 +9,7 @@ export default function LayerPreview(props) {
     const {activeLayer, setActiveLayer, removeLayer} = useLayers()
 
     const isActive = activeLayer?.id === layer.id
-    const layerClassName = `layerPreview ${isActive ? "active" : ""}`
+    const layerClassName = `LayerPreview ${isActive ? "active" : ""}`
 
     // eslint-disable-next-line
     const [visible, setVisible] = useState(layer.isVisible)
