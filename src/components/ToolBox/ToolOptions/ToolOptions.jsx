@@ -4,9 +4,6 @@ import {ChromePicker} from "react-color"
 import {useBrushColor} from "../../../hooks/useBrushColor"
 import "./ToolOptions.css"
 
-
-
-
 export default function ToolBox() {
 
     const [brushColor, setBrushColor] = useBrushColor()

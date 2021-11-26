@@ -7,11 +7,6 @@
     outline: none;
 }
 
-body {
-    background-color: var(--blueGray2);
-    overflow: hidden;
-}
-
 button {
     border: none;
     background: none;

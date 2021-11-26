@@ -20,7 +20,7 @@ export default function LayersPanel() {
     const render = function() {
         return (
             <div className="LayersPanel">
-                <div className="layersPanelTop">
+                <div className="panelTop">
                     <button onClick={addLayer} className="addLayerButton"><BsPlusLg/></button>
                 </div>
                 <div className="layers">
@@ -31,7 +31,7 @@ export default function LayersPanel() {
                         />)
                     )}
                 </div>
-                <div className="exportRegion">
+                <div className="panelBottom">
                     <button className="exportButton">Export!</button>
                 </div>
             </div>

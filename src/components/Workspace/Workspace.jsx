@@ -1,4 +1,4 @@
-import {React, useRef} from "react"
+import {React} from "react"
 import "./Workspace.css"
 import PixelCanvas from "./PixelCanvas/PixelCanvas"
 
