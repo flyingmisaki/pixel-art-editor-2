@@ -18,11 +18,11 @@ class Lines {
     drawLine(context, startPosition, endPosition, color) {
         console.log(`Drawing line`)
         context.strokeStyle = colorToCanvasColor(color)
-        context.beginPath()
+        context.globalAlpha = 1.0
         context.imageSmoothingEnabled = false
+        context.beginPath()
         context.moveTo(startPosition.x, startPosition.y)
         context.lineTo(endPosition.x, endPosition.y)
-        context.globalAlpha = 1.0
         context.stroke()
         context.closePath()
     }
