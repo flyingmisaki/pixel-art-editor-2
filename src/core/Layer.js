@@ -1,5 +1,8 @@
 import * as shortId from "shortid"
 
+const DEFAULT_WIDTH = 16
+const DEFAULT_HEIGHT = 16
+
 class Layer {
     constructor(name = null) {
         this.id = shortId.generate()
@@ -8,6 +11,8 @@ class Layer {
         this.isVisible = true
         this.isLocked = false
         this.listeners = []
+        this.width = DEFAULT_WIDTH
+        this.height = DEFAULT_HEIGHT
     }
 
     onUpdate() {

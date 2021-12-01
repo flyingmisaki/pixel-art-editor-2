@@ -1,29 +1,55 @@
-import {useState} from "react"
+import {useEffect, useState, useRef} from "react"
 import {BsTrashFill, BsTrash, BsEyeFill, BsEyeSlash, BsLockFill, BsUnlock} from "react-icons/bs";
 import {useLayers} from "../../../hooks/useLayers";
 import "./LayerPreview.css"
+
+function copyCanvasContents(sourceCanvas, destinationCanvas) {
+    const destinationContext = destinationCanvas.getContext('2d')
+    destinationContext.drawImage(sourceCanvas, 0, 0)
+}
 
 export default function LayerPreview(props) {
     const layer = props.layer
 
     const {activeLayer, setActiveLayer, removeLayer} = useLayers()
 
-    const isActive = activeLayer?.id === layer.id
-    const layerClassName = `LayerPreview ${isActive ? "active" : ""}`
+    const previewCanvasRef = useRef(null)
 
     // eslint-disable-next-line
     const [visible, setVisible] = useState(layer.isVisible)
-    layer.addUpdateListener(() => setVisible(layer.isVisible))
-    // const visibleClassName = `layerActionButton ${visible ? "active" : ""}`
-
     // eslint-disable-next-line
     const [lock, setLock] = useState(layer.isLocked)
-    layer.addUpdateListener(() => setLock(layer.isLocked))
+
+    const isActive = activeLayer?.id === layer.id
+    const layerClassName = `LayerPreview ${isActive ? "active" : ""}`
+
+    useEffect(() => {
+        const layerCanvas = layer.canvasRef.current
+        const previewCanvas = previewCanvasRef.current
+
+        layer.addUpdateListener(() => {
+            copyCanvasContents(layerCanvas, previewCanvas)
+            setVisible(layer.isVisible)
+            setLock(layer.isLocked)
+            
+        })
+
+        // return listener remover
+
+    }, [layer])
+    
+    // const visibleClassName = `layerActionButton ${visible ? "active" : ""}`
+
     const lockedClassName = `layerActionButton ${layer.isLocked ? "inactive" : ""}`
     
     return (
         <div className={layerClassName} onClick={() => setActiveLayer(layer)}>
             <div className="previewImage">
+                <canvas
+                    ref={previewCanvasRef}
+                    width={layer.width}
+                    height={layer.height}
+                />
             </div>
             <div className="layerPreviewInner">
                 <label className="layerPreviewTitle">{layer.name}</label>

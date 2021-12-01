@@ -1,27 +1,35 @@
 import {colorToCanvasColor} from "../utils/colors"
 import {BsBrush} from "react-icons/bs"
 
-
-
 class Pixel {
     constructor() {
         this.name = "Pixel"
+        this.canvasContext = null
     }
 
     renderIcon() {
         return <BsBrush/>
     }
 
-    drawPixel(context, x, y, color) {
-        console.log(`Drawing pixel at ${x}, ${y}`)
+    drawPixel(context, position, color) {
+        if (!context) return
+        console.log(`Drawing pixel at ${position.x}, ${position.y}`)
         context.fillStyle = colorToCanvasColor(color)
         // Clears before placing color again so it doesn't add up with transparency ect...
-        context.clearRect(x, y, 1, 1)
-        context.fillRect(x, y, 1, 1)
+        context.clearRect(position.x, position.y, 1, 1)
+        context.fillRect(position.x, position.y, 1, 1)
     }
 
-    mouseDown(context, x, y, color) {
-        this.drawPixel(context, x, y, color)
+    mouseDown(position) {
+        this.position = position 
+    }
+
+    mouseUp(position, color) {
+        this.drawPixel(this.canvasContext, position, color)
+    }
+
+    mouseMove(context, x, y, color) {
+        
     }
 }
 
