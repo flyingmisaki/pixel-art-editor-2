@@ -16,7 +16,8 @@ class Lines {
     }
 
     plotLine(context, startPosition, endPosition, color) {
-        console.log(`Line drawn between (${startPosition.x}, ${startPosition.y}) and (${endPosition.x}, ${endPosition.y})`)
+        console.log(startPosition, endPosition)
+        context.fillStyle = colorToCanvasColor(color)
         
         // Find Δx and Δy
         let deltaX = Math.abs(endPosition.x - startPosition.x)
@@ -28,28 +29,36 @@ class Lines {
 
         let deltaError = deltaX - deltaY
         
-        while(true) {
-            context.fillStyle = colorToCanvasColor(color)
-            context.fillRect(startPosition.x, startPosition.y, 1, 1)
-            if (startPosition.x === endPosition.x && startPosition.y === endPosition.y) break
+        const currentPosition = {...startPosition}
+
+        let drawing = true
+        while(drawing) {
+            context.fillRect(currentPosition.x, currentPosition.y, 1, 1)
+
+            // If we have hit the end position, set drawing to false
+            drawing = currentPosition.x !== endPosition.x || currentPosition.y !== endPosition.y
 
             // 
-            let e2 = 2*deltaError
-            if (e2 > -deltaY) { deltaError -= deltaY; startPosition.x += slopeX; }
-            if (e2 < deltaX) { deltaError += deltaX; startPosition.y += slopeY; }
+            const e2 = 2*deltaError
+
+            if (e2 > -deltaY) { deltaError -= deltaY; currentPosition.x += slopeX; }
+            if (e2 < deltaX) { deltaError += deltaX; currentPosition.y += slopeY; }
         }
+        console.log(`Line drawn between (${startPosition.x}, ${startPosition.y}) and (${endPosition.x}, ${endPosition.y})`)
     }
 
-    mouseDown(context, x, y, color) {
-        if (!this.isDrawing()) {
-            // Set initial position of the line
-            this.startPosition = {x, y}
-        }
-        else {
-            // Draw the line from initial position to end position
-            this.plotLine(context, this.startPosition, {x, y}, color)
-            this.startPosition = null
-        }
+    mouseDown(context, position, color) {
+        this.startPosition = position
+    }
+
+    mouseUp(context, position, color) {
+        // Draw the line from initial position to end position
+        this.plotLine(context, this.startPosition, position, color)
+        this.startPosition = null
+    }
+
+    mouseMove(context, position, color) {
+
     }
 }
 

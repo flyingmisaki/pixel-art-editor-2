@@ -12,38 +12,58 @@ export default function PixelCanvas(props) {
     const [brushColor] = useBrushColor("#197D7DFF")
 
     const pixelCanvasRef = useRef(null)
-
-    useEffect(() => {
-        const pixelCanvasElement = pixelCanvasRef.current
-
-        const handleMouseDown = function(event) {
-            if (!activeTool || !activeLayer || activeLayer.isLocked) return
-            
-            const pixelCanvasElement = pixelCanvasRef.current
     
-            const mouseX = event.clientX
-            const mouseY = event.clientY
+    // Sets up listeners for mouse events on the canvas
+    useEffect(() => {
+        // Don't set listeners up if no active layer
+        if (!activeTool || !activeLayer || activeLayer.isLocked) return
+
+        const getCanvasRelativePosition = function(mouseEvent) {
+            const mouseX = mouseEvent.clientX
+            const mouseY = mouseEvent.clientY
+            const pixelCanvasElement = pixelCanvasRef.current
             
             const currentX = mouseX - pixelCanvasElement.offsetLeft
             const currentY = mouseY - pixelCanvasElement.offsetTop
-    
-            const canvasRelativeX = Math.floor(currentX/scale)
-            const canvasRelativeY = Math.floor(currentY/scale)
-    
-            const layerCanvasContext = activeLayer.canvasRef.current.getContext('2d')
-    
-            activeTool.mouseDown(layerCanvasContext, canvasRelativeX, canvasRelativeY, brushColor)
+        
+            return ({
+                x : Math.floor(currentX/scale),
+                y : Math.floor(currentY/scale),
+            }) 
         }
-    
+
+        const pixelCanvasElement = pixelCanvasRef.current
+
+        const layerCanvasContext = activeLayer.canvasRef.current.getContext('2d')
+
+        const handleMouseDown = function(event) {
+            const position = getCanvasRelativePosition(event)
+            console.log(position)
+            activeTool.mouseDown(layerCanvasContext, position, brushColor)
+        }
+
+        const handleMouseUp = function(event) {
+            const position = getCanvasRelativePosition(event)
+            activeTool.mouseUp(layerCanvasContext, position, brushColor)
+        }
+
+        const handleMouseMove = function(event) {
+
+        }
+
         if (pixelCanvasElement === null) return
 
         // Set up listeners
         pixelCanvasElement.addEventListener("mousedown", handleMouseDown)
+        pixelCanvasElement.addEventListener("mouseup", handleMouseUp)
+        pixelCanvasElement.addEventListener("mousemove", handleMouseMove)
 
         return () => {
         
             // Tear down listeners
             pixelCanvasElement.removeEventListener("mousedown", handleMouseDown)
+            pixelCanvasElement.removeEventListener("mouseup", handleMouseUp)
+            pixelCanvasElement.removeEventListener("mousemove", handleMouseMove)
         }
     },  
         [activeTool, activeLayer, scale, width, height, brushColor]

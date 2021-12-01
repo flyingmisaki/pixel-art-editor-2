@@ -1,8 +1,6 @@
 import {colorToCanvasColor} from "../utils/colors"
 import {BsBrush} from "react-icons/bs"
 
-
-
 class Pixel {
     constructor() {
         this.name = "Pixel"
@@ -20,8 +18,16 @@ class Pixel {
         context.fillRect(x, y, 1, 1)
     }
 
-    mouseDown(context, x, y, color) {
+    mouseDown(position) {
+        
+    }
+
+    mouseUp(context, x, y, color) {
         this.drawPixel(context, x, y, color)
+    }
+
+    mouseMove(context, x, y, color) {
+        
     }
 }
 
