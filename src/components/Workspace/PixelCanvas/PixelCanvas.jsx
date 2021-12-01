@@ -9,7 +9,7 @@ export default function PixelCanvas(props) {
     const {width, height, scale} = props
     const {layers, activeLayer} = useLayers()
     const [activeTool] = useActiveTool()
-    const [brushColor] = useBrushColor("#197D7DFF")
+    const [brushColor] = useBrushColor()
 
     const pixelCanvasRef = useRef(null)
     
@@ -35,16 +35,29 @@ export default function PixelCanvas(props) {
         const pixelCanvasElement = pixelCanvasRef.current
 
         const layerCanvasContext = activeLayer.canvasRef.current.getContext('2d')
+        activeTool.canvasContext = layerCanvasContext
 
         const handleMouseDown = function(event) {
+            const clickCode = event.button
             const position = getCanvasRelativePosition(event)
-            console.log(position)
-            activeTool.mouseDown(layerCanvasContext, position, brushColor)
+            switch (clickCode) {
+                case 0:
+                    activeTool.mouseDown(position, brushColor)
+                    break
+                default: break
+            } 
         }
 
         const handleMouseUp = function(event) {
+            const clickCode = event.button
             const position = getCanvasRelativePosition(event)
-            activeTool.mouseUp(layerCanvasContext, position, brushColor)
+            switch (clickCode) {
+                case 0:
+                    activeTool.mouseUp(position, brushColor)
+                    break
+                    default: break
+                }
+            activeLayer.onUpdate()
         }
 
         const handleMouseMove = function(event) {

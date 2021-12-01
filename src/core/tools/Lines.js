@@ -1,10 +1,11 @@
-import { colorToCanvasColor } from "../utils/colors"
+import {colorToCanvasColor} from "../utils/colors"
 import {BsDashLg} from "react-icons/bs"
 
 class Lines {
     constructor() {
         this.name = "Lines"
         this.startPosition = null
+        this.canvasContext = null
     }
 
     renderIcon() {
@@ -16,7 +17,8 @@ class Lines {
     }
 
     plotLine(context, startPosition, endPosition, color) {
-        console.log(startPosition, endPosition)
+        if (!context) return
+        
         context.fillStyle = colorToCanvasColor(color)
         
         // Find Δx and Δy
@@ -47,17 +49,17 @@ class Lines {
         console.log(`Line drawn between (${startPosition.x}, ${startPosition.y}) and (${endPosition.x}, ${endPosition.y})`)
     }
 
-    mouseDown(context, position, color) {
+    mouseDown(position) {
         this.startPosition = position
     }
 
-    mouseUp(context, position, color) {
+    mouseUp(position, color) {
         // Draw the line from initial position to end position
-        this.plotLine(context, this.startPosition, position, color)
+        this.plotLine(this.canvasContext, this.startPosition, position, color)
         this.startPosition = null
     }
 
-    mouseMove(context, position, color) {
+    mouseMove(position, color) {
 
     }
 }
