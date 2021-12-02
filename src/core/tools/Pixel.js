@@ -20,8 +20,8 @@ class Pixel {
         console.log(`Drawing pixel at ${position.x}, ${position.y}`)
         context.fillStyle = colorToCanvasColor(color)
         // Clears before placing color again so it doesn't add up with transparency ect...
-        context.clearRect(position.x, position.y, this.scale, this.scale)
-        context.fillRect(position.x, position.y, this.scale, this.scale)
+        context.clearRect(position.x, position.y, this.options.scale, this.options.scale)
+        context.fillRect(position.x, position.y, this.options.scale, this.options.scale)
     }
 
     mouseDown(position) {
