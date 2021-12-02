@@ -1,15 +1,16 @@
 .toolOptions {
     display: flex;
     flex-direction: column;
+    color: var(--mediumGray1);
 }
 
-.colorPicker {
+.option {
     /* margin-left: 1rem;
     margin-right: 1rem; */
     color: var(--mediumGray1);
 }
 
-.colorPicker:hover {
+.option:hover {
     color: var(--lightGray1);
 }
 
