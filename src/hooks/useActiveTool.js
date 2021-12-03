@@ -3,7 +3,7 @@ import Pixel from "../core/tools/Pixel"
 
 const ActiveToolContext = createContext()
 
-export function useActiveTool(defaultTool = null){
+export function useActiveTool(defaultTool = null) {
     const [activeTool, setActiveTool] = useContext(ActiveToolContext)
 
     if(activeTool === undefined) setActiveTool(defaultTool)
@@ -11,7 +11,7 @@ export function useActiveTool(defaultTool = null){
     return [activeTool, setActiveTool]
 }
 
-export function ActiveToolProvider(props){
+export function ActiveToolProvider(props) {
     const [activeTool, setActiveTool] = useState(Pixel)
 
     return (

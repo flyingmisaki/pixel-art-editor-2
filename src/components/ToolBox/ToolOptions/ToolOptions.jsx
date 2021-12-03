@@ -1,21 +1,26 @@
 import React from "react"
 import {ChromePicker} from "react-color"
 import {useBrushColor} from "../../../hooks/useBrushColor"
+import {useActiveTool} from "../../../hooks/useActiveTool"
 import "./ToolOptions.css"
 import {colorToCanvasColor} from "../../../core/utils/colors"
 
 export default function ToolOptions() {
     const {brushColor, setBrushColor, colorHistory} = useBrushColor()
+    const [activeTool] = useActiveTool()
 
     const renderRecentColor = function(color) {
         const isActive = color === brushColor
         const className = isActive ? "selected" : null
         return (
-            <button 
-                style={{backgroundColor: colorToCanvasColor(color)}}
-                onClick={() => setBrushColor(color)}
-                className={className}
-            />
+            <div className="colorButtonContainer">
+                <button 
+                    style={{background: colorToCanvasColor(color)}}
+                    onClick={() => setBrushColor(color)}
+                    className={className}
+                />
+            </div>
+            
         )
     }
 
@@ -37,7 +42,7 @@ export default function ToolOptions() {
                 </div>
                 <div className="option">
                     <div className="optionTitle">Stroke Options</div>
-                    
+
                 </div>
             </div>
         )

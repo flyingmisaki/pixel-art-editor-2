@@ -14,15 +14,15 @@
 }
 
 .toolBar button {
-    width: 4rem;
-    height: 4rem;
+    width: 3.5rem;
+    height: 3.5rem;
     background-color: var(--blueGray1);
     color: var(--mediumGray1);
     border: none;
 }
 
 .toolBar button svg {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
 }
 
 .toolBar button:hover {
