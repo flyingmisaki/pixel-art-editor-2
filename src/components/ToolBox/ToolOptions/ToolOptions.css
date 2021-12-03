@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     color: var(--mediumGray1);
+    width: 14rem;
 }
 
 .option {
@@ -23,6 +24,7 @@
 .chrome-picker {
     background-color: var(--blueGray2) !important;
     border-radius: 0px !important;
+    width: 100% !important;
 }
 .chrome-picker>div{
     border-radius: 0px !important;
@@ -34,4 +36,31 @@
 .chrome-picker label {
     color: var(--lightGray1) !important;
     font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* COLOR OPTIONS */
+
+.recentColors {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* padding-top: 0.025rem;
+    padding-bottom: 0.025rem; */
+    background: var(--blueGray2);
+    width: 100%;
+}
+
+.recentColors button {
+    background: red;
+    width: 1.75rem;
+    height: 1.75rem;
+    /* margin: 0.025rem; */
+}
+
+.recentColors button.selected {
+    border: 1px solid var(--lightGray1);
+}
+
+.recentColors button:hover{
+    border: 1px solid var(--lightGray1);
 }

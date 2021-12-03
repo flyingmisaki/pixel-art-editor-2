@@ -6,7 +6,7 @@
         <rect x="200" width="200" height="200" />\
         <rect y="200" width="200" height="200" />\
     </svg>');
-    background-size: 16px 16px;
+    background-size: 10px 10px;
 
     position: relative;
 }

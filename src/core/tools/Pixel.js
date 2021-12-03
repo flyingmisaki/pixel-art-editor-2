@@ -4,8 +4,9 @@ import {BsBrush} from "react-icons/bs"
 class Pixel {
     constructor() {
         this.name = "Pixel"
+        this.usesColors = true
+        
         this.canvasContext = null
-
         this.options = {
             scale : 1
         }
