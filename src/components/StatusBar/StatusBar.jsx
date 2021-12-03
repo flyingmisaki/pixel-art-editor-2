@@ -9,7 +9,7 @@ import {useActiveTool} from "../../hooks/useActiveTool"
 export default function NavBar() {
     
     const [activeTool] = useActiveTool()
-    const [brushColor] = useBrushColor()
+    const {brushColor} = useBrushColor()
 
     const render = function() {
         return (

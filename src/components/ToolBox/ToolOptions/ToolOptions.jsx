@@ -1,13 +1,23 @@
 import React from "react"
 import {ChromePicker} from "react-color"
-
-
-import {useActiveTool} from "../../../hooks/useActiveTool"
 import {useBrushColor} from "../../../hooks/useBrushColor"
 import "./ToolOptions.css"
+import {colorToCanvasColor} from "../../../core/utils/colors"
 
-export default function ToolBox() {
-    const [brushColor, setBrushColor] = useBrushColor()
+export default function ToolOptions() {
+    const {brushColor, setBrushColor, colorHistory} = useBrushColor()
+
+    const renderRecentColor = function(color) {
+        const isActive = color === brushColor
+        const className = isActive ? "selected" : null
+        return (
+            <button 
+                style={{backgroundColor: colorToCanvasColor(color)}}
+                onClick={() => setBrushColor(color)}
+                className={className}
+            />
+        )
+    }
 
     const render = function() {
         return (
@@ -16,12 +26,18 @@ export default function ToolBox() {
                     <div className="optionTitle">Color</div>
                     <ChromePicker
                         color={brushColor}
-                        onChangeComplete={(color) => setBrushColor(color.rgb)}
-                    ></ChromePicker>
+                        onChange={(color) => setBrushColor(color.rgb)}
+                    />
+                </div>
+                <div className="option">
+                    <div className="optionTitle">Recent Colors</div>
+                    <div className="recentColors">
+                        {colorHistory.map(renderRecentColor)}
+                    </div>
                 </div>
                 <div className="option">
                     <div className="optionTitle">Stroke Options</div>
-
+                    
                 </div>
             </div>
         )

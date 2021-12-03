@@ -4,12 +4,13 @@ import {useActiveTool} from "../../../hooks/useActiveTool"
 import {useBrushColor} from "../../../hooks/useBrushColor"
 import {useLayers} from "../../../hooks/useLayers"
 import CanvasLayer from "./CanvasLayer/CanvasLayer"
+// import checkeredBackground from "../../../svg/checkeredBackground.svg"
 
 export default function PixelCanvas(props) {
     const {width, height, scale} = props
     const {layers, activeLayer} = useLayers()
     const [activeTool] = useActiveTool()
-    const [brushColor] = useBrushColor()
+    const {brushColor, pushColorToHistory} = useBrushColor()
 
     const pixelCanvasRef = useRef(null)
     
@@ -42,6 +43,7 @@ export default function PixelCanvas(props) {
             const position = getCanvasRelativePosition(event)
             switch (clickCode) {
                 case 0:
+                    if (activeTool.usesColors) pushColorToHistory(brushColor)
                     activeTool.mouseDown(position, brushColor)
                     break
                 default: break

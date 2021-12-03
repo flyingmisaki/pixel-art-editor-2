@@ -4,6 +4,8 @@ import {BsDashLg} from "react-icons/bs"
 class Lines {
     constructor() {
         this.name = "Lines"
+        this.usesColors = true
+        
         this.startPosition = null
         this.canvasContext = null
     }
