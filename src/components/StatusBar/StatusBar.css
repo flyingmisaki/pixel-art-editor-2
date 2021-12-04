@@ -7,5 +7,17 @@
 }
 
 .statusBar:hover {
-    color: var(--lightGray1);
+    color: var(--mediumGray2);
+}
+
+.statusBar svg {
+    vertical-align: baseline;
+    width: 0.9em;
+    height: 0.9em;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+}
+
+.statusBar:hover .coloredSquare {
+    border: 1px solid var(--mediumGray2);
 }

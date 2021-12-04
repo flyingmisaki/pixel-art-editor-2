@@ -3,11 +3,13 @@
     flex-direction: column;
     color: var(--mediumGray1);
     width: 14rem;
+    overflow: hidden;
 }
 
 .option {
     color: var(--mediumGray1);
-    margin-bottom: 1rem;
+    box-shadow: 0px 1px 3px 0px #000000;
+    margin-bottom: 0.7rem;
 }
 
 .option:hover {
@@ -15,8 +17,10 @@
 }
 
 .optionTitle {
-    text-align: center;
+    text-align: left;
+    font-size: 0.75rem;
     padding: 0.25rem;
+    background-color: rgba(0,0,0,0.2);
 }
 
 /* react-color chrome picker changes */
@@ -53,7 +57,7 @@
     width: 1.75rem;
     height: 1.75rem;
     background: #eee url("data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' fill-opacity='.25' ><rect x='200' width='200' height='200' /><rect y='200' width='200' height='200' /></svg>");
-    background-size: 8px 8px;
+    background-size: 50%;
 }
 
 .recentColors button {

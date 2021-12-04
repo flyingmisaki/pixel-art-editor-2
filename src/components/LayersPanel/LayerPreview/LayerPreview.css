@@ -5,14 +5,22 @@
     font-size: 0.9rem;
     border-bottom: 1px solid var(--DarkblueGray1);
     color: var(--mediumGray1);
-    padding: 0.3rem;
+    /* padding: 0.3rem; */
     padding-right: 0.6rem;
     height: 64px;
     justify-content: space-between;
 }
 
+.LayerPreview:hover {
+    color: var(--lightGray1);
+}
+
 .LayerPreview.active {
     background-color: var(--blueGray2);
+}
+
+.layerPreviewTitle {
+    margin-top: 0.3rem;
 }
 
 .layerPreviewInner {
@@ -53,6 +61,7 @@
     image-rendering: pixelated;
     background: #eee url("data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' fill-opacity='.25' ><rect x='200' width='200' height='200' /><rect y='200' width='200' height='200' /></svg>");
     background-size: 8px 8px;
+    overflow: hidden;
 }
 
 .LayerPreview .previewImage canvas {

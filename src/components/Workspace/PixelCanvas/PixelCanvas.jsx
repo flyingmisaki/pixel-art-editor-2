@@ -81,7 +81,7 @@ export default function PixelCanvas(props) {
             pixelCanvasElement.removeEventListener("mousemove", handleMouseMove)
         }
     },  
-        [activeTool, activeLayer, scale, width, height, brushColor]
+        [activeTool, activeLayer, scale, width, height, brushColor, pushColorToHistory]
     )
 
     const render = function() {

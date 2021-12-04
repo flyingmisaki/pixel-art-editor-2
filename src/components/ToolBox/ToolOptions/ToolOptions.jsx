@@ -1,13 +1,11 @@
 import React from "react"
 import {ChromePicker} from "react-color"
 import {useBrushColor} from "../../../hooks/useBrushColor"
-import {useActiveTool} from "../../../hooks/useActiveTool"
 import "./ToolOptions.css"
 import {colorToCanvasColor} from "../../../core/utils/colors"
 
 export default function ToolOptions() {
     const {brushColor, setBrushColor, colorHistory} = useBrushColor()
-    const [activeTool] = useActiveTool()
 
     const renderRecentColor = function(color) {
         const isActive = color === brushColor
@@ -20,7 +18,6 @@ export default function ToolOptions() {
                     className={className}
                 />
             </div>
-            
         )
     }
 

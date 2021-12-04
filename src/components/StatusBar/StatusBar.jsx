@@ -3,6 +3,8 @@ import "./StatusBar.css"
 
 import {colorToHexColor} from "../../core/utils/colors"
 
+import ColoredSquare from "../common/ColoredSquare/ColoredSquare"
+
 import {useBrushColor} from "../../hooks/useBrushColor"
 import {useActiveTool} from "../../hooks/useActiveTool"
 
@@ -13,7 +15,20 @@ export default function NavBar() {
 
     const render = function() {
         return (
-            <div className="statusBar">Tool: {activeTool?.name ?? "none"}, Color: {colorToHexColor(brushColor)}, Cursor x, y: {"X"}, {"Y"}</div>
+            <div className="statusBar">
+                <p>
+                    <span>
+                        Color: 
+                    </span>
+                    <ColoredSquare color={brushColor}/>
+                    <span>
+                        {colorToHexColor(brushColor)}
+                        , Cursor x, y: {"X"}, {"Y"}
+                        , Tool:{activeTool.renderIcon()}
+                        {activeTool?.name ?? "none"}
+                    </span>
+                </p>
+            </div>
         )
     }
 
