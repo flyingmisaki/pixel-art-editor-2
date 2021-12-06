@@ -2,7 +2,7 @@ import {React} from "react"
 import './App.css'
 import NavBar from "./components/NavBar/NavBar"
 import ToolBox from "./components/ToolBox/ToolBox"
-import LayersPanel from "./components/LayersPanel/LayersPanel"
+import ProjectOptions from "./components/ProjectOptions/ProjectOptions"
 import Workspace from "./components/Workspace/Workspace"
 import StatusBar from "./components/StatusBar/StatusBar"
 
@@ -23,7 +23,7 @@ function App() {
 				<div className="editor">
 					<ToolBox/>
 					<Workspace/>
-					<LayersPanel/>
+					<ProjectOptions/>
 				</div>
 				<StatusBar/>
       		</div>

@@ -6,39 +6,42 @@
     overflow: hidden;
 }
 
-.option {
-    color: var(--mediumGray1);
-    box-shadow: 0px 1px 3px 0px #000000;
-    margin-bottom: 0.7rem;
-}
-
-.option:hover {
-    color: var(--lightGray1);
-}
-
-.optionTitle {
-    text-align: left;
-    font-size: 0.75rem;
-    padding: 0.25rem;
-    background-color: rgba(0,0,0,0.2);
-}
-
 /* react-color chrome picker changes */
-.chrome-picker {
+.toolOptions .chrome-picker {
     background-color: var(--blueGray2) !important;
     border-radius: 0px !important;
     width: 100% !important;
 }
-.chrome-picker>div{
+
+.toolOptions .chrome-picker>div {
     border-radius: 0px !important;
 }
-.chrome-picker input {
-    color: var(--lightGray1) !important;
+
+.toolOptions .chrome-picker input {
+    color: var(--mediumGray1) !important;
     background-color: var(--blueGray2) !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    border: 1px solid var(--mediumGray1) !important;
 }
-.chrome-picker label {
+
+.chrome-picker input:hover {
     color: var(--lightGray1) !important;
+    border: 1px solid var(--lightGray1) !important;
+}
+
+.toolOptions .chrome-picker label {
+    color: var(--mediumGray1) !important;
     font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.toolOptions .chrome-picker svg {
+    fill: var(--mediumGray1) !important;
+    background: none !important;
+}
+
+.toolOptions .chrome-picker svg:hover{
+    fill: var(--lightGray1) !important;
 }
 
 /* COLOR OPTIONS */

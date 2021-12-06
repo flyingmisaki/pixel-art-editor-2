@@ -1,10 +1,11 @@
 import {useEffect, useState, useRef} from "react"
 import {BsTrashFill, BsTrash, BsEyeFill, BsEyeSlash, BsLockFill, BsUnlock} from "react-icons/bs";
-import {useLayers} from "../../../hooks/useLayers";
+import {useLayers} from "../../../../hooks/useLayers";
 import "./LayerPreview.css"
 
 function copyCanvasContents(sourceCanvas, destinationCanvas) {
     const destinationContext = destinationCanvas.getContext('2d')
+    destinationContext.clearRect(0, 0, destinationCanvas.width, destinationCanvas.height)
     destinationContext.drawImage(sourceCanvas, 0, 0)
 }
 

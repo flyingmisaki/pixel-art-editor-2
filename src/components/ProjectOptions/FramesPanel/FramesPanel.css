@@ -1,0 +1,8 @@
+.FramesPanel {
+    overflow-y: scroll;
+    max-height: 80vh;
+}
+
+.FramesPanel::-webkit-scrollbar {
+    display: none;
+}

@@ -6,8 +6,10 @@ class Lines {
         this.name = "Lines"
         this.usesColors = true
         
-        this.startPosition = null
+        this.previewCanvasContext = null
         this.canvasContext = null
+
+        this.startPosition = null
     }
 
     renderIcon() {
@@ -48,7 +50,6 @@ class Lines {
             if (e2 > -deltaY) { deltaError -= deltaY; currentPosition.x += slopeX; }
             if (e2 < deltaX) { deltaError += deltaX; currentPosition.y += slopeY; }
         }
-        console.log(`Line drawn between (${startPosition.x}, ${startPosition.y}) and (${endPosition.x}, ${endPosition.y})`)
     }
 
     mouseDown(position) {
@@ -58,11 +59,12 @@ class Lines {
     mouseUp(position, color) {
         // Draw the line from initial position to end position
         this.plotLine(this.canvasContext, this.startPosition, position, color)
+        console.log(`Line drawn between (${this.startPosition.x}, ${this.startPosition.y}) and (${position.x}, ${position.y})`)
         this.startPosition = null
     }
 
     mouseMove(position, color) {
-
+        if (this.isDrawing()) this.plotLine(this.previewCanvasContext, this.startPosition, position, color)
     }
 }
 

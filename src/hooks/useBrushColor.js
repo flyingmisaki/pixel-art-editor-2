@@ -1,7 +1,7 @@
 import React, {useState, useContext, createContext} from "react"
 
 const BrushColorContext = createContext()
-const DEFAULT_COLOR = {r:0, g:0, b:0, a:255}
+const DEFAULT_COLOR = {r:0, g:0, b:0, a:1}
 
 export function useBrushColor() {
     return useContext(BrushColorContext)
@@ -9,7 +9,7 @@ export function useBrushColor() {
 
 export function BrushColorProvider(props) {
     const [brushColor, setBrushColor] = useState(DEFAULT_COLOR)
-    const [colorHistory, setColorHistory] = useState([])
+    const [colorHistory, setColorHistory] = useState([brushColor])
 
     const pushColorToHistory = (colorToAdd) => {
         if (colorToAdd === colorHistory[0]) return

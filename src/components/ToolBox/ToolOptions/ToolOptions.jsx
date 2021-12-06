@@ -3,6 +3,7 @@ import {ChromePicker} from "react-color"
 import {useBrushColor} from "../../../hooks/useBrushColor"
 import "./ToolOptions.css"
 import {colorToCanvasColor} from "../../../core/utils/colors"
+import OptionWindow from "../../common/OptionWindow/OptionWindow"
 
 export default function ToolOptions() {
     const {brushColor, setBrushColor, colorHistory} = useBrushColor()
@@ -24,23 +25,22 @@ export default function ToolOptions() {
     const render = function() {
         return (
             <div className="toolOptions">
-                <div className="option">
-                    <div className="optionTitle">Color</div>
+                <OptionWindow title="Color">
                     <ChromePicker
                         color={brushColor}
                         onChange={(color) => setBrushColor(color.rgb)}
                     />
-                </div>
-                <div className="option">
-                    <div className="optionTitle">Recent Colors</div>
+                </OptionWindow>
+                <OptionWindow title="Recent Colors">
                     <div className="recentColors">
                         {colorHistory.map(renderRecentColor)}
                     </div>
-                </div>
-                <div className="option">
-                    <div className="optionTitle">Stroke Options</div>
-
-                </div>
+                </OptionWindow>
+                <OptionWindow title="Stroke Options">
+                    <div>
+                        STROKE OPTIONS!
+                    </div>
+                </OptionWindow>
             </div>
         )
     }

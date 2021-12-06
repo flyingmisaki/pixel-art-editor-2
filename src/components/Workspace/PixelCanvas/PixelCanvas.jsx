@@ -13,11 +13,14 @@ export default function PixelCanvas(props) {
     const {brushColor, pushColorToHistory} = useBrushColor()
 
     const pixelCanvasRef = useRef(null)
+    const previewLayerCanvasRef = useRef(null)
+
+    const previousMousePositionRef = useRef({x: null, y: null})
     
     // Sets up listeners for mouse events on the canvas
     useEffect(() => {
         // Don't set listeners up if no active layer
-        if (!activeTool || !activeLayer || activeLayer.isLocked) return
+        if (!activeTool || !activeLayer || activeLayer.isLocked || !previewLayerCanvasRef.current) return
 
         const getCanvasRelativePosition = function(mouseEvent) {
             const mouseX = mouseEvent.clientX
@@ -37,6 +40,9 @@ export default function PixelCanvas(props) {
 
         const layerCanvasContext = activeLayer.canvasRef.current.getContext('2d')
         activeTool.canvasContext = layerCanvasContext
+
+        const previewCanvasContext = previewLayerCanvasRef.current.getContext('2d')
+        activeTool.previewCanvasContext = previewCanvasContext
 
         const handleMouseDown = function(event) {
             const clickCode = event.button
@@ -59,11 +65,19 @@ export default function PixelCanvas(props) {
                     break
                     default: break
                 }
+            previewCanvasContext.clearRect(0, 0, width, height)
             activeLayer.onUpdate()
         }
 
         const handleMouseMove = function(event) {
-
+            const position = getCanvasRelativePosition(event)
+            const previousPosition = previousMousePositionRef.current
+            
+            if (previousPosition.x !== position.x || previousPosition.y !== position.y) {
+                previewCanvasContext.clearRect(0, 0, width, height)
+                activeTool.mouseMove(position, brushColor)
+                previousMousePositionRef.current = position 
+            }
         }
 
         if (pixelCanvasElement === null) return
@@ -84,6 +98,18 @@ export default function PixelCanvas(props) {
         [activeTool, activeLayer, scale, width, height, brushColor, pushColorToHistory]
     )
 
+    const renderPreviewLayer = function() {
+        return (
+            <div className="previewLayer">
+                <canvas
+                    ref={previewLayerCanvasRef}
+                    width={width}
+                    height={height}
+                />
+            </div>
+        )
+    }
+
     const render = function() {
         const elementWidth = width * scale
         const elementHeight = height * scale
@@ -103,6 +129,7 @@ export default function PixelCanvas(props) {
                         height={height}
                     />)
                 )}
+                {renderPreviewLayer()}
             </div>
         )
     }

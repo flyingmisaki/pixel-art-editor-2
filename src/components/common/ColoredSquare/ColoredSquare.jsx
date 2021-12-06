@@ -8,7 +8,10 @@ export default function ColoredSquare(props) {
     
     const render = function() {
         return (
-            <span className="coloredSquare" style={{background: colorToCanvasColor(color)}}/>
+            <span className="coloredSquareContainer">
+                <span className="coloredSquare" style={{background: colorToCanvasColor(color)}}/>
+            </span>
+            
         )
     }
 

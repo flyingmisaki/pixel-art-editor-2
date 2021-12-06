@@ -6,10 +6,12 @@ class Pixel {
         this.name = "Pixel"
         this.usesColors = true
         
+        this.previewCanvasContext = null
         this.canvasContext = null
         this.options = {
             scale : 1
         }
+        this.drawing = false
     }
 
     renderIcon() {
@@ -18,23 +20,26 @@ class Pixel {
 
     drawPixel(context, position, color) {
         if (!context) return
-        console.log(`Drawing pixel at ${position.x}, ${position.y}`)
         context.fillStyle = colorToCanvasColor(color)
         // Clears before placing color again so it doesn't add up with transparency ect...
-        context.clearRect(position.x, position.y, this.options.scale, this.options.scale)
         context.fillRect(position.x, position.y, this.options.scale, this.options.scale)
     }
 
-    mouseDown(position) {
-        this.position = position 
-    }
-
-    mouseUp(position, color) {
+    mouseDown(position, color) {
+        console.log(`Drawing pixel at ${position.x}, ${position.y}`)
+        this.position = position
+        this.drawing = true
         this.drawPixel(this.canvasContext, position, color)
     }
 
-    mouseMove(context, x, y, color) {
-        
+    mouseUp(position, color) {
+        this.drawing = false
+    }
+
+    mouseMove(position, color) {
+        if (this.drawing) console.log(`Drawing pixel at ${position.x}, ${position.y}`)
+        const context = this.drawing ? this.canvasContext : this.previewCanvasContext
+        this.drawPixel(context, position, color)
     }
 }
 
