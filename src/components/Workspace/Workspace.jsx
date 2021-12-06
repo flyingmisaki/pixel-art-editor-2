@@ -8,9 +8,9 @@ export default function Workspace() {
         return (
             <div className="workspace">
                 <PixelCanvas
-                width={16}
-                height={16}
-                scale={50}
+                    width={16}
+                    height={16}
+                    scale={50}
                 />
             </div>
         )

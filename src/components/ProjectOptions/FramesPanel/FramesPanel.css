@@ -1,6 +1,7 @@
 .FramesPanel {
     overflow-y: scroll;
-    max-height: 80vh;
+    background-color: var(--blueGray2);
+    padding: 0.5rem;
 }
 
 .FramesPanel::-webkit-scrollbar {

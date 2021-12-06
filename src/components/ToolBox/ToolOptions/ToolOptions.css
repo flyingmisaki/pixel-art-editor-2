@@ -6,6 +6,11 @@
     overflow: hidden;
 }
 
+.options {
+    background-color: var(--blueGray2);
+    padding: 0.5rem;
+}
+
 /* react-color chrome picker changes */
 .toolOptions .chrome-picker {
     background-color: var(--blueGray2) !important;
@@ -75,4 +80,9 @@
 
 .recentColors button:hover{
     border: 1px solid var(--lightGray1);
+}
+
+.strokeOptions {
+    background-color: var(--blueGray2);
+    padding: 0.5rem;
 }

@@ -8,6 +8,9 @@ class Lines {
         
         this.previewCanvasContext = null
         this.canvasContext = null
+        this.options = {
+            scale : 1
+        }
 
         this.startPosition = null
     }
@@ -18,6 +21,13 @@ class Lines {
 
     isDrawing() {
         return !!this.startPosition
+    }
+
+    drawPixel(context, position, color) {
+        if (!context) return
+        context.fillStyle = colorToCanvasColor(color)
+        // Clears before placing color again so it doesn't add up with transparency ect...
+        context.fillRect(position.x, position.y, this.options.scale, this.options.scale)
     }
 
     plotLine(context, startPosition, endPosition, color) {
@@ -64,7 +74,13 @@ class Lines {
     }
 
     mouseMove(position, color) {
-        if (this.isDrawing()) this.plotLine(this.previewCanvasContext, this.startPosition, position, color)
+        if (this.isDrawing()) {
+            this.plotLine(this.previewCanvasContext, this.startPosition, position, color)
+        }
+        else {
+            const context = this.previewCanvasContext
+            this.drawPixel(context, position, color)
+        }
     }
 }
 

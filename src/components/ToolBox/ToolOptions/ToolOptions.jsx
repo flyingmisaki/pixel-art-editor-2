@@ -4,9 +4,11 @@ import {useBrushColor} from "../../../hooks/useBrushColor"
 import "./ToolOptions.css"
 import {colorToCanvasColor} from "../../../core/utils/colors"
 import OptionWindow from "../../common/OptionWindow/OptionWindow"
+import { useActiveTool } from "../../../hooks/useActiveTool"
 
 export default function ToolOptions() {
     const {brushColor, setBrushColor, colorHistory} = useBrushColor()
+    const [activeTool] = useActiveTool()
 
     const renderRecentColor = function(color) {
         const isActive = color === brushColor
@@ -25,6 +27,11 @@ export default function ToolOptions() {
     const render = function() {
         return (
             <div className="toolOptions">
+                <OptionWindow title="Tool Options">
+                    <div className="options">
+                        OPTIONS!
+                    </div>
+                </OptionWindow>
                 <OptionWindow title="Color">
                     <ChromePicker
                         color={brushColor}
@@ -37,7 +44,7 @@ export default function ToolOptions() {
                     </div>
                 </OptionWindow>
                 <OptionWindow title="Stroke Options">
-                    <div>
+                    <div className="strokeOptions">
                         STROKE OPTIONS!
                     </div>
                 </OptionWindow>

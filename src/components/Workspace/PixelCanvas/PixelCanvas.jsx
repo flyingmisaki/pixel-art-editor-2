@@ -63,7 +63,7 @@ export default function PixelCanvas(props) {
                 case 0:
                     activeTool.mouseUp(position, brushColor)
                     break
-                    default: break
+                default: break
                 }
             previewCanvasContext.clearRect(0, 0, width, height)
             activeLayer.onUpdate()
