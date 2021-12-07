@@ -4,7 +4,6 @@
 	--blueGray2: rgb(70, 70, 83);
 
 	--mediumGray1: rgb(150, 150, 150);
-	--mediumGray2: rgb(190, 190, 190);
 
 	--lightGray1: rgb(226, 226, 226);
 
@@ -16,11 +15,11 @@
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 .editor {
 	display: flex;
 	flex-direction: row;
-	height: 100vh;
+	height: 100%
 }

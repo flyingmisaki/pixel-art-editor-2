@@ -27,6 +27,10 @@ class Erase {
     mouseUp(position, color) {
         this.erasePixel(this.canvasContext, position, color)
     }
+
+    mouseMove(position) {
+        
+    }
 }
 
 export default new Erase()

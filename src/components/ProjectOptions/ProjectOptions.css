@@ -2,4 +2,5 @@
     width: 15rem;
     background-color: var(--blueGray1);
     border-left: 1px solid var(--DarkblueGray1);
+    overflow: hidden;
 }
