@@ -5,6 +5,7 @@ class Lines {
     constructor() {
         this.name = "Lines"
         this.usesColors = true
+        this.status = ""
         
         this.previewCanvasContext = null
         this.canvasContext = null
@@ -14,6 +15,13 @@ class Lines {
 
         this.startPosition = null
     }
+
+    updateStatus(status) {
+        this.status = status
+        this.onStatusChange(status)
+    }
+
+    onStatusChange(status) {}
 
     renderIcon() {
         return <BsDashLg/>
@@ -69,7 +77,7 @@ class Lines {
     mouseUp(position, color) {
         // Draw the line from initial position to end position
         this.plotLine(this.canvasContext, this.startPosition, position, color)
-        console.log(`Line drawn between (${this.startPosition.x}, ${this.startPosition.y}) and (${position.x}, ${position.y})`)
+        this.updateStatus(`Line drawn between (${this.startPosition.x}, ${this.startPosition.y}) and (${position.x}, ${position.y})`)
         this.startPosition = null
     }
 

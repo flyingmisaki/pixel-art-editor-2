@@ -8,14 +8,17 @@ import ColoredSquare from "../common/ColoredSquare/ColoredSquare"
 import {useBrushColor} from "../../hooks/useBrushColor"
 import {useActiveTool} from "../../hooks/useActiveTool"
 import {useLayers} from "../../hooks/useLayers"
+import {useCanvasPosition} from "../../hooks/useCanvasPosition"
 
-export default function StatusBar(props) {
+export default function StatusBar() {
     
-    const [activeTool] = useActiveTool()
+    const {activeTool, toolStatus} = useActiveTool()
     const {brushColor} = useBrushColor()
+    const {activeLayer} = useLayers()
+    const {canvasPosition} = useCanvasPosition()
 
     const render = function() {
-        const layer = props.layer
+
         return (
             <div className="statusBar">
                 <p>
@@ -25,10 +28,14 @@ export default function StatusBar(props) {
                     <ColoredSquare color={brushColor}/>
                     <span>
                         {colorToHexColor(brushColor)}
-                        , Cursor x, y: {"X"}, {"Y"}
+                        , Active Layer: {activeLayer?.name}
+                        , Cursor Position: ({canvasPosition.x}, {canvasPosition.y})
                         , Tool:{activeTool.renderIcon()}
                         {activeTool?.name ?? "none"}
                     </span>
+                </p>
+                <p>
+                    {toolStatus}
                 </p>
             </div>
         )

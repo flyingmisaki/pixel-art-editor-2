@@ -14,7 +14,7 @@ import {BsGear} from "react-icons/bs"
 
 export default function ToolBox() {
 
-    const [activeTool, setActiveTool] = useActiveTool()
+    const {activeTool, setActiveTool} = useActiveTool()
 
     const renderToolButton = function(tool) {
         // Check active tool and tell it its active

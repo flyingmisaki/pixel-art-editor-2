@@ -11,12 +11,19 @@ class Erase {
         }
     }
 
+    updateStatus(status) {
+        this.status = status
+        this.onStatusChange(status)
+    }
+
+    onStatusChange(status) {}
+
     renderIcon() {
         return <BsEraser/>
     }
 
     erasePixel(context, position) {
-        console.log(`Erasing pixel at ${position.x},${position.y}`)
+        this.updateStatus(`Erasing pixel at ${position.x},${position.y}`)
         context.clearRect(position.x, position.y, this.options.scale, this.options.scale)
     }
 

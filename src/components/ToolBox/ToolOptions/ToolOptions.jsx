@@ -4,11 +4,9 @@ import {useBrushColor} from "../../../hooks/useBrushColor"
 import "./ToolOptions.css"
 import {colorToCanvasColor} from "../../../core/utils/colors"
 import OptionWindow from "../../common/OptionWindow/OptionWindow"
-import { useActiveTool } from "../../../hooks/useActiveTool"
 
 export default function ToolOptions() {
     const {brushColor, setBrushColor, colorHistory} = useBrushColor()
-    const [activeTool] = useActiveTool()
 
     const renderRecentColor = function(color) {
         const isActive = color === brushColor

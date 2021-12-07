@@ -32,7 +32,6 @@ export default function LayerPreview(props) {
             copyCanvasContents(layerCanvas, previewCanvas)
             setVisible(layer.isVisible)
             setLock(layer.isLocked)
-            
         })
 
         // return listener remover

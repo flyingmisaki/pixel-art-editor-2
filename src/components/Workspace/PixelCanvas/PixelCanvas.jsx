@@ -3,14 +3,17 @@ import './PixelCanvas.css'
 import {useActiveTool} from "../../../hooks/useActiveTool"
 import {useBrushColor} from "../../../hooks/useBrushColor"
 import {useLayers} from "../../../hooks/useLayers"
+import {useCanvasPosition} from "../../../hooks/useCanvasPosition"
 import CanvasLayer from "./CanvasLayer/CanvasLayer"
 // import checkeredBackground from "../../../svg/checkeredBackground.svg"
+import {getCanvasRelativePosition} from "../../../core/utils/coordinates"
 
 export default function PixelCanvas(props) {
     const {width, height, scale} = props
     const {layers, activeLayer} = useLayers()
-    const [activeTool] = useActiveTool()
+    const {activeTool} = useActiveTool()
     const {brushColor, pushColorToHistory} = useBrushColor()
+    const {setCanvasPosition} = useCanvasPosition()
 
     const pixelCanvasRef = useRef(null)
     const previewLayerCanvasRef = useRef(null)
@@ -22,20 +25,6 @@ export default function PixelCanvas(props) {
         // Don't set listeners up if no active layer
         if (!activeTool || !activeLayer || activeLayer.isLocked || !previewLayerCanvasRef.current) return
 
-        const getCanvasRelativePosition = function(mouseEvent) {
-            const mouseX = mouseEvent.clientX
-            const mouseY = mouseEvent.clientY
-            const pixelCanvasElement = pixelCanvasRef.current
-            
-            const currentX = mouseX - pixelCanvasElement.offsetLeft
-            const currentY = mouseY - pixelCanvasElement.offsetTop
-            
-            return ({
-                x : Math.floor(currentX/scale),
-                y : Math.floor(currentY/scale)
-            })
-        }
-
         const pixelCanvasElement = pixelCanvasRef.current
 
         const layerCanvasContext = activeLayer.canvasRef.current.getContext('2d')
@@ -46,7 +35,7 @@ export default function PixelCanvas(props) {
 
         const handleMouseDown = function(event) {
             const clickCode = event.button
-            const position = getCanvasRelativePosition(event)
+            const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
             switch (clickCode) {
                 case 0:
                     if (activeTool.usesColors) pushColorToHistory(brushColor)
@@ -58,32 +47,28 @@ export default function PixelCanvas(props) {
 
         const handleMouseUp = function(event) {
             const clickCode = event.button
-            const position = getCanvasRelativePosition(event)
+            const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
             switch (clickCode) {
                 case 0:
                     activeTool.mouseUp(position, brushColor)
                     break
                 default: break
-                }
+            }
             previewCanvasContext.clearRect(0, 0, width, height)
             activeLayer.onUpdate()
         }
 
-        const handleMouseMoveOnCanvas = function(event) {
-            const position = getCanvasRelativePosition(event)
+        const handleMouseMove = function(event) {
+            const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
             const previousPosition = previousMousePositionRef.current
             
             if (previousPosition.x !== position.x || previousPosition.y !== position.y) {
                 previewCanvasContext.clearRect(0, 0, width, height)
-                activeTool.mouseMove(position, brushColor)
-                previousMousePositionRef.current = position 
-            }
-        }
-
-        const handleMouseMove = function(event) {
-            const position = getCanvasRelativePosition(event)
-            if (position.x > props.width || position.x < 0 || position.y > props.height || position.y < 0) {
-                previewCanvasContext.clearRect(0, 0, width, height)
+                if (!(position.x > props.width || position.x < 0 || position.y > props.height || position.y < 0)) {
+                    activeTool.mouseMove(position, brushColor)
+                }
+                previousMousePositionRef.current = position
+                setCanvasPosition(position)
             }
         }
 
@@ -92,7 +77,6 @@ export default function PixelCanvas(props) {
         // Set up listeners
         pixelCanvasElement.addEventListener("mousedown", handleMouseDown)
         pixelCanvasElement.addEventListener("mouseup", handleMouseUp)
-        pixelCanvasElement.addEventListener("mousemove", handleMouseMoveOnCanvas)
 
         document.addEventListener("mousemove", handleMouseMove)
 
@@ -101,12 +85,10 @@ export default function PixelCanvas(props) {
             // Tear down listeners
             pixelCanvasElement.removeEventListener("mousedown", handleMouseDown)
             pixelCanvasElement.removeEventListener("mouseup", handleMouseUp)
-            pixelCanvasElement.removeEventListener("mousemove", handleMouseMoveOnCanvas)
 
             document.removeEventListener("mousemove", handleMouseMove)
         }
-    },  
-        [activeTool, activeLayer, scale, width, height, brushColor, pushColorToHistory]
+    }, [activeTool, activeLayer, scale, width, height, brushColor, pushColorToHistory, setCanvasPosition, props.width, props.height]
     )
 
     const renderPreviewLayer = function() {

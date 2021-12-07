@@ -1,4 +1,4 @@
-import {React, useLayoutEffect} from "react"
+import {React} from "react"
 import './App.css'
 import NavBar from "./components/NavBar/NavBar"
 import ToolBox from "./components/ToolBox/ToolBox"
@@ -13,6 +13,12 @@ import StatusBar from "./components/StatusBar/StatusBar"
 import {BrushColorProvider} from "./hooks/useBrushColor"
 import {ActiveToolProvider} from "./hooks/useActiveTool"
 import {LayersProvider} from "./hooks/useLayers"
+import {CanvasPositionProvider} from "./hooks/useCanvasPosition"
+
+// Project settings
+const WIDTH = 16
+const HEIGHT = 16
+const SCALE = 50
 
 function App() {
   	const render = function() {
@@ -21,7 +27,11 @@ function App() {
 				<NavBar/>
 				<div className="editor">
 					<ToolBox/>
-					<Workspace/>
+					<Workspace
+						width={WIDTH}
+						height={HEIGHT}
+						scale={SCALE}
+					/>
 					<ProjectOptions/>
 				</div>
 				<StatusBar/>
@@ -37,7 +47,9 @@ export default function AppWithContext() {
 		<ActiveToolProvider>
 			<BrushColorProvider>
 				<LayersProvider>
-					<App/>
+					<CanvasPositionProvider>
+						<App/>
+					</CanvasPositionProvider>
 				</LayersProvider>
 			</BrushColorProvider>
 		</ActiveToolProvider>

@@ -5,6 +5,7 @@ class Pixel {
     constructor() {
         this.name = "Pixel"
         this.usesColors = true
+        this.status = ""
         
         this.previewCanvasContext = null
         this.canvasContext = null
@@ -13,6 +14,13 @@ class Pixel {
         }
         this.drawing = false
     }
+
+    updateStatus(status) {
+        this.status = status
+        this.onStatusChange(status)
+    }
+
+    onStatusChange(status) {}
 
     renderIcon() {
         return <BsBrush/>
@@ -26,7 +34,7 @@ class Pixel {
     }
 
     mouseDown(position, color) {
-        console.log(`Drawing pixel at ${position.x}, ${position.y}`)
+        this.updateStatus(`Drawing pixel at ${position.x}, ${position.y}`)
         this.position = position
         this.drawing = true
         this.drawPixel(this.canvasContext, position, color)
@@ -37,7 +45,7 @@ class Pixel {
     }
 
     mouseMove(position, color) {
-        if (this.drawing) console.log(`Drawing pixel at ${position.x}, ${position.y}`)
+        if (this.drawing) this.updateStatus(`Drawing pixel at ${position.x}, ${position.y}`)
         const context = this.drawing ? this.canvasContext : this.previewCanvasContext
         this.drawPixel(context, position, color)
     }

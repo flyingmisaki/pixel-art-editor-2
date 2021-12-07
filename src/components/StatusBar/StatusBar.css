@@ -1,4 +1,6 @@
 .statusBar {
+    display: flex;
+    justify-content: space-between;
     padding: 0.3rem;
 	background-color: var(--blueGray1);
 	border-top: 1px solid var(--DarkblueGray1);
