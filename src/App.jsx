@@ -1,4 +1,4 @@
-import {React} from "react"
+import {React, useLayoutEffect} from "react"
 import './App.css'
 import NavBar from "./components/NavBar/NavBar"
 import ToolBox from "./components/ToolBox/ToolBox"
@@ -15,7 +15,6 @@ import {ActiveToolProvider} from "./hooks/useActiveTool"
 import {LayersProvider} from "./hooks/useLayers"
 
 function App() {
-
   	const render = function() {
     	return (
       		<div className="App">

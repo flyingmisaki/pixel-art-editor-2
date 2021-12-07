@@ -29,11 +29,11 @@ export default function PixelCanvas(props) {
             
             const currentX = mouseX - pixelCanvasElement.offsetLeft
             const currentY = mouseY - pixelCanvasElement.offsetTop
-        
+            
             return ({
                 x : Math.floor(currentX/scale),
-                y : Math.floor(currentY/scale),
-            }) 
+                y : Math.floor(currentY/scale)
+            })
         }
 
         const pixelCanvasElement = pixelCanvasRef.current
@@ -69,7 +69,7 @@ export default function PixelCanvas(props) {
             activeLayer.onUpdate()
         }
 
-        const handleMouseMove = function(event) {
+        const handleMouseMoveOnCanvas = function(event) {
             const position = getCanvasRelativePosition(event)
             const previousPosition = previousMousePositionRef.current
             
@@ -80,19 +80,30 @@ export default function PixelCanvas(props) {
             }
         }
 
+        const handleMouseMove = function(event) {
+            const position = getCanvasRelativePosition(event)
+            if (position.x > props.width || position.x < 0 || position.y > props.height || position.y < 0) {
+                previewCanvasContext.clearRect(0, 0, width, height)
+            }
+        }
+
         if (pixelCanvasElement === null) return
 
         // Set up listeners
         pixelCanvasElement.addEventListener("mousedown", handleMouseDown)
         pixelCanvasElement.addEventListener("mouseup", handleMouseUp)
-        pixelCanvasElement.addEventListener("mousemove", handleMouseMove)
+        pixelCanvasElement.addEventListener("mousemove", handleMouseMoveOnCanvas)
+
+        document.addEventListener("mousemove", handleMouseMove)
 
         return () => {
         
             // Tear down listeners
             pixelCanvasElement.removeEventListener("mousedown", handleMouseDown)
             pixelCanvasElement.removeEventListener("mouseup", handleMouseUp)
-            pixelCanvasElement.removeEventListener("mousemove", handleMouseMove)
+            pixelCanvasElement.removeEventListener("mousemove", handleMouseMoveOnCanvas)
+
+            document.removeEventListener("mousemove", handleMouseMove)
         }
     },  
         [activeTool, activeLayer, scale, width, height, brushColor, pushColorToHistory]

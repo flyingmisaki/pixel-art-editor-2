@@ -7,13 +7,15 @@ import ColoredSquare from "../common/ColoredSquare/ColoredSquare"
 
 import {useBrushColor} from "../../hooks/useBrushColor"
 import {useActiveTool} from "../../hooks/useActiveTool"
+import {useLayers} from "../../hooks/useLayers"
 
-export default function NavBar() {
+export default function StatusBar(props) {
     
     const [activeTool] = useActiveTool()
     const {brushColor} = useBrushColor()
 
     const render = function() {
+        const layer = props.layer
         return (
             <div className="statusBar">
                 <p>
