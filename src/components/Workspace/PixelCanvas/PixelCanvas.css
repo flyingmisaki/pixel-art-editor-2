@@ -9,6 +9,7 @@
     background-size: 10px;
 
     position: relative;
+    /* cursor: none; */
 }
 
 .pixelCanvas .previewLayer {

@@ -1,0 +1,30 @@
+.recentColors {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* padding-top: 0.025rem;
+    padding-bottom: 0.025rem; */
+    background: var(--blueGray2);
+    width: 100%;
+}
+
+.colorButtonContainer {
+    width: 1.75rem;
+    height: 1.75rem;
+    background: #eee url("data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' fill-opacity='.25' ><rect x='200' width='200' height='200' /><rect y='200' width='200' height='200' /></svg>");
+    background-size: 50%;
+}
+
+.recentColors button {
+    width: 100%;
+    height: 100%;
+    /* margin: 0.025rem; */
+}
+
+.recentColors button.selected {
+    border: 1px solid var(--lightGray1);
+}
+
+.recentColors button:hover{
+    border: 1px solid var(--lightGray1);
+}

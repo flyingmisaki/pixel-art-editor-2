@@ -18,7 +18,7 @@ import {CanvasPositionProvider} from "./hooks/useCanvasPosition"
 // Project settings
 const WIDTH = 16
 const HEIGHT = 16
-const SCALE = 50
+const SCALE = 55
 
 function App() {
   	const render = function() {
