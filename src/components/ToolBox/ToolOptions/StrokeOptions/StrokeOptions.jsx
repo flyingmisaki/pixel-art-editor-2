@@ -10,7 +10,7 @@ export default function StrokeOptions() {
     const renderStrokeOption = function() {
         return (
             <div className="option">
-                <input type="number" id="scale" className="scaleInput" value={scale} onChange={(event) => setScale(event.target.value)}></input>
+                <input type="number" id="scale" className="scaleInput" value={scale} onChange={(event) => setScale(event.target.value)}/>
                 <label for="scale" className="scaleLabel">Scale: </label>
             </div>
         )

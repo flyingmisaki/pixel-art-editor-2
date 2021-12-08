@@ -10,6 +10,12 @@ export function useLayers(){
 export function LayersProvider(props){
     const [layers, setLayers] = useState([])
     const [activeLayer, setActiveLayer] = useState(null)
+    const [name, setName] = useState()
+
+    function setLayerName(name) {
+        activeLayer.name = name
+        setName(name)
+    }
 
     const layersAddedTotalRef = useRef(0)
 
@@ -64,7 +70,8 @@ export function LayersProvider(props){
         setLayers,
         addLayer,
         removeLayer,
-        setActiveLayer
+        setActiveLayer,
+        setName : setLayerName
     }
 
     return (

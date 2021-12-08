@@ -12,7 +12,7 @@ function copyCanvasContents(sourceCanvas, destinationCanvas) {
 export default function LayerPreview(props) {
     const layer = props.layer
 
-    const {activeLayer, setActiveLayer, removeLayer} = useLayers()
+    const {activeLayer, setActiveLayer, removeLayer, name, setName} = useLayers()
 
     const previewCanvasRef = useRef(null)
 
@@ -52,7 +52,8 @@ export default function LayerPreview(props) {
                 />
             </div>
             <div className="layerPreviewInner">
-                <label className="layerPreviewTitle">{layer.name}</label>
+                {/* <label className="layerPreviewTitle">{layer.name}</label> */}
+                <input className="layerPreviewTitle" type="text" value={layer.name} onChange={(event) => setName(event.target.value)}/>
                 <div>
                     <button 
                         className="layerActionButton"
