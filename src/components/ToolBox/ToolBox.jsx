@@ -1,6 +1,6 @@
 import React from "react"
 import "./ToolBox.css"
-import pixel from "../../core/tools/Pixel.js"
+import Brush from "../../core/tools/Brush.js"
 import lines from "../../core/tools/Lines.js"
 import shapes from "../../core/tools/Shapes.js"
 import fill from "../../core/tools/Fill.js"
@@ -29,7 +29,7 @@ export default function ToolBox() {
         )
     }
 
-    const tools = [pixel, lines, shapes, fill, erase]
+    const tools = [Brush, lines, shapes, fill, erase]
 
     const render = function() {
         return (

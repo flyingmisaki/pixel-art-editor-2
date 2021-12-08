@@ -2,3 +2,45 @@
     background-color: var(--blueGray2);
     padding: 0.5rem;
 }
+
+.option {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: left;
+}
+
+.option input {
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+    border: 1px solid var(--mediumGray1);
+    width: 0.8rem;
+    padding-left: 0.2rem;
+    color: var(--mediumGray1);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input:hover {
+    color: var(--lightGray1);
+    border: 1px solid var(--lightGray1);
+}
+
+label:hover {
+    color: var(--lightGray1);
+}
+
+input:focus {
+    color: var(--lightGray1);
+    border: 1px solid var(--lightGray1);
+}
+
+input:focus ~ .scaleLabel {
+    color: var(--lightGray1);
+}
+
+input:hover ~ .scaleLabel {
+    color: var(--lightGray1);
+}

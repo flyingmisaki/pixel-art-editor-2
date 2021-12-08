@@ -1,9 +1,9 @@
 import {colorToCanvasColor} from "../utils/colors"
 import {BsBrush} from "react-icons/bs"
 
-class Pixel {
+class Brush {
     constructor() {
-        this.name = "Pixel"
+        this.name = "Brush"
         this.usesColors = true
         this.status = ""
         
@@ -51,4 +51,4 @@ class Pixel {
     }
 }
 
-export default new Pixel()
+export default new Brush()

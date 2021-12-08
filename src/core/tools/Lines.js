@@ -57,7 +57,7 @@ class Lines {
 
         let drawing = true
         while(drawing) {
-            context.fillRect(currentPosition.x, currentPosition.y, 1, 1)
+            context.fillRect(currentPosition.x, currentPosition.y, this.options.scale, this.options.scale)
 
             // If we have hit the end position, set drawing to false
             drawing = currentPosition.x !== endPosition.x || currentPosition.y !== endPosition.y

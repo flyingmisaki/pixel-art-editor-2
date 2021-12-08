@@ -1,8 +1,6 @@
 import React from "react"
 import "./StatusBar.css"
 
-import {colorToHexColor} from "../../core/utils/colors"
-
 import ColoredSquare from "../common/ColoredSquare/ColoredSquare"
 
 import {useBrushColor} from "../../hooks/useBrushColor"
@@ -18,7 +16,6 @@ export default function StatusBar() {
     const {canvasPosition} = useCanvasPosition()
 
     const render = function() {
-
         return (
             <div className="statusBar">
                 <p>
@@ -27,9 +24,9 @@ export default function StatusBar() {
                     </span>
                     <ColoredSquare color={brushColor}/>
                     <span>
-                        {colorToHexColor(brushColor)}
+                        rgba({brushColor.r}, {brushColor.g}, {brushColor.b}, {brushColor.a})
                         , Active Layer: {activeLayer?.name}
-                        , Cursor Position: ({canvasPosition.x}, {canvasPosition.y})
+                        , Cursor Position: ({(canvasPosition.x)}, {canvasPosition.y})
                         , Tool:{activeTool.renderIcon()}
                         {activeTool?.name ?? "none"}
                     </span>

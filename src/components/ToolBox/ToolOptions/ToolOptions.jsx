@@ -10,9 +10,9 @@ export default function ToolOptions() {
     const render = function() {
         return (
             <div className="toolOptions">
+                <StrokeOptions/>
                 <ColorMenu/>
                 <RecentColors/>
-                <StrokeOptions/>
             </div>
         )
     }
