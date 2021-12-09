@@ -47,10 +47,10 @@ class Shapes {
 
         while (x < 0) {
             
-            context.fillRect(startPosition.x - x, startPosition.y + y, 1, 1)                            /*   I. Quadrant +x +y */
-            context.fillRect(startPosition.x - y, startPosition.y - x, 1, 1)                            /*  II. Quadrant -x +y */
-            context.fillRect(startPosition.x + x, startPosition.y - y, 1, 1)                            /* III. Quadrant -x -y */
-            context.fillRect(startPosition.x + y, startPosition.y + x, 1, 1)                            /*  IV. Quadrant +x -y */
+            context.fillRect(startPosition.x - x, startPosition.y + y, this.options.scale, this.options.scale)                            /*   I. Quadrant +x +y */
+            context.fillRect(startPosition.x - y, startPosition.y - x, this.options.scale, this.options.scale)                            /*  II. Quadrant -x +y */
+            context.fillRect(startPosition.x + x, startPosition.y - y, this.options.scale, this.options.scale)                            /* III. Quadrant -x -y */
+            context.fillRect(startPosition.x + y, startPosition.y + x, this.options.scale, this.options.scale)                            /*  IV. Quadrant +x -y */
             
             radius = err                                       
             
@@ -88,7 +88,7 @@ class Shapes {
     mouseUp(position, color) {
         // Draw the line from initial position to end position
         this.plotShape(this.shape, this.canvasContext, this.startPosition, position, color)
-        this.updateStatus(`Circle drawn at (${this.startPosition.x}, ${this.startPosition.y}) with radius of ${this.radius}`)
+        this.updateStatus(`Circle drawn at (${this.startPosition.x}, ${this.startPosition.y})`) //with radius of ${this.radius}
         this.startPosition = null
     }
 

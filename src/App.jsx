@@ -13,7 +13,7 @@ import StatusBar from "./components/StatusBar/StatusBar"
 import {BrushColorProvider} from "./hooks/useBrushColor"
 import {ActiveToolProvider} from "./hooks/useActiveTool"
 import {LayersProvider} from "./hooks/useLayers"
-import {CanvasPositionProvider} from "./hooks/useCanvasPosition"
+import {CanvasProvider} from "./hooks/useCanvas"
 
 // Project settings
 const WIDTH = 16
@@ -47,9 +47,9 @@ export default function AppWithContext() {
 		<ActiveToolProvider>
 			<BrushColorProvider>
 				<LayersProvider>
-					<CanvasPositionProvider>
+					<CanvasProvider>
 						<App/>
-					</CanvasPositionProvider>
+					</CanvasProvider>
 				</LayersProvider>
 			</BrushColorProvider>
 		</ActiveToolProvider>

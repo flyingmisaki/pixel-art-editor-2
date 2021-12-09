@@ -19,10 +19,8 @@ export function BrushColorProvider(props) {
     }
 
     const brushColorData = {
-        brushColor,
-        setBrushColor,
-        colorHistory,
-        pushColorToHistory
+        brushColor, setBrushColor,
+        colorHistory, pushColorToHistory
     }
 
     return (

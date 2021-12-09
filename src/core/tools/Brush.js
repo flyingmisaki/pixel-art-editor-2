@@ -10,7 +10,9 @@ class Brush {
         this.previewCanvasContext = null
         this.canvasContext = null
         this.options = {
-            scale : 1
+            scale : 1,
+            AA : false,
+            replace : false
         }
         this.drawing = false
     }

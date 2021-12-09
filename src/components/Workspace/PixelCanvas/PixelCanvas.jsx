@@ -3,20 +3,20 @@ import './PixelCanvas.css'
 import {useActiveTool} from "../../../hooks/useActiveTool"
 import {useBrushColor} from "../../../hooks/useBrushColor"
 import {useLayers} from "../../../hooks/useLayers"
-import {useCanvasPosition} from "../../../hooks/useCanvasPosition"
+import {useCanvas} from "../../../hooks/useCanvas"
 import CanvasLayer from "./CanvasLayer/CanvasLayer"
+import PreviewLayer from "./PreviewLayer/PreviewLayer"
 // import checkeredBackground from "../../../svg/checkeredBackground.svg"
 import {getCanvasRelativePosition} from "../../../core/utils/coordinates"
 
-export default function PixelCanvas(props) {
-    const {width, height, scale} = props
+export default function PixelCanvas() {
+    const {setCanvasCursorPosition, previewLayerCanvas, width, height, scale} = useCanvas()
     const {layers, activeLayer} = useLayers()
     const {activeTool} = useActiveTool()
     const {brushColor, pushColorToHistory} = useBrushColor()
-    const {setCanvasPosition} = useCanvasPosition()
 
     const pixelCanvasRef = useRef(null)
-    const previewLayerCanvasRef = useRef(null)
+    const previewLayerCanvasRef = useRef(previewLayerCanvas)
 
     const previousMousePositionRef = useRef({x: null, y: null})
     
@@ -64,11 +64,11 @@ export default function PixelCanvas(props) {
             
             if (previousPosition.x !== position.x || previousPosition.y !== position.y) {
                 previewCanvasContext.clearRect(0, 0, width, height)
-                if (!(position.x > props.width || position.x < 0 || position.y > props.height || position.y < 0)) {
+                if (!(position.x > width || position.x < 0 || position.y > height || position.y < 0)) {
                     activeTool.mouseMove(position, brushColor)
                 }
                 previousMousePositionRef.current = position
-                setCanvasPosition(position)
+                setCanvasCursorPosition(position)
             }
         }
 
@@ -88,7 +88,7 @@ export default function PixelCanvas(props) {
 
             document.removeEventListener("mousemove", handleMouseMove)
         }
-    }, [activeTool, activeLayer, scale, width, height, brushColor, pushColorToHistory, setCanvasPosition, props.width, props.height]
+    }, [activeTool, activeLayer, scale, width, height, brushColor, pushColorToHistory, setCanvasCursorPosition, width, height]
     )
 
     const renderPreviewLayer = function() {

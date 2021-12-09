@@ -21,10 +21,16 @@
 
 input:hover {
     border: none;
+    color: var(--lightGray1);
 }
 
 input:hover:focus {
     border: 1px solid var(--lightGray1);
+}
+
+input:focus {
+    border: 1px solid var(--lightGray1);
+    color: var(--lightGray1);
 }
 
 .layerPreviewTitle {

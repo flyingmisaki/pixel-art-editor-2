@@ -6,14 +6,14 @@ import ColoredSquare from "../common/ColoredSquare/ColoredSquare"
 import {useBrushColor} from "../../hooks/useBrushColor"
 import {useActiveTool} from "../../hooks/useActiveTool"
 import {useLayers} from "../../hooks/useLayers"
-import {useCanvasPosition} from "../../hooks/useCanvasPosition"
+import {useCanvas} from "../../hooks/useCanvas"
 
 export default function StatusBar() {
     
     const {activeTool, toolStatus} = useActiveTool()
     const {brushColor} = useBrushColor()
     const {activeLayer} = useLayers()
-    const {canvasPosition} = useCanvasPosition()
+    const {canvasCursorPosition} = useCanvas()
 
     const render = function() {
         return (
@@ -26,7 +26,7 @@ export default function StatusBar() {
                     <span>
                         rgba({brushColor.r}, {brushColor.g}, {brushColor.b}, {brushColor.a})
                         , Active Layer: {activeLayer?.name}
-                        , Cursor Position: ({(canvasPosition.x)}, {canvasPosition.y})
+                        , Cursor Position: ({(canvasCursorPosition.x)}, {canvasCursorPosition.y})
                         , Tool:{activeTool.renderIcon()}
                         {activeTool?.name ?? "none"}
                     </span>
