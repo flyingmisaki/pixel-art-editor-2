@@ -6,12 +6,24 @@ import "./OptionWindow.css"
 export default function OptionWindow(props) {
     // eslint-disable-next-line
     const title = props.title
+    const onExpand = props.onExpand ?? (() => {})
+    const onCollapse = props.onCollapse ?? (() => {})
 
     const [expanded, setExpanded] = useState(true)
 
+    function collapse() {
+        setExpanded(false)
+        onCollapse()
+    }
+
+    function expand() {
+        setExpanded(true)
+        onExpand()
+    }
+
     function renderExpandButton() {
-        if (expanded) return <button onClick={() => setExpanded(false)}><BsCaretDownFill/></button>
-        return <button onClick={() => setExpanded(true)}><BsCaretLeft/></button>
+        if (expanded) return <button onClick={collapse}><BsCaretDownFill/></button>
+        return <button onClick={expand}><BsCaretLeft/></button>
     }
 
     const render = function(){

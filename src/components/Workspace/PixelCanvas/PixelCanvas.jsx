@@ -3,23 +3,23 @@ import './PixelCanvas.css'
 import {useActiveTool} from "../../../hooks/useActiveTool"
 import {useBrushColor} from "../../../hooks/useBrushColor"
 import {useLayers} from "../../../hooks/useLayers"
-import {useCanvas} from "../../../hooks/useCanvas"
+import {useProjectSettings} from "../../../hooks/useProjectSettings"
 import CanvasLayer from "./CanvasLayer/CanvasLayer"
-import PreviewLayer from "./PreviewLayer/PreviewLayer"
+// import PreviewLayer from "./PreviewLayer/PreviewLayer"
 // import checkeredBackground from "../../../svg/checkeredBackground.svg"
 import {getCanvasRelativePosition} from "../../../core/utils/coordinates"
+import PreviewLayer from "./PreviewLayer/PreviewLayer"
 
 export default function PixelCanvas() {
-    const {setCanvasCursorPosition, previewLayerCanvas, width, height, scale} = useCanvas()
+    const {setCanvasCursorPosition, previewLayerCanvasRef, width, height, scale} = useProjectSettings()
     const {layers, activeLayer} = useLayers()
     const {activeTool} = useActiveTool()
     const {brushColor, pushColorToHistory} = useBrushColor()
 
     const pixelCanvasRef = useRef(null)
-    const previewLayerCanvasRef = useRef(previewLayerCanvas)
 
     const previousMousePositionRef = useRef({x: null, y: null})
-    
+
     // Sets up listeners for mouse events on the canvas
     useEffect(() => {
         // Don't set listeners up if no active layer
@@ -75,33 +75,21 @@ export default function PixelCanvas() {
         if (pixelCanvasElement === null) return
 
         // Set up listeners
-        pixelCanvasElement.addEventListener("mousedown", handleMouseDown)
-        pixelCanvasElement.addEventListener("mouseup", handleMouseUp)
+        document.addEventListener("mousedown", handleMouseDown)
+        document.addEventListener("mouseup", handleMouseUp)
 
         document.addEventListener("mousemove", handleMouseMove)
 
         return () => {
         
             // Tear down listeners
-            pixelCanvasElement.removeEventListener("mousedown", handleMouseDown)
-            pixelCanvasElement.removeEventListener("mouseup", handleMouseUp)
+            document.removeEventListener("mousedown", handleMouseDown)
+            document.removeEventListener("mouseup", handleMouseUp)
 
             document.removeEventListener("mousemove", handleMouseMove)
         }
-    }, [activeTool, activeLayer, scale, width, height, brushColor, pushColorToHistory, setCanvasCursorPosition, width, height]
+    }, [activeTool, activeLayer, scale, width, height, brushColor, pushColorToHistory, setCanvasCursorPosition, previewLayerCanvasRef]
     )
-
-    const renderPreviewLayer = function() {
-        return (
-            <div className="previewLayer">
-                <canvas
-                    ref={previewLayerCanvasRef}
-                    width={width}
-                    height={height}
-                />
-            </div>
-        )
-    }
 
     const render = function() {
         const elementWidth = width * scale
@@ -120,9 +108,9 @@ export default function PixelCanvas() {
                         layer={layer} 
                         width={width} 
                         height={height}
-                    />)
-                )}
-                {renderPreviewLayer()}
+                    />
+                ))}
+                <PreviewLayer/>
             </div>
         )
     }

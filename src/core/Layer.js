@@ -15,6 +15,11 @@ class Layer {
         this.height = DEFAULT_HEIGHT
     }
 
+    setName(name) {
+        this.name = name
+        this.onUpdate()
+    }
+
     onUpdate() {
         console.log(`Layer updated (id = ${this.id})`)
         this.listeners.forEach(listener => listener())
@@ -22,6 +27,10 @@ class Layer {
 
     addUpdateListener(listener) {
         this.listeners.push(listener)
+    }
+
+    removeUpdateListener(listener) {
+        this.listeners.filter((l) => l !== listener)
     }
 
     toggleVisibility() {

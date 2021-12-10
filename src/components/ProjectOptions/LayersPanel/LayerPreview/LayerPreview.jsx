@@ -3,16 +3,12 @@ import {BsTrashFill, BsTrash, BsEyeFill, BsEyeSlash, BsLockFill, BsUnlock} from 
 import {useLayers} from "../../../../hooks/useLayers";
 import "./LayerPreview.css"
 
-function copyCanvasContents(sourceCanvas, destinationCanvas) {
-    const destinationContext = destinationCanvas.getContext('2d')
-    destinationContext.clearRect(0, 0, destinationCanvas.width, destinationCanvas.height)
-    destinationContext.drawImage(sourceCanvas, 0, 0)
-}
+import {copyCanvasContents} from "../../../../core/utils/canvas";
 
 export default function LayerPreview(props) {
     const layer = props.layer
 
-    const {activeLayer, setActiveLayer, removeLayer, name, setName} = useLayers()
+    const {activeLayer, setActiveLayer, removeLayer} = useLayers()
 
     const previewCanvasRef = useRef(null)
 
@@ -21,6 +17,8 @@ export default function LayerPreview(props) {
     // eslint-disable-next-line
     const [lock, setLock] = useState(layer.isLocked)
 
+    const [name, setName] = useState(layer.name)
+
     const isActive = activeLayer?.id === layer.id
     const layerClassName = `LayerPreview ${isActive ? "active" : ""}`
 
@@ -28,13 +26,18 @@ export default function LayerPreview(props) {
         const layerCanvas = layer.canvasRef.current
         const previewCanvas = previewCanvasRef.current
 
-        layer.addUpdateListener(() => {
+        const updatePreview = function() {
             copyCanvasContents(layerCanvas, previewCanvas)
             setVisible(layer.isVisible)
             setLock(layer.isLocked)
-        })
+            setName(layer.name)
+        }
 
-        // return listener remover
+        layer.addUpdateListener(updatePreview)
+
+        return () => {
+            layer.removeUpdateListener(updatePreview)
+        }
 
     }, [layer])
     
@@ -53,7 +56,7 @@ export default function LayerPreview(props) {
             </div>
             <div className="layerPreviewInner">
                 {/* <label className="layerPreviewTitle">{layer.name}</label> */}
-                <input className="layerPreviewTitle" type="text" value={layer.name} onChange={(event) => setName(event.target.value)}/>
+                <input className="layerPreviewTitle" type="text" value={name} onChange={(event) => layer.setName(event.target.value)}/>
                 <div>
                     <button 
                         className="layerActionButton"

@@ -6,14 +6,14 @@ import ColoredSquare from "../common/ColoredSquare/ColoredSquare"
 import {useBrushColor} from "../../hooks/useBrushColor"
 import {useActiveTool} from "../../hooks/useActiveTool"
 import {useLayers} from "../../hooks/useLayers"
-import {useCanvas} from "../../hooks/useCanvas"
+import {useProjectSettings} from "../../hooks/useProjectSettings"
 
 export default function StatusBar() {
     
     const {activeTool, toolStatus} = useActiveTool()
     const {brushColor} = useBrushColor()
     const {activeLayer} = useLayers()
-    const {canvasCursorPosition} = useCanvas()
+    const {canvasCursorPosition} = useProjectSettings()
 
     const render = function() {
         return (

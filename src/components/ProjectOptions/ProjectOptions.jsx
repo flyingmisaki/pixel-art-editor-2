@@ -3,6 +3,7 @@ import "./ProjectOptions.css"
 
 import LayersPanel from "./LayersPanel/LayersPanel";
 import FramesPanel from "./FramesPanel/FramesPanel"
+import ExportPanel from "./ExportPanel/ExportPanel";
 
 export default function ProjectOptions() {
 
@@ -11,6 +12,7 @@ export default function ProjectOptions() {
             <div className="ProjectOptions">
                 <LayersPanel/>
                 <FramesPanel/>
+                <ExportPanel/>
             </div>
         )
     }

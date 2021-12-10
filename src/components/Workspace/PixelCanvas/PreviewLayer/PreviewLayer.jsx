@@ -1,11 +1,9 @@
-import {React, useRef} from "react";
-import { useCanvas } from "../../../../hooks/useCanvas";
+import {React} from "react";
+import {useProjectSettings} from "../../../../hooks/useProjectSettings";
 import './PreviewLayer.css'
 
 export default function PreviewLayer() {
-    const {previewLayerCanvas, width, height} = useCanvas()
-
-    const previewLayerCanvasRef = useRef(previewLayerCanvas)
+    const {previewLayerCanvasRef, width, height} = useProjectSettings()
 
     const render = function() {
         return (
