@@ -6,7 +6,7 @@ export default function NavBar() {
     const render = function() {
         return (
             <div className="navBar">
-                <div>LOGO</div>
+                <div>Logo</div>
                 <div>File</div>
                 <div>Edit</div>
                 <div>Selection</div>
