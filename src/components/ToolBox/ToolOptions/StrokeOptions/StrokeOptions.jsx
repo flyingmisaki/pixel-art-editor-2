@@ -11,7 +11,7 @@ export default function StrokeOptions() {
         return (
             <div className="option">
                 <input type="number" id="scale" className="scaleInput" value={scale} onChange={(event) => setScale(event.target.value)}/>
-                <label for="scale" className="scaleLabel">Scale: </label>
+                <label htmlFor="scale" className="scaleLabel">Scale: </label>
             </div>
         )
     }

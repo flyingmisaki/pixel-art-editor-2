@@ -36,10 +36,10 @@ class Brush {
     }
 
     mouseDown(position, color) {
-        this.updateStatus(`Drawing pixel at ${position.x}, ${position.y}`)
         this.position = position
-        this.drawing = true
         this.drawPixel(this.canvasContext, position, color)
+        this.drawing = true
+        if (this.drawing) this.updateStatus(`Drawing pixel at ${position.x}, ${position.y}`)
     }
 
     mouseUp(position, color) {

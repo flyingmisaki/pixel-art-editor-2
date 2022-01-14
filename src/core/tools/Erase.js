@@ -9,6 +9,7 @@ class Erase {
         this.options = {
             scale : 1
         }
+        this.drawing = false
     }
 
     updateStatus(status) {
@@ -23,20 +24,25 @@ class Erase {
     }
 
     erasePixel(context, position) {
-        this.updateStatus(`Erasing pixel at ${position.x},${position.y}`)
+        if (!context) return
         context.clearRect(position.x, position.y, this.options.scale, this.options.scale)
     }
 
     mouseDown(position) {
         this.position = position
+        this.erasePixel(this.canvasContext, position)
+        this.drawing = true
+        if (this.drawing) this.updateStatus(`Erasing pixel at ${position.x},${position.y}`)
     }
     
     mouseUp(position, color) {
-        this.erasePixel(this.canvasContext, position, color)
+        this.drawing = false
     }
 
     mouseMove(position) {
-        
+        if (this.drawing) this.updateStatus(`Erasing pixel at ${position.x},${position.y}`)
+        const context = this.drawing ? this.canvasContext : this.previewCanvasContext
+        this.erasePixel(context, position)
     }
 }
 

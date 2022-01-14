@@ -9,7 +9,6 @@ import {clearCanvas, copyCanvasContents} from "../../../core/utils/canvas";
 import { useProjectSettings } from "../../../hooks/useProjectSettings";
 
 import { saveAs } from "file-saver"
-import { useState } from "react/cjs/react.development";
 
 export default function ExportPanel() {
     const {layers} = useLayers()
@@ -24,16 +23,6 @@ export default function ExportPanel() {
 		saveAs(imageUrl, "export.png")
 	}
 
-    function generateExportPreview() {
-        const exportPreviewCanvas = exportCanvasRef.current
-        if (!exportPreviewCanvas) return
-        clearCanvas(exportPreviewCanvas)
-        layers.forEach(layer => {
-            const layerCanvas = layer.canvasRef.current
-            copyCanvasContents(layerCanvas, exportPreviewCanvas, false)
-        })
-    }
-
     useEffect(() => {
         layers.forEach(layer => {
             layer.addUpdateListener(generateExportPreview)
@@ -42,6 +31,16 @@ export default function ExportPanel() {
         return () => {
             layers.forEach(layer => {
                 layer.removeUpdateListener(generateExportPreview)
+            })
+        }
+
+        function generateExportPreview() {
+            const exportPreviewCanvas = exportCanvasRef.current
+            if (!exportPreviewCanvas) return
+            clearCanvas(exportPreviewCanvas)
+            layers.forEach(layer => {
+                const layerCanvas = layer.canvasRef.current
+                copyCanvasContents(layerCanvas, exportPreviewCanvas, false)
             })
         }
     }, [layers])
