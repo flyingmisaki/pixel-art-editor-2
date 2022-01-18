@@ -36,18 +36,21 @@ export default function PixelCanvas() {
         const handleMouseDown = function(event) {
             const clickCode = event.button
             const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
+            if (position.x < 0 || position.x > width || position.y < 0 || position.y > height) return
+
             switch (clickCode) {
                 case 0:
                     if (activeTool.usesColors) pushColorToHistory(brushColor)
                     activeTool.mouseDown(position, brushColor)
                     break
                 default: break
-            } 
+            }
         }
 
         const handleMouseUp = function(event) {
             const clickCode = event.button
             const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
+            if (position.x < 0 || position.x > width || position.y < 0 || position.y > height) return
             switch (clickCode) {
                 case 0:
                     activeTool.mouseUp(position, brushColor)
@@ -60,8 +63,11 @@ export default function PixelCanvas() {
 
         const handleMouseMove = function(event) {
             const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
-            const previousPosition = previousMousePositionRef.current
             
+            if (position.x < 0 || position.x > width || position.y < 0 || position.y > height) return
+
+            const previousPosition = previousMousePositionRef.current
+
             if (previousPosition.x !== position.x || previousPosition.y !== position.y) {
                 previewCanvasContext.clearRect(0, 0, width, height)
                 if (!(position.x > width || position.x < 0 || position.y > height || position.y < 0)) {
@@ -72,13 +78,13 @@ export default function PixelCanvas() {
             }
         }
 
-        if (pixelCanvasElement === null) return
-
         // Set up listeners
         document.addEventListener("mousedown", handleMouseDown)
         document.addEventListener("mouseup", handleMouseUp)
 
         document.addEventListener("mousemove", handleMouseMove)
+
+        if (pixelCanvasElement === null) return
 
         return () => {
         

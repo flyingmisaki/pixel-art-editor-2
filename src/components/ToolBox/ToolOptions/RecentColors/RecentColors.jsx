@@ -7,11 +7,11 @@ import OptionWindow from "../../../common/OptionWindow/OptionWindow"
 export default function RecentColors() {
     const {brushColor, setBrushColor, colorHistory} = useBrushColor()
 
-    const renderRecentColor = function(color) {
+    const renderRecentColor = function(color, index) {
         const isActive = color === brushColor
         const className = isActive ? "selected" : null
         return (
-            <div className="colorButtonContainer">
+            <div className="colorButtonContainer" key={index}>
                 <button 
                     style={{background: colorToCanvasColor(color)}}
                     onClick={() => setBrushColor(color)}

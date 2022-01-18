@@ -50,6 +50,7 @@ export default function LayerPreview(props) {
             <div className="previewImage">
                 <canvas
                     ref={previewCanvasRef}
+                    key={layer.id}
                     width={layer.width}
                     height={layer.height}
                 />

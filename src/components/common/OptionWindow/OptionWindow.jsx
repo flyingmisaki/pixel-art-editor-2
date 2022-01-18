@@ -26,7 +26,7 @@ export default function OptionWindow(props) {
         return <button onClick={expand}><BsCaretLeft/></button>
     }
 
-    const render = function(){
+    const render = function() {
         return (
             <div className="optionWindow">
                 <div className="titleBar">
