@@ -16,7 +16,7 @@ export function ActiveToolProvider(props) {
     const [toolStatus, setToolStatus] = useState("")
     const [scale, setScale] = useState(1)
 
-    function setToolScale(scale) {
+    const setToolScale = function(scale) {
         activeTool.options.scale = scale
         setScale(scale)
     }

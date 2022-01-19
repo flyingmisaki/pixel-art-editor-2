@@ -11,7 +11,6 @@ export default function ColoredSquare(props) {
             <span className="coloredSquareContainer">
                 <span className="coloredSquare" style={{background: colorToCanvasColor(color)}}/>
             </span>
-            
         )
     }
 

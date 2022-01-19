@@ -23,7 +23,7 @@ export default function PixelCanvas() {
     // Sets up listeners for mouse events on the canvas
     useEffect(() => {
         // Don't set listeners up if no active layer
-        if (!activeTool || !activeLayer || activeLayer.isLocked || !previewLayerCanvasRef.current) return
+        if (!activeTool || !activeLayer || activeLayer.isLocked === true || !previewLayerCanvasRef.current) return
 
         const pixelCanvasElement = pixelCanvasRef.current
 

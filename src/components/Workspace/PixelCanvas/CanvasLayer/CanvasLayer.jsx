@@ -1,12 +1,9 @@
 import {useRef, useState} from "react"
-import { useLayers } from "../../../../hooks/useLayers"
 import "./CanvasLayer.css"
 
 export default function CanvasLayer(props) {
     const {layer, width, height} = props
 
-    const {activeLayer} = useLayers()
-    
     const canvasLayerRef = useRef(null)
     layer.canvasRef = canvasLayerRef
 
@@ -19,7 +16,7 @@ export default function CanvasLayer(props) {
 
         return (
             <div className={className}>
-                {layer.id === activeLayer.id ? <h2 style={{position : "absolute"}}>{layer.name}</h2> : null}
+                {/* {layer.id === activeLayer.id ? <h2 style={{position : "absolute"}}>{layer.name}</h2> : null} */}
                 <canvas 
                     ref={canvasLayerRef}
                     width={width}

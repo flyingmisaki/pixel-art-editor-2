@@ -13,7 +13,7 @@ export function LayersProvider(props){
 
     const layersAddedTotalRef = useRef(0)
 
-    const addLayer = () => {
+    const addLayer = function() {
         const layerIndex = layersAddedTotalRef.current
         const layerName = `Layer ${layerIndex}`
 
@@ -35,7 +35,7 @@ export function LayersProvider(props){
     // eslint-disable-next-line
     useEffect(addLayer, [])
 
-    const removeLayer = (layer) => {
+    const removeLayer = function(layer) {
         if (layer.isLocked) return
         
         if (layer.id === activeLayer?.id) {

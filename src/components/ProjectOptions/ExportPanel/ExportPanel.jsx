@@ -24,6 +24,16 @@ export default function ExportPanel() {
 	}
 
     useEffect(() => {
+        function generateExportPreview() {
+            const exportPreviewCanvas = exportCanvasRef.current
+            if (!exportPreviewCanvas) return
+            clearCanvas(exportPreviewCanvas)
+            layers.forEach(layer => {
+                const layerCanvas = layer.canvasRef.current
+                copyCanvasContents(layerCanvas, exportPreviewCanvas, false)
+            })
+        }
+
         layers.forEach(layer => {
             layer.addUpdateListener(generateExportPreview)
         })
@@ -34,15 +44,7 @@ export default function ExportPanel() {
             })
         }
 
-        function generateExportPreview() {
-            const exportPreviewCanvas = exportCanvasRef.current
-            if (!exportPreviewCanvas) return
-            clearCanvas(exportPreviewCanvas)
-            layers.forEach(layer => {
-                const layerCanvas = layer.canvasRef.current
-                copyCanvasContents(layerCanvas, exportPreviewCanvas, false)
-            })
-        }
+        
     }, [layers])
 
     const render = function() {

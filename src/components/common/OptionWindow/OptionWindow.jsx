@@ -11,17 +11,17 @@ export default function OptionWindow(props) {
 
     const [expanded, setExpanded] = useState(true)
 
-    function collapse() {
+    const collapse = function() {
         setExpanded(false)
         onCollapse()
     }
 
-    function expand() {
+    const expand = function() {
         setExpanded(true)
         onExpand()
     }
 
-    function renderExpandButton() {
+    const renderExpandButton = function() {
         if (expanded) return <button onClick={collapse}><BsCaretDownFill/></button>
         return <button onClick={expand}><BsCaretLeft/></button>
     }
@@ -30,10 +30,12 @@ export default function OptionWindow(props) {
         return (
             <div className="optionWindow">
                 <div className="titleBar">
-                    <h2 className="title">{props.title}</h2>
+                    <h2 className="title">{title}</h2>
                     {renderExpandButton()}
                 </div>
-                {expanded ? props.children : null}
+                <div style={{display: expanded ? "block" : "none"}}>
+                    {props.children}
+                </div>
             </div>
         )
     }

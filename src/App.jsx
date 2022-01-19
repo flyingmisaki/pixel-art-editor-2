@@ -8,8 +8,6 @@ import StatusBar from "./components/StatusBar/StatusBar"
 
 // import {TransformWrapper, TransformComponent} from "react-zoom-pan-pinch"
 
-// import ExportCanvas from "./components/ExportCanvas/ExportCanvas"
-
 import {BrushColorProvider} from "./hooks/useBrushColor"
 import {ActiveToolProvider} from "./hooks/useActiveTool"
 import {LayersProvider} from "./hooks/useLayers"
