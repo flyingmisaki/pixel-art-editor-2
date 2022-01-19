@@ -46,7 +46,7 @@ export default function LayerPreview(props) {
     const lockedClassName = `layerActionButton ${layer.isLocked ? "inactive" : ""}`
     
     return (
-        <div className={layerClassName} onClick={() => setActiveLayer(layer)}>
+        <div className={layerClassName} onClick={() => {setActiveLayer(layer)}}>
             <div className="previewImage">
                 <canvas
                     ref={previewCanvasRef}
@@ -67,7 +67,10 @@ export default function LayerPreview(props) {
                     </button>
                     <button 
                         className="layerActionButton"
-                        onClick={() => layer.toggleLock()}
+                        onClick={(e) => {
+                            e.stopPropagation()
+                            layer.toggleLock()
+                        }}
                     >
                         {layer.isLocked ? <BsLockFill/> : <BsUnlock/>}
                     </button>
