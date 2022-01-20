@@ -30,7 +30,7 @@ class Layer {
     }
 
     removeUpdateListener(listener) {
-        this.listeners.filter((l) => l !== listener)
+        this.listeners = this.listeners.filter((l) => l !== listener)
     }
 
     toggleVisibility() {

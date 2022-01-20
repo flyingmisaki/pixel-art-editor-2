@@ -1,4 +1,4 @@
-import {useRef, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import "./CanvasLayer.css"
 
 export default function CanvasLayer(props) {
@@ -9,7 +9,18 @@ export default function CanvasLayer(props) {
 
     const [visible, setVisible] = useState(layer.isVisible)
 
-    layer.addUpdateListener(() => setVisible(layer.isVisible))
+    useEffect(() => {
+        function onUpdate() {
+            setVisible(layer.isVisible)
+        }
+
+        layer.addUpdateListener(onUpdate)
+
+        return () => {
+            layer.removeUpdateListener(onUpdate)
+        }
+    },[layer]
+    )
 
     const render = function() {
         const className = `canvasLayer ${visible ? "" : "hidden"}`

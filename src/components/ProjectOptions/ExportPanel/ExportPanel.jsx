@@ -25,6 +25,7 @@ export default function ExportPanel() {
 
     useEffect(() => {
         function generateExportPreview() {
+            console.log("Generating preview")
             const exportPreviewCanvas = exportCanvasRef.current
             if (!exportPreviewCanvas) return
             clearCanvas(exportPreviewCanvas)
@@ -43,8 +44,6 @@ export default function ExportPanel() {
                 layer.removeUpdateListener(generateExportPreview)
             })
         }
-
-        
     }, [layers])
 
     const render = function() {

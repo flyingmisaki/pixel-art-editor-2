@@ -30,13 +30,9 @@ export function LayersProvider(props){
 
         console.log(`Added layer (id = ${layer.id})`)
     }
-    
-    // Layers gets stuck as empty list in closure, but only runs once so its fine
-    // eslint-disable-next-line
-    useEffect(addLayer, [])
 
     const removeLayer = function(layer) {
-        if (layer.isLocked) return
+        if (!layer || layer.isLocked) return
         
         if (layer.id === activeLayer?.id) {
             const layerIndex = layers.indexOf(layer)
@@ -52,11 +48,16 @@ export function LayersProvider(props){
             }
         }
         
+        layer.listeners = []
         const newLayers = layers.filter(l => l.id !== layer.id)
         setLayers(newLayers)
 
         console.log(`Deleted layer (index = ${layers.indexOf(layer)}, id = ${layer.id})`)
     }
+
+    // Layers gets stuck as empty list in closure, but only runs once so its fine
+    // eslint-disable-next-line
+    useEffect(addLayer, [])
 
     const layersData = {
         layers,

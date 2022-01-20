@@ -5,7 +5,7 @@ import PixelCanvas from "./PixelCanvas/PixelCanvas"
 export default function Workspace() {
     const render = function() {
         return (
-            <div className="workspace">
+            <div className="workspace" id="workspace">
                 <PixelCanvas/>
             </div>
         )

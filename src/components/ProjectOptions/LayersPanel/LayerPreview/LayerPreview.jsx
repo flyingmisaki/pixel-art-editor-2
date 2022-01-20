@@ -63,7 +63,7 @@ export default function LayerPreview(props) {
                         className="layerActionButton"
                         onClick={() => layer.toggleVisibility()}
                     >
-                        {layer.isVisible ? <BsEyeFill/> : <BsEyeSlash/>}
+                        {visible ? <BsEyeFill/> : <BsEyeSlash/>}
                     </button>
                     <button 
                         className="layerActionButton"
@@ -72,7 +72,7 @@ export default function LayerPreview(props) {
                             layer.toggleLock()
                         }}
                     >
-                        {layer.isLocked ? <BsLockFill/> : <BsUnlock/>}
+                        {lock ? <BsLockFill/> : <BsUnlock/>}
                     </button>
                     <button 
                         className={lockedClassName}
@@ -81,7 +81,7 @@ export default function LayerPreview(props) {
                             removeLayer(layer)
                         }}
                     >
-                        {layer.isLocked ? <BsTrash/> : <BsTrashFill/>}
+                        {lock ? <BsTrash/> : <BsTrashFill/>}
                     </button>
                 </div>
             </div>
