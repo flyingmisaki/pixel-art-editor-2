@@ -35,6 +35,8 @@ export default function ExportPanel() {
             })
         }
 
+        generateExportPreview()
+
         layers.forEach(layer => {
             layer.addUpdateListener(generateExportPreview)
         })
