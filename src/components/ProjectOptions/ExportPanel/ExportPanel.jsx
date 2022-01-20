@@ -25,7 +25,6 @@ export default function ExportPanel() {
 
     useEffect(() => {
         function generateExportPreview() {
-            console.log("Generating preview")
             const exportPreviewCanvas = exportCanvasRef.current
             if (!exportPreviewCanvas) return
             clearCanvas(exportPreviewCanvas)

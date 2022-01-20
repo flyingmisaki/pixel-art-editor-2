@@ -4,11 +4,14 @@ import {useLayers} from "../../../../hooks/useLayers";
 import "./LayerPreview.css"
 
 import {copyCanvasContents} from "../../../../core/utils/canvas";
+import { useProjectSettings } from "../../../../hooks/useProjectSettings";
 
 export default function LayerPreview(props) {
     const layer = props.layer
 
     const {activeLayer, setActiveLayer, removeLayer} = useLayers()
+    
+    const {width, height} = useProjectSettings()
 
     const previewCanvasRef = useRef(null)
 
@@ -51,8 +54,8 @@ export default function LayerPreview(props) {
                 <canvas
                     ref={previewCanvasRef}
                     key={layer.id}
-                    width={layer.width}
-                    height={layer.height}
+                    width={width}
+                    height={height}
                 />
             </div>
             <div className="layerPreviewInner">
