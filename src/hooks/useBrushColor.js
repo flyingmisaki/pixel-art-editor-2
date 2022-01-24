@@ -1,4 +1,5 @@
 import React, {useState, useContext, createContext} from "react"
+import { colorsEqual } from "../core/utils/colors"
 
 const BrushColorContext = createContext()
 const DEFAULT_COLOR = {r:0, g:0, b:0, a:1}
@@ -12,8 +13,7 @@ export function BrushColorProvider(props) {
     const [colorHistory, setColorHistory] = useState([brushColor])
 
     const pushColorToHistory = function(colorToAdd) {
-        if (colorToAdd === colorHistory[0]) return
-        const filteredHistory = colorHistory.filter(color => color !== colorToAdd)
+        const filteredHistory = colorHistory.filter(color => !colorsEqual(color, colorToAdd))
         const newColorHistory = [colorToAdd, ...filteredHistory].slice(0, 16)
         setColorHistory(newColorHistory)
     }

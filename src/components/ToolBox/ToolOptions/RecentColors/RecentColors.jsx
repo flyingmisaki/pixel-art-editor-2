@@ -1,14 +1,13 @@
-import React from "react"
 import {useBrushColor} from "../../../../hooks/useBrushColor"
 import "./RecentColors.css"
-import {colorToCanvasColor} from "../../../../core/utils/colors"
+import {colorsEqual, colorToCanvasColor} from "../../../../core/utils/colors"
 import OptionWindow from "../../../common/OptionWindow/OptionWindow"
 
 export default function RecentColors() {
     const {brushColor, setBrushColor, colorHistory} = useBrushColor()
 
     const renderRecentColor = function(color, index) {
-        const isActive = color === brushColor
+        const isActive = colorsEqual(brushColor, color)
         const className = isActive ? "selected" : null
         return (
             <div className="colorButtonContainer" key={index}>
