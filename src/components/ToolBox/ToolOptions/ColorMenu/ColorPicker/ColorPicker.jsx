@@ -1,6 +1,8 @@
 import { BsEyedropper } from "react-icons/bs";
 import { useBrushColor } from "../../../../../hooks/useBrushColor";
 
+import "./ColorPicker.css"
+
 export default function ColorPicker() {
     const {brushColor, setBrushColor} = useBrushColor()
 
