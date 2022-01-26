@@ -3,7 +3,7 @@ import {useBrushColor} from "../../../../hooks/useBrushColor"
 import "./ColorMenu.css"
 import OptionWindow from "../../../common/OptionWindow/OptionWindow"
 import { ChromePicker } from "react-color"
-import ColorPicker from "./ColorPicker/ColorPicker"
+import ColorPicker from "./ColorPicker/ColorPickerMenu"
 
 export default function ColorMenu() {
     const {brushColor, setBrushColor} = useBrushColor()

@@ -43,6 +43,5 @@ export default function ToolBox() {
             </div>
         )
     }
-
     return render()
 }
