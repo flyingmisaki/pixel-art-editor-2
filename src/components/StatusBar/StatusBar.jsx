@@ -25,9 +25,9 @@ export default function StatusBar() {
                     <ColoredSquare color={brushColor}/>
                     <span>
                         rgba({brushColor.r}, {brushColor.g}, {brushColor.b}, {brushColor.a})
-                        , Active Layer: {activeLayer?.name}
-                        , Cursor Position: ({(canvasCursorPosition.x)}, {canvasCursorPosition.y})
-                        , Tool:{activeTool.renderIcon()}
+                        | Active Layer: {activeLayer?.name}
+                        | Cursor Position: ({(canvasCursorPosition.x)}, {canvasCursorPosition.y})
+                        | Tool:{activeTool.renderIcon()}
                         {activeTool?.name ?? "none"}
                     </span>
                 </p>

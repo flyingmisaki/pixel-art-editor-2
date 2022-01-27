@@ -1,33 +1,25 @@
-import { BsEyedropper } from "react-icons/bs"
 import { useBrushColor } from "../../../../../hooks/useBrushColor"
 import {colorToCanvasColor} from "../../../../../core/utils/colors"
-import { useLayers } from "../../../../../hooks/useLayers"
 
-import ColorPicker from "../../../../../core/options/ColorPicker"
+import colorPicker from "../../../../../core/options/ColorPicker"
 
 
 import "./ColorPickerMenu.css"
 import { useActiveTool } from "../../../../../hooks/useActiveTool"
 
 export default function ColorPickerMenu() {
-    const {brushColor, setBrushColor} = useBrushColor()
+    const {brushColor} = useBrushColor()
 
-    const {activeLayer} = useLayers()
     const {activeTool, setActiveTool} = useActiveTool()
 
     const useColorPicker = function() {
-        setActiveTool(ColorPicker)
-
-        const color = ColorPicker.color
-        console.log(color)
-        
-        setBrushColor(color)
+        setActiveTool(colorPicker)
     }
 
     const render = function() {
         return (
-            <div className="ColorPicker">
-                <button className="colorPickerButton" onClick={() => useColorPicker}><BsEyedropper/></button>
+            <div className="ColorPickerMenu">
+                <button className={activeTool === colorPicker ? "active" : ""} onClick={useColorPicker}>{colorPicker.renderIcon()}</button>
                 <div className="colorPickerDisplay" style={{background: colorToCanvasColor(brushColor)}}/>
             </div>
         )

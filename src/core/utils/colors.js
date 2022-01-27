@@ -1,12 +1,12 @@
 // Converts a rgba color object to the format that the canvas is looking for
 export function colorToCanvasColor(color){
     return `
-    rgba(
-        ${color.r},
-        ${color.g},
-        ${color.b},
-        ${color.a}
-    )
+        rgba(
+            ${color.r},
+            ${color.g},
+            ${color.b},
+            ${color.a}
+        )
     `
 }
 

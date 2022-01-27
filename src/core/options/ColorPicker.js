@@ -3,7 +3,7 @@ import { BsEyedropper } from "react-icons/bs"
 class ColorPicker {
     constructor() {
         this.name = "Color Picker"
-        this.usesColors = true
+        this.usesColors = false
 
         this.canvasContext = null
         this.options = {
@@ -26,9 +26,14 @@ class ColorPicker {
     }
 
     getColor(context, position) {
-        if (!context) return
-
-        this.color = context.getImageData(position.x, position.y, this.options.scale, this.options.scale)
+        const pixelData = context.getImageData(position.x, position.y, 1, 1)
+        const [r, g, b, a] = pixelData.data
+        this.color = {
+            r,
+            g,
+            b,
+            a: a/255
+        }
     }
 
     mouseDown(position) {
@@ -43,9 +48,9 @@ class ColorPicker {
     }
 
     mouseMove(position) {
+        this.getColor(this.canvasContext, position)
         if (this.drawing) this.updateStatus(`Getting color data at ${position.x},${position.y}`)
-        const context = this.drawing ? this.canvasContext : this.previewCanvasContext
-        this.getColor(context, position)
+        // const context = this.drawing ? this.canvasContext : this.previewCanvasContext
     }
 }
 
