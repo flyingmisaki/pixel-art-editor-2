@@ -1,4 +1,5 @@
 import { BsEyedropper } from "react-icons/bs"
+import ColoredSquare from "../../components/common/ColoredSquare/ColoredSquare"
 
 class ColorPicker {
     constructor() {
@@ -9,8 +10,6 @@ class ColorPicker {
         this.options = {
             scale : 1
         }
-        this.drawing = false
-
         this.color = null
     }
 
@@ -25,10 +24,10 @@ class ColorPicker {
         return <BsEyedropper/>
     }
 
-    getColor(context, position) {
-        const pixelData = context.getImageData(position.x, position.y, 1, 1)
+    getColor(position) {
+        const pixelData = this.canvasContext.getImageData(position.x, position.y, 1, 1)
         const [r, g, b, a] = pixelData.data
-        this.color = {
+        return {
             r,
             g,
             b,
@@ -38,19 +37,20 @@ class ColorPicker {
 
     mouseDown(position) {
         this.position = position
-        this.getColor(this.canvasContext, position)
-        this.drawing = true
-        if (this.drawing) this.updateStatus(`Getting color data at ${position.x},${position.y}`)
+        this.color = this.getColor(position)
     }
     
-    mouseUp(position, color) {
-        this.drawing = false
-    }
+    mouseUp(position, color) {}
 
     mouseMove(position) {
-        this.getColor(this.canvasContext, position)
-        if (this.drawing) this.updateStatus(`Getting color data at ${position.x},${position.y}`)
-        // const context = this.drawing ? this.canvasContext : this.previewCanvasContext
+        const color = this.getColor(position)
+        this.color = color
+        const status = (
+            <>
+                Getting color data at ({position.x}, {position.y}), <ColoredSquare color={color}/>rgba({color.r}, {color.g}, {color.b}, {color.a})
+            </>
+        )
+        this.updateStatus(status)
     }
 }
 
