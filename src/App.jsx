@@ -11,14 +11,12 @@ import StatusBar from "./components/StatusBar/StatusBar"
 import {BrushColorProvider} from "./hooks/useBrushColor"
 import {ActiveToolProvider} from "./hooks/useActiveTool"
 import {LayersProvider} from "./hooks/useLayers"
-import {ProjectSettingsProvider} from "./hooks/useProjectSettings"
+import {ProjectSettingsProvider, useProjectSettings} from "./hooks/useProjectSettings"
 
-// Project settings
-const WIDTH = 16
-const HEIGHT = 16
-const SCALE = 55
 
 function App() {
+	const {width, height, scale} = useProjectSettings()
+	
   	const render = function() {
     	return (
       		<div className="App">
@@ -26,9 +24,9 @@ function App() {
 				<div className="editor">
 					<ToolBox/>
 					<Workspace
-						width={WIDTH}
-						height={HEIGHT}
-						scale={SCALE}
+						width={width}
+						height={height}
+						scale={scale}
 					/>
 					<ProjectOptions/>
 				</div>

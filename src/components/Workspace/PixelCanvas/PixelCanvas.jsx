@@ -36,6 +36,7 @@ export default function PixelCanvas() {
         const previewCanvasContext = previewLayerCanvasRef.current.getContext('2d')
         activeTool.previewCanvasContext = previewCanvasContext
 
+        
         const handleMouseDown = function(event) {
             const clickCode = event.button
             const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
@@ -50,6 +51,7 @@ export default function PixelCanvas() {
                 default: break
             }
         }
+
 
         const handleMouseUp = function(event) {
             const clickCode = event.button
@@ -73,12 +75,13 @@ export default function PixelCanvas() {
             activeLayer.onUpdate()
         }
 
+
         const handleMouseMove = function(event) {
             const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
 
             if (activeTool === colorPicker) {
-                setColorPickerColor(colorPicker.color)
                 if (colorPicker.color === null) return
+                setColorPickerColor(colorPicker.color)
                 setColorPickerColor(colorToCanvasColor(colorPicker.color))
             }
 
@@ -98,6 +101,7 @@ export default function PixelCanvas() {
                 setCanvasCursorPosition(position)
             }
         }
+
 
         // Set up listeners
         document.addEventListener("mousedown", handleMouseDown)

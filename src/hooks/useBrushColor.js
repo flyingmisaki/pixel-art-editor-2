@@ -11,7 +11,7 @@ export function useBrushColor() {
 export function BrushColorProvider(props) {
     const [brushColor, setBrushColor] = useState(DEFAULT_COLOR)
     const [colorHistory, setColorHistory] = useState([brushColor])
-    const [colorPickerColor, setColorPickerColor] = useState([brushColor])
+    const [colorPickerColor, setColorPickerColor] = useState([null])
 
     const pushColorToHistory = function(colorToAdd) {
         const filteredHistory = colorHistory.filter(color => !colorsEqual(color, colorToAdd))

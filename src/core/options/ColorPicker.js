@@ -5,12 +5,18 @@ class ColorPicker {
     constructor() {
         this.name = "Color Picker"
         this.usesColors = false
-
         this.canvasContext = null
+        
         this.options = {
             scale : 1
         }
-        this.color = null
+
+        this.color = {
+            r:0,
+            g:0,
+            b:0,
+            a:0
+        }
     }
 
     updateStatus(status) {
@@ -43,11 +49,10 @@ class ColorPicker {
     mouseUp(position, color) {}
 
     mouseMove(position) {
-        const color = this.getColor(position)
-        this.color = color
+        this.color = this.getColor(position)
         const status = (
             <>
-                Getting color data at ({position.x}, {position.y}), <ColoredSquare color={color}/>rgba({color.r}, {color.g}, {color.b}, {color.a})
+                Getting color data at ({position.x}, {position.y}), <ColoredSquare color={this.color}/>rgba({this.color.r}, {this.color.g}, {this.color.b}, {this.color.a})
             </>
         )
         this.updateStatus(status)

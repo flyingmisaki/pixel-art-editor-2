@@ -11,7 +11,7 @@ export function ProjectSettingsProvider(props) {
     const previewLayerCanvasRef = useRef(null)
     const [width, setWidth] = useState(32)
     const [height, setHeight] = useState(32)
-    const [scale, setScale] = useState(25)
+    const [scale, setScale] = useState(35)
 
     const projectSettingsData = {
         canvasCursorPosition, setCanvasCursorPosition,
