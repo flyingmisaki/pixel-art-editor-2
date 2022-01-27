@@ -73,10 +73,6 @@ export default function PixelCanvas() {
         const handleMouseMove = function(event) {
             const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
 
-            if (activeTool === colorPicker) {
-                setBrushColor(colorPicker.color)
-            }
-            
             if (position.x < 0 || position.x > (width - 1) || position.y < 0 || position.y > (height - 1) || activeLayer.isLocked) {
                 previewCanvasContext.clearRect(0, 0, width, height)
                 return
