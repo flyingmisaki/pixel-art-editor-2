@@ -20,15 +20,14 @@ export default function StatusBar() {
             <div className="statusBar">
                 <p>
                     <span>
-                        Color: 
+                        Color:
                     </span>
                     <ColoredSquare color={brushColor}/>
                     <span>
                         rgba({brushColor.r}, {brushColor.g}, {brushColor.b}, {brushColor.a})
                         | Active Layer: {activeLayer?.name}
                         | Cursor Position: ({(canvasCursorPosition.x)}, {canvasCursorPosition.y})
-                        | Tool:{activeTool.renderIcon()}
-                        {activeTool?.name ?? "none"}
+                        | Tool: {activeTool.renderIcon()}{activeTool?.name ?? "none"}
                     </span>
                 </p>
                 <p>
