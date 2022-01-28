@@ -1,6 +1,6 @@
 .LayersPanel {
-    overflow-y: scroll;
-    max-height: 60vh;
+    overflow-y: auto;
+    max-height: max-content;
 }
 
 .LayersPanel::-webkit-scrollbar {

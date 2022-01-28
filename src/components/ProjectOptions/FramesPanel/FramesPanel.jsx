@@ -13,6 +13,5 @@ export default function LayersPanel() {
             </OptionWindow>
         )
     }
-    
     return render()
 }

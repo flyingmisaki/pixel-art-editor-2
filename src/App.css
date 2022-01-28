@@ -16,12 +16,25 @@
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
-	max-height: 100vh;
-    overflow: hidden;
+	width: 100vw;
 }
 
 .editor {
 	display: flex;
 	flex-direction: row;
-	height: 100%
+	height: 60%;
+	flex: 1;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+  
+::-webkit-scrollbar-track {
+	background: var(--blueGray2);
+}
+  
+::-webkit-scrollbar-thumb {
+	background: var(--DarkblueGray1);
+	border: 1px solid var(--DarkblueGray1);
 }
