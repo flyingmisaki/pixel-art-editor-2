@@ -1,4 +1,4 @@
-import {React} from "react"
+import {React, useEffect} from "react"
 import './App.css'
 import NavBar from "./components/NavBar/NavBar"
 import ToolBox from "./components/ToolBox/ToolBox"
@@ -16,6 +16,10 @@ import {ProjectSettingsProvider, useProjectSettings} from "./hooks/useProjectSet
 
 function App() {
 	const {width, height, scale} = useProjectSettings()
+
+	useEffect(() => {
+		window.addEventListener('contextmenu', function (e) {e.preventDefault()}, false)
+	})
 	
   	const render = function() {
     	return (

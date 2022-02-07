@@ -14,7 +14,7 @@ import Brush from "../../../core/tools/Brush"
 import { colorToCanvasColor } from "../../../core/utils/colors"
 
 export default function PixelCanvas() {
-    const {setCanvasCursorPosition, previewLayerCanvasRef, width, height, scale} = useProjectSettings()
+    const {setCanvasCursorPosition, previewLayerCanvasRef, width, height, scale, setScale} = useProjectSettings()
     const {layers, activeLayer} = useLayers()
     const {activeTool, setActiveTool} = useActiveTool()
     const {brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory} = useBrushColor()
@@ -28,7 +28,7 @@ export default function PixelCanvas() {
         // Don't set listeners up if no active layer
         if (!activeTool || !activeLayer || activeLayer.isLocked === true || !previewLayerCanvasRef.current) return
 
-        const pixelCanvasElement = pixelCanvasRef.current
+        // const pixelCanvasElement = pixelCanvasRef.current
 
         const layerCanvasContext = activeLayer.canvasRef.current.getContext('2d')
         activeTool.canvasContext = layerCanvasContext
@@ -36,7 +36,7 @@ export default function PixelCanvas() {
         const previewCanvasContext = previewLayerCanvasRef.current.getContext('2d')
         activeTool.previewCanvasContext = previewCanvasContext
 
-        
+        // Mouse stuff handlers
         const handleMouseDown = function(event) {
             const clickCode = event.button
             const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
@@ -51,7 +51,6 @@ export default function PixelCanvas() {
                 default: break
             }
         }
-
 
         const handleMouseUp = function(event) {
             const clickCode = event.button
@@ -74,7 +73,6 @@ export default function PixelCanvas() {
             previewCanvasContext.clearRect(0, 0, width, height)
             activeLayer.onUpdate()
         }
-
 
         const handleMouseMove = function(event) {
             const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
@@ -100,26 +98,24 @@ export default function PixelCanvas() {
                 previousMousePositionRef.current = position
                 setCanvasCursorPosition(position)
             }
-        }
 
+            // WILL NEED THIS
+            // element.style.top = (element.offsetTop - pos2) + "px";
+            // element.style.left = (element.offsetLeft - pos1) + "px";
+        }
 
         // Set up listeners
         document.addEventListener("mousedown", handleMouseDown)
         document.addEventListener("mouseup", handleMouseUp)
-
         document.addEventListener("mousemove", handleMouseMove)
 
-        if (pixelCanvasElement === null) return
-
         return () => {
-        
             // Tear down listeners
             document.removeEventListener("mousedown", handleMouseDown)
             document.removeEventListener("mouseup", handleMouseUp)
-
             document.removeEventListener("mousemove", handleMouseMove)
         }
-    }, [activeTool, setActiveTool, activeLayer, scale, width, height, brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory, setCanvasCursorPosition, previewLayerCanvasRef])
+    }, [activeTool, setActiveTool, activeLayer, scale, setScale, width, height, brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory, setCanvasCursorPosition, previewLayerCanvasRef])
 
     const render = function() {
         const elementWidth = width * scale
@@ -131,7 +127,7 @@ export default function PixelCanvas() {
         }
 
         return (
-            <div className="pixelCanvas" ref={pixelCanvasRef} style={canvasStyle}>
+            <div className="pixelCanvas" id="pixelCanvas" ref={pixelCanvasRef} style={canvasStyle}>
                 {layers.map(layer => (
                     <CanvasLayer
                         key={layer.id} 
