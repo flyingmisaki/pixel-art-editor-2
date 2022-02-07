@@ -28,7 +28,7 @@ export default function PixelCanvas() {
         // Don't set listeners up if no active layer
         if (!activeTool || !activeLayer || activeLayer.isLocked === true || !previewLayerCanvasRef.current) return
 
-        // const pixelCanvasElement = pixelCanvasRef.current
+        const pixelCanvasElement = pixelCanvasRef.current
 
         const layerCanvasContext = activeLayer.canvasRef.current.getContext('2d')
         activeTool.canvasContext = layerCanvasContext
@@ -39,7 +39,7 @@ export default function PixelCanvas() {
         // Mouse stuff handlers
         const handleMouseDown = function(event) {
             const clickCode = event.button
-            const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
+            const position = getCanvasRelativePosition(event, scale)
             
             if (position.x < 0 || position.x > (width - 1) || position.y < 0 || position.y > (height - 1) || activeLayer.isLocked) return
 
@@ -54,7 +54,7 @@ export default function PixelCanvas() {
 
         const handleMouseUp = function(event) {
             const clickCode = event.button
-            const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
+            const position = getCanvasRelativePosition(event, scale)
 
             if (activeTool === colorPicker) {
                 if (!colorPicker.color) return
@@ -75,7 +75,7 @@ export default function PixelCanvas() {
         }
 
         const handleMouseMove = function(event) {
-            const position = getCanvasRelativePosition(event, pixelCanvasRef, scale)
+            const position = getCanvasRelativePosition(event, scale)
 
             if (activeTool === colorPicker) {
                 if (colorPicker.color === null) return
@@ -98,22 +98,18 @@ export default function PixelCanvas() {
                 previousMousePositionRef.current = position
                 setCanvasCursorPosition(position)
             }
-
-            // WILL NEED THIS
-            // element.style.top = (element.offsetTop - pos2) + "px";
-            // element.style.left = (element.offsetLeft - pos1) + "px";
         }
 
         // Set up listeners
-        document.addEventListener("mousedown", handleMouseDown)
-        document.addEventListener("mouseup", handleMouseUp)
-        document.addEventListener("mousemove", handleMouseMove)
+        pixelCanvasElement.addEventListener("mousedown", handleMouseDown)
+        pixelCanvasElement.addEventListener("mouseup", handleMouseUp)
+        pixelCanvasElement.addEventListener("mousemove", handleMouseMove)
 
         return () => {
             // Tear down listeners
-            document.removeEventListener("mousedown", handleMouseDown)
-            document.removeEventListener("mouseup", handleMouseUp)
-            document.removeEventListener("mousemove", handleMouseMove)
+            pixelCanvasElement.removeEventListener("mousedown", handleMouseDown)
+            pixelCanvasElement.removeEventListener("mouseup", handleMouseUp)
+            pixelCanvasElement.removeEventListener("mousemove", handleMouseMove)
         }
     }, [activeTool, setActiveTool, activeLayer, scale, setScale, width, height, brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory, setCanvasCursorPosition, previewLayerCanvasRef])
 

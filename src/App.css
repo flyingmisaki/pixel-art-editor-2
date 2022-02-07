@@ -31,10 +31,11 @@
 }
   
 ::-webkit-scrollbar-track {
-	background: var(--blueGray2);
+	background-color: rgba(0, 0, 0, 0.25);
+	border-left: 1px solid var(--DarkblueGray1);
 }
   
 ::-webkit-scrollbar-thumb {
-	background: var(--DarkblueGray1);
-	border: 1px solid var(--DarkblueGray1);
+	background: var(--blueGray2);
+	border-left: 1px solid var(--DarkblueGray1);
 }

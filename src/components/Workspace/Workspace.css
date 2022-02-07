@@ -6,4 +6,5 @@
 	height: 100%;
 	background-color: var(--blueGray2);
 	box-shadow: inset 0px 0px 10px;
+	overflow: hidden;
 }

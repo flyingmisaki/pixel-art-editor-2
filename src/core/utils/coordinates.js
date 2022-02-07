@@ -1,14 +1,13 @@
 // Returns canvas x, y coord object
-export function getCanvasRelativePosition(mouseEvent, pixelCanvasRef, scale) {
-    const mouseX = mouseEvent.clientX
-    const mouseY = mouseEvent.clientY
-    const pixelCanvasElement = pixelCanvasRef.current
+export function getCanvasRelativePosition(mouseEvent, scale) {
+    const mouseX = mouseEvent.offsetX
+    const mouseY = mouseEvent.offsetY
     
-    const currentX = mouseX - pixelCanvasElement.offsetLeft
-    const currentY = mouseY - pixelCanvasElement.offsetTop
+    // const currentX = mouseX - pixelCanvasElement.offsetLeft
+    // const currentY = mouseY - pixelCanvasElement.offsetTop
     
     return ({
-        x : Math.floor(currentX/scale),
-        y : Math.floor(currentY/scale)
+        x : Math.floor(mouseX/scale),
+        y : Math.floor(mouseY/scale)
     })
 }
