@@ -51,7 +51,7 @@ export default function LayerPreview(props) {
     return (
         <div className={layerClassName} onClick={() => {setActiveLayer(layer)}}>
             <div className="previewImage">
-                <canvas
+                <canvas className={height > width ? "portrait" : "landscape"}
                     ref={previewCanvasRef}
                     key={layer.id}
                     width={width}
@@ -59,7 +59,6 @@ export default function LayerPreview(props) {
                 />
             </div>
             <div className="layerPreviewInner">
-                {/* <label className="layerPreviewTitle">{layer.name}</label> */}
                 <input className="layerPreviewTitle" type="text" value={name} onChange={(event) => layer.setName(event.target.value)}/>
                 <div>
                     <button 

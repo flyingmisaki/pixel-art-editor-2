@@ -13,15 +13,15 @@ export default function SettingsPanel() {
                 <div className="settingsCategory">Canvas Settings:</div>
                 <div className="settings">
                     <div className="setting">
-                        <input type="number" id="widthSetting" className="widthSettingInput" value={width} onChange={(event) => setWidth(event.target.value)}/>
+                        <input type="number" id="widthSetting" className="widthSettingInput" value={width} onChange={(event) => setWidth(parseInt(event.target.value))}/>
                         <label htmlFor="widthSetting" className="widthSettingLabel">Width: </label>
                     </div>
                     <div className="setting">
-                        <input type="number" id="heightSetting" className="heightSettingInput" value={height} onChange={(event) => setHeight(event.target.value)}/>
+                        <input type="number" id="heightSetting" className="heightSettingInput" value={height} onChange={(event) => setHeight(parseInt(event.target.value))}/>
                         <label htmlFor="heightSetting" className="heightSettingLabel">Height: </label>
                     </div>
                     <div className="setting">
-                        <input type="number" id="scaleSetting" className="scaleSettingInput" value={scale} onChange={(event) => setScale(event.target.value)}/>
+                        <input type="number" id="scaleSetting" className="scaleSettingInput" value={scale} onChange={(event) => setScale(parseInt(event.target.value))}/>
                         <label htmlFor="scaleSetting" className="scaleSettingLabel">Scale: </label>
                     </div>
                 </div>

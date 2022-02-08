@@ -75,6 +75,7 @@ export default function PixelCanvas() {
         }
 
         const handleMouseMove = function(event) {
+            // const clickCode = event.button
             const position = getCanvasRelativePosition(event, scale)
 
             if (activeTool === colorPicker) {
@@ -85,7 +86,6 @@ export default function PixelCanvas() {
 
             if (position.x < 0 || position.x > (width - 1) || position.y < 0 || position.y > (height - 1) || activeLayer.isLocked) {
                 previewCanvasContext.clearRect(0, 0, width, height)
-                return
             }
 
             const previousPosition = previousMousePositionRef.current

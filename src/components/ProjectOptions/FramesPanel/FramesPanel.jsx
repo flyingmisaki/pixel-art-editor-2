@@ -8,7 +8,7 @@ export default function LayersPanel() {
         return (
             <OptionWindow title="Frames">
                 <div className="FramesPanel">
-                    Frames
+                    Coming soon!
                 </div>
             </OptionWindow>
         )
