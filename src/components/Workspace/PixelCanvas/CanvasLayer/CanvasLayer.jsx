@@ -19,8 +19,7 @@ export default function CanvasLayer(props) {
         return () => {
             layer.removeUpdateListener(onUpdate)
         }
-    },[layer]
-    )
+    }, [layer])
 
     const render = function() {
         const className = `canvasLayer ${visible ? "" : "hidden"}`

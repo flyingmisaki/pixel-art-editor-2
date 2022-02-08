@@ -1,4 +1,4 @@
-import {React, useEffect, useRef, useState} from "react"
+import {React, useEffect, useRef} from "react"
 import "./Workspace.css"
 import PixelCanvas from "./PixelCanvas/PixelCanvas"
 import { useProjectSettings } from "../../hooks/useProjectSettings"
@@ -8,8 +8,9 @@ export default function Workspace() {
 
     const workspaceRef = useRef(null)
 
-    const [canvasX, setCanvasX] = useState(0)
-    const [canvasY, setCanvasY] = useState(0)
+
+    // Maybe bring these back locally, makes it a tiny bit laggy?
+    const {canvasX, setCanvasX, canvasY, setCanvasY} = useProjectSettings()
 
     useEffect(() => {
         const handleMouseWheel = function(event) {
@@ -28,15 +29,13 @@ export default function Workspace() {
         const workspaceElement = workspaceRef.current
 
         workspaceElement.addEventListener("wheel", handleMouseWheel)
-
         workspaceElement.addEventListener("mousemove", handleMouseMove)
 
         return () => {
             workspaceElement.removeEventListener("wheel", handleMouseWheel)
-            
             workspaceElement.removeEventListener("mousemove", handleMouseMove)
         }
-    }, [workspaceRef, setScale])
+    }, [workspaceRef, setScale, setCanvasX, setCanvasY])
 
     const render = function() {
         return (
