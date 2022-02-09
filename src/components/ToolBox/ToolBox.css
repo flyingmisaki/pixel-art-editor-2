@@ -35,6 +35,10 @@
     border-left: 2px solid var(--lightGray1);
 }
 
+.undoButton {
+    margin-top: 3rem;
+}
+
 .settingsButton {
     margin-top: auto;
 }
