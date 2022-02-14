@@ -1,6 +1,6 @@
 import {React, useEffect} from "react"
 import './App.css'
-import NavBar from "./components/NavBar/NavBar"
+// import NavBar from "./components/NavBar/NavBar"
 import ToolBox from "./components/ToolBox/ToolBox"
 import ProjectOptions from "./components/ProjectOptions/ProjectOptions"
 import Workspace from "./components/Workspace/Workspace"
@@ -24,7 +24,7 @@ function App() {
   	const render = function() {
     	return (
       		<div className="App">
-				<NavBar/>
+				{/* <NavBar/> */}
 				<div className="editor">
 					<ToolBox/>
 					<Workspace
