@@ -4,7 +4,6 @@ import { useLayers } from "./useLayers"
 class HistoryEntry {
     constructor(layers) {
         this.layers = layers.map((layer) => new LayerData(layer))
-
     }
 }
 
@@ -24,21 +23,46 @@ export function useHistory() {
 export function HistoryProvider(props) {
     const {layers} = useLayers()
     const [historyStack, setHistoryStack] = useState([])
+    const [currentHistoryIndex, setCurrentHistoryIndex] = useState(-1)
+
+    const canUndo = currentHistoryIndex > 0
+    const canRedo = currentHistoryIndex !== historyStack.length - 1
+
+    console.log(currentHistoryIndex, canUndo, canRedo)
+
 
     const undo = function() {
-
+        if (!canUndo) return
+        setCurrentHistoryIndex(currentHistoryIndex - 1)
+        console.log(currentHistoryIndex - 1)
+        const lastEntry = historyStack[currentHistoryIndex - 1]
+        restoreLayers(lastEntry)
     }
 
     const redo = function() {
-
+        if (!canRedo) return
+        setCurrentHistoryIndex(currentHistoryIndex + 1)
+        console.log(currentHistoryIndex + 1)
+        const nextEntry = historyStack[currentHistoryIndex + 1]
+        restoreLayers(nextEntry)    
     }
 
     const pushEntryToHistory = function() {
-        setHistoryStack([HistoryEntry, historyStack])
+        const entry = new HistoryEntry(layers)
+        setHistoryStack([...historyStack, entry])
+        setCurrentHistoryIndex(currentHistoryIndex + 1)
+        console.log("pushing entry", entry, currentHistoryIndex + 1, historyStack)
+    }
+
+    const restoreLayers = function(entry) {
+
     }
 
     const historyData = {
-        undo, redo
+        undo, redo,
+        pushEntryToHistory,
+        canUndo,
+        canRedo
     }
 
     return (

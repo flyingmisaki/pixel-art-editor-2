@@ -2,7 +2,6 @@ import {React, useRef, useEffect} from "react"
 import './PixelCanvas.css'
 import {useActiveTool} from "../../../hooks/useActiveTool"
 import {useBrushColor} from "../../../hooks/useBrushColor"
-import {useHistory} from "../../../hooks/useHistory"
 import {useLayers} from "../../../hooks/useLayers"
 import {useProjectSettings} from "../../../hooks/useProjectSettings"
 import CanvasLayer from "./CanvasLayer/CanvasLayer"
@@ -13,14 +12,14 @@ import PreviewLayer from "./PreviewLayer/PreviewLayer"
 import colorPicker from "../../../core/options/ColorPicker"
 import Brush from "../../../core/tools/Brush"
 import { colorToCanvasColor } from "../../../core/utils/colors"
+import { useHistory } from "../../../hooks/useHistory"
 
 export default function PixelCanvas() {
     const {setCanvasCursorPosition, previewLayerCanvasRef, width, height, scale, setScale} = useProjectSettings()
     const {layers, activeLayer} = useLayers()
     const {activeTool, setActiveTool} = useActiveTool()
     const {brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory} = useBrushColor()
-
-    const {historyStack, setHistoryStack} = useHistory()
+    const {pushEntryToHistory} = useHistory()
 
     const pixelCanvasRef = useRef(null)
 
@@ -43,7 +42,6 @@ export default function PixelCanvas() {
         const handleMouseDown = function(event) {
             const clickCode = event.button
             const position = getCanvasRelativePosition(event, scale)
-            
             
             if (position.x < 0 || position.x > (width - 1) || position.y < 0 || position.y > (height - 1) || activeLayer.isLocked) return
 
@@ -76,6 +74,7 @@ export default function PixelCanvas() {
             }
             previewCanvasContext.clearRect(0, 0, width, height)
             activeLayer.onUpdate()
+            pushEntryToHistory()
         }
 
         const handleMouseMove = function(event) {
@@ -117,7 +116,7 @@ export default function PixelCanvas() {
             pixelCanvasElement.removeEventListener("mouseup", handleMouseUp)
             pixelCanvasElement.removeEventListener("mousemove", handleMouseMove)
         }
-    }, [activeTool, setActiveTool, activeLayer, scale, setScale, width, height, brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory, setCanvasCursorPosition, previewLayerCanvasRef])
+    }, [activeTool, setActiveTool, activeLayer, scale, setScale, width, height, brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory, setCanvasCursorPosition, previewLayerCanvasRef, pushEntryToHistory])
 
     const render = function() {
         const elementWidth = width * scale
