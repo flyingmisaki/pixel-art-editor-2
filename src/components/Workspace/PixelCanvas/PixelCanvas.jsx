@@ -2,6 +2,7 @@ import {React, useRef, useEffect} from "react"
 import './PixelCanvas.css'
 import {useActiveTool} from "../../../hooks/useActiveTool"
 import {useBrushColor} from "../../../hooks/useBrushColor"
+import {useHistory} from "../../../hooks/useHistory"
 import {useLayers} from "../../../hooks/useLayers"
 import {useProjectSettings} from "../../../hooks/useProjectSettings"
 import CanvasLayer from "./CanvasLayer/CanvasLayer"
@@ -18,6 +19,8 @@ export default function PixelCanvas() {
     const {layers, activeLayer} = useLayers()
     const {activeTool, setActiveTool} = useActiveTool()
     const {brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory} = useBrushColor()
+
+    const {historyStack, setHistoryStack} = useHistory()
 
     const pixelCanvasRef = useRef(null)
 
@@ -63,7 +66,6 @@ export default function PixelCanvas() {
                 setBrushColor(colorPicker.color)
                 setColorPickerColor(colorToCanvasColor(colorPicker.color))
             }
-
 
             if (position.x < 0 || position.x > (width - 1) || position.y < 0 || position.y > (height - 1) || activeLayer.isLocked) return
             switch (clickCode) {

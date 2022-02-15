@@ -12,6 +12,7 @@ import {BrushColorProvider} from "./hooks/useBrushColor"
 import {ActiveToolProvider} from "./hooks/useActiveTool"
 import {LayersProvider} from "./hooks/useLayers"
 import {ProjectSettingsProvider, useProjectSettings} from "./hooks/useProjectSettings"
+import { HistoryProvider } from "./hooks/useHistory"
 
 
 function App() {
@@ -47,7 +48,9 @@ export default function AppWithContext() {
 			<BrushColorProvider>
 				<LayersProvider>
 					<ProjectSettingsProvider>
-						<App/>
+						<HistoryProvider>
+							<App/>
+						</HistoryProvider>
 					</ProjectSettingsProvider>
 				</LayersProvider>
 			</BrushColorProvider>

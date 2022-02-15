@@ -1,4 +1,19 @@
-import {createContext} from "react"
+import React, {createContext, useState, useContext} from "react"
+import { useLayers } from "./useLayers"
+
+class HistoryEntry {
+    constructor(layers) {
+        this.layers = layers.map((layer) => new LayerData(layer))
+
+    }
+}
+
+class LayerData {
+    constructor(layer) {
+        this.dataUrl = layer.canvasRef.current.toDataURL("image/png")
+        this.image = null
+    }
+}
 
 const HistoryContext = createContext()
 
@@ -7,16 +22,23 @@ export function useHistory() {
 }
 
 export function HistoryProvider(props) {
-    const [undoStack, setUndoStack] = useState([])
-    const [redoStack, setRedoStack] = useState([])
+    const {layers} = useLayers()
+    const [historyStack, setHistoryStack] = useState([])
 
-    const handleUndo = function() {
-        setUndoStack(undoStack.push())
+    const undo = function() {
+
+    }
+
+    const redo = function() {
+
+    }
+
+    const pushEntryToHistory = function() {
+        setHistoryStack([HistoryEntry, historyStack])
     }
 
     const historyData = {
-        undoStack, setUndoStack,
-        redoStack, setRedoStack
+        undo, redo
     }
 
     return (

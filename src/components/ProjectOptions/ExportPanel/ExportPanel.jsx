@@ -5,8 +5,8 @@ import {useLayers} from "../../../hooks/useLayers";
 
 import OptionWindow from "../../common/OptionWindow/OptionWindow";
 
-import {clearCanvas, copyCanvasContents} from "../../../core/utils/canvas";
-import { useProjectSettings } from "../../../hooks/useProjectSettings";
+import {clearCanvas, copyCanvasContents} from "../../../core/utils/canvas"
+import { useProjectSettings } from "../../../hooks/useProjectSettings"
 
 import { saveAs } from "file-saver"
 

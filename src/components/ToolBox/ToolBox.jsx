@@ -6,11 +6,13 @@ import shapes from "../../core/tools/Shapes.js"
 import fill from "../../core/tools/Fill.js"
 import erase from "../../core/tools/Erase"
 
+import History from "./UndoButtons/UndoButtons"
+
 import ToolOptions from "./ToolOptions/ToolOptions"
 
 import {useActiveTool} from "../../hooks/useActiveTool"
 
-import {BsArrowCounterclockwise, BsArrowClockwise, BsGear} from "react-icons/bs"
+import {BsGear} from "react-icons/bs"
 
 export default function ToolBox() {
 
@@ -37,10 +39,7 @@ export default function ToolBox() {
                 <div className="toolBar">
                     {/* Iterates tool obj list and renders for each */}
                     {tools.map(renderToolButton)}
-
-                    <button className="undoButton" onClick={() => null}><BsArrowCounterclockwise/></button>
-                    <button className="redoButton" onClick={() => null}><BsArrowClockwise/></button>
-
+                    <History/>
                     <button className="settingsButton"><BsGear/></button>
                 </div>
                 <ToolOptions/>

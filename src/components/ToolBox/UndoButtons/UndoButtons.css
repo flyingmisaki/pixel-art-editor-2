@@ -1,0 +1,11 @@
+.UndoButtons {
+    width: 1.5rem;
+}
+
+.undoButton {
+    margin-top: 3rem;
+}
+
+.historyCanvas {
+    display: none;
+}
