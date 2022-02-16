@@ -26,11 +26,6 @@
 	flex: 1;
 }
 
-button.disabled {
-	filter: brightness(50%);
-	pointer-events: none;
-}
-
 ::-webkit-scrollbar {
 	width: 8px;
 }

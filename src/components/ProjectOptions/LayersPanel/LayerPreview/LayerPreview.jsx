@@ -5,6 +5,7 @@ import "./LayerPreview.css"
 
 import {copyCanvasContents} from "../../../../core/utils/canvas";
 import { useProjectSettings } from "../../../../hooks/useProjectSettings";
+import { useHistory } from "../../../../hooks/useHistory";
 
 export default function LayerPreview(props) {
     const layer = props.layer
@@ -12,6 +13,8 @@ export default function LayerPreview(props) {
     const {activeLayer, setActiveLayer, removeLayer} = useLayers()
     
     const {width, height} = useProjectSettings()
+
+    const {clearHistory} = useHistory()
 
     const previewCanvasRef = useRef(null)
 
@@ -81,6 +84,7 @@ export default function LayerPreview(props) {
                         onClick={(e) => {
                             e.stopPropagation()
                             removeLayer(layer)
+                            clearHistory()
                         }}
                     >
                         {lock ? <BsTrash/> : <BsTrashFill/>}

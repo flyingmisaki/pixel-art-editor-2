@@ -6,6 +6,11 @@
     margin-top: 3rem;
 }
 
-.historyCanvas {
-    display: none;
+button.disabled {
+	opacity: 0.3;
+}
+
+button.disabled:hover {
+    color: var(--mediumGray1);
+    cursor: not-allowed;
 }

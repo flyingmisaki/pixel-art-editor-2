@@ -69,12 +69,12 @@ export default function PixelCanvas() {
             switch (clickCode) {
                 case 0:
                     activeTool.mouseUp(position, brushColor)
+                    pushEntryToHistory()
+                    activeLayer.onUpdate()
                     break
                 default: break
             }
             previewCanvasContext.clearRect(0, 0, width, height)
-            activeLayer.onUpdate()
-            pushEntryToHistory()
         }
 
         const handleMouseMove = function(event) {
@@ -116,7 +116,7 @@ export default function PixelCanvas() {
             pixelCanvasElement.removeEventListener("mouseup", handleMouseUp)
             pixelCanvasElement.removeEventListener("mousemove", handleMouseMove)
         }
-    }, [activeTool, setActiveTool, activeLayer, scale, setScale, width, height, brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory, setCanvasCursorPosition, previewLayerCanvasRef, pushEntryToHistory])
+    }, [activeTool, setActiveTool, activeLayer, scale, setScale, width, height, brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory, setCanvasCursorPosition, previewLayerCanvasRef, pushEntryToHistory, layers])
 
     const render = function() {
         const elementWidth = width * scale

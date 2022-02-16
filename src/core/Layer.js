@@ -21,7 +21,7 @@ class Layer {
     }
 
     onUpdate() {
-        console.log(`Layer updated (id = ${this.id})`)
+        // console.log(`Layer updated (id = ${this.id})`)
         this.listeners.forEach(listener => listener())
     }
 

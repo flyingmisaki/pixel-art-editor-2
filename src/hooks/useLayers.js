@@ -28,7 +28,7 @@ export function LayersProvider(props){
 
         setLayers(newLayers)
 
-        console.log(`Added layer (id = ${layer.id})`)
+        // console.log(`Added layer (id = ${layer.id})`)
     }
 
     const removeLayer = function(layer) {
@@ -52,7 +52,7 @@ export function LayersProvider(props){
         const newLayers = layers.filter(l => l.id !== layer.id)
         setLayers(newLayers)
 
-        console.log(`Deleted layer (index = ${layers.indexOf(layer)}, id = ${layer.id})`)
+        // console.log(`Deleted layer (index = ${layers.indexOf(layer)}, id = ${layer.id})`)
     }
 
     // Layers gets stuck as empty list in closure, but only runs once so its fine
