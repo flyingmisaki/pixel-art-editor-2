@@ -2,7 +2,7 @@ import {colorsEqual, colorToCanvasColor} from "../utils/colors"
 import {BsPaintBucket} from "react-icons/bs"
 
 class Fill {
-    constructor() {
+    constructor(maxWidth, maxHeight) {
         this.name = "Fill"
         this.usesColors = true
         this.status = ""
@@ -30,7 +30,10 @@ class Fill {
     }
 
     floodFill(position, oldColor, newColor) {
+
         if (colorsEqual(this.getColor(position), oldColor)) {
+            if (position.x < 0 || position.y < 0 || position.x > this.canvasContext.canvas.width - 1 || position.y > this.canvasContext.canvas.height - 1 || oldColor === undefined) return
+
             this.drawPixel(this.canvasContext, position, newColor)
             
             const {x, y} = position

@@ -40,7 +40,7 @@ export function useHistory() {
 }
 
 export function HistoryProvider(props) {
-    const {layers} = useLayers()
+    const {layers, activeLayer} = useLayers()
     const {width, height} = useProjectSettings()
     const [historyStack, setHistoryStack] = useState([])
     const [currentHistoryIndex, setCurrentHistoryIndex] = useState(-1)
@@ -79,6 +79,7 @@ export function HistoryProvider(props) {
                 layer.canvasRef.current.getContext('2d').clearRect(0, 0, width, height)
                 layer.onUpdate()
             })
+            activeLayer.onUpdate()
             return
         }
 
