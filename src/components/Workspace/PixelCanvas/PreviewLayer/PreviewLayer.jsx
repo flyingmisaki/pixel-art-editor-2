@@ -7,11 +7,12 @@ export default function PreviewLayer() {
 
     const render = function() {
         return (
-            <div className="previewLayer">
+            <div className="PreviewLayer">
                 <canvas
                     ref={previewLayerCanvasRef}
                     width={width}
                     height={height}
+                    id="previewLayerCanvas"
                 />
             </div>
         )

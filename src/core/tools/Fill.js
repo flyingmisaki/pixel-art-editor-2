@@ -1,4 +1,4 @@
-import {colorToCanvasColor} from "../utils/colors"
+import {colorsEqual, colorToCanvasColor} from "../utils/colors"
 import {BsPaintBucket} from "react-icons/bs"
 
 class Fill {
@@ -9,6 +9,7 @@ class Fill {
         
         this.previewCanvasContext = null
         this.canvasContext = null
+
         this.options = {
             scale : 1,
             AA : false,
@@ -28,8 +29,22 @@ class Fill {
         return <BsPaintBucket/>
     }
 
-    floodFill(position, color) {
-        
+    floodFill(position, oldColor, newColor) {
+        if (colorsEqual(this.getColor(position), oldColor)) {
+            this.drawPixel(this.canvasContext, position, newColor)
+            
+            const {x, y} = position
+            const adjacentPositions = [
+                {x : x + 1, y},
+                {x : x - 1, y},
+                {x, y : y + 1},
+                {x, y : y - 1}
+            ]
+
+            adjacentPositions.forEach((adjacentPosition) => {
+                this.floodFill(adjacentPosition, oldColor, newColor)
+            })
+        }
     }
 
     getColor(position) {
@@ -50,17 +65,17 @@ class Fill {
         context.fillRect(position.x, position.y, this.options.scale, this.options.scale)
     }
 
-    mouseDown(position, color) {
+    mouseDown(position, color, maxWidth, maxHeight) {
         this.position = position
 
-        this.floodFill(position, color)
+        this.floodFill(position, this.getColor(position), color, maxWidth, maxHeight)
 
-        // this.drawing = true
+        this.drawing = true
         // if (this.drawing) this.updateStatus(`Drawing pixel at ${position.x}, ${position.y}`)
     }
 
     mouseUp(position, color) {
-        // this.drawing = false
+        this.drawing = false
     }
 
     mouseMove(position, color) {
