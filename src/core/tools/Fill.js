@@ -32,7 +32,7 @@ class Fill {
     floodFill(position, oldColor, newColor) {
 
         if (colorsEqual(this.getColor(position), oldColor)) {
-            if (position.x < 0 || position.y < 0 || position.x > this.canvasContext.canvas.width - 1 || position.y > this.canvasContext.canvas.height - 1 || oldColor === undefined) return
+            if (position.x < 0 || position.y < 0 || position.x > this.canvasContext.canvas.width - 1 || position.y > this.canvasContext.canvas.height - 1) return
 
             this.drawPixel(this.canvasContext, position, newColor)
             
@@ -70,15 +70,14 @@ class Fill {
 
     mouseDown(position, color, maxWidth, maxHeight) {
         this.position = position
-
-        this.floodFill(position, this.getColor(position), color, maxWidth, maxHeight)
-
         this.drawing = true
         // if (this.drawing) this.updateStatus(`Drawing pixel at ${position.x}, ${position.y}`)
     }
 
-    mouseUp(position, color) {
+    mouseUp(position, color, maxWidth, maxHeight) {
         this.drawing = false
+        this.floodFill(position, this.getColor(position), color, maxWidth, maxHeight)
+
     }
 
     mouseMove(position, color) {
