@@ -71,7 +71,7 @@ class Fill {
     mouseDown(position, color, maxWidth, maxHeight) {
         this.position = position
         this.drawing = true
-        // if (this.drawing) this.updateStatus(`Drawing pixel at ${position.x}, ${position.y}`)
+        if (this.drawing) this.updateStatus(`Filling from ${position.x}, ${position.y}`)
     }
 
     mouseUp(position, color, maxWidth, maxHeight) {
@@ -80,11 +80,7 @@ class Fill {
 
     }
 
-    mouseMove(position, color) {
-        // if (this.drawing) this.updateStatus(`Drawing pixel at ${position.x}, ${position.y}`)
-        // const context = this.drawing ? this.canvasContext : this.previewCanvasContext
-        // this.drawPixel(context, position, color)
-    }
+    mouseMove(position, color) {}
 }
 
 export default new Fill()

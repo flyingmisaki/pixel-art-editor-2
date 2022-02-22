@@ -5,7 +5,6 @@ import {useBrushColor} from "../../../hooks/useBrushColor"
 import {useLayers} from "../../../hooks/useLayers"
 import {useProjectSettings} from "../../../hooks/useProjectSettings"
 import CanvasLayer from "./CanvasLayer/CanvasLayer"
-// import PreviewLayer from "./PreviewLayer/PreviewLayer"
 // import checkeredBackground from "../../../svg/checkeredBackground.svg"
 import {getCanvasRelativePosition} from "../../../core/utils/coordinates"
 import PreviewLayer from "./PreviewLayer/PreviewLayer"
@@ -19,7 +18,7 @@ export default function PixelCanvas() {
     const {layers, activeLayer} = useLayers()
     const {activeTool, setActiveTool} = useActiveTool()
     const {brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory} = useBrushColor()
-    const {pushEntryToHistory} = useHistory()
+    const {undo, redo, pushEntryToHistory} = useHistory()
 
     const pixelCanvasRef = useRef(null)
 
@@ -105,18 +104,39 @@ export default function PixelCanvas() {
             }
         }
 
+        const handleUndoRedo = function(event) {
+            event = event || window.event
+
+            const key = event.which || event.keyCode
+
+            const ctrl = event.ctrlKey ? event.ctrlKey : ((key === 17)  ? true : false)
+            
+            if (key === 90 && ctrl) {
+                undo()
+                return
+            }
+            if (key === 89 && ctrl) {
+                redo()
+                return
+            }
+        }
+
         // Set up listeners
         pixelCanvasElement.addEventListener("mousedown", handleMouseDown)
         pixelCanvasElement.addEventListener("mouseup", handleMouseUp)
         pixelCanvasElement.addEventListener("mousemove", handleMouseMove)
+
+        document.addEventListener("keydown", handleUndoRedo)
 
         return () => {
             // Tear down listeners
             pixelCanvasElement.removeEventListener("mousedown", handleMouseDown)
             pixelCanvasElement.removeEventListener("mouseup", handleMouseUp)
             pixelCanvasElement.removeEventListener("mousemove", handleMouseMove)
+
+            document.removeEventListener("keydown", handleUndoRedo)
         }
-    }, [activeTool, setActiveTool, activeLayer, scale, setScale, width, height, brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory, setCanvasCursorPosition, previewLayerCanvasRef, pushEntryToHistory, layers])
+    }, [activeTool, setActiveTool, activeLayer, scale, setScale, width, height, brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory, setCanvasCursorPosition, previewLayerCanvasRef, undo, redo, pushEntryToHistory, layers])
 
     const render = function() {
         const elementWidth = width * scale
