@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     user-select: none;
+    user-zoom: disabled;
 }
 
 *:focus {
@@ -16,4 +17,9 @@ button {
 input {
     border: none;
     background: none;
+}
+
+body {
+    overflow: hidden;
+    transform: scale(1) !important;
 }

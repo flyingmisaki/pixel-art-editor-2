@@ -1,4 +1,5 @@
 import {React, useEffect} from "react"
+import Helmet from "react-helmet"
 import './App.css'
 // import NavBar from "./components/NavBar/NavBar"
 import ToolBox from "./components/ToolBox/ToolBox"
@@ -19,12 +20,17 @@ function App() {
 	const {width, height, scale} = useProjectSettings()
 
 	useEffect(() => {
-		window.addEventListener('contextmenu', function (e) {e.preventDefault()}, false)
+		window.addEventListener('contextmenu', function(e) {e.preventDefault()}, false)
 	})
 	
   	const render = function() {
     	return (
       		<div className="App">
+				<Helmet>
+					<title>pxl.it</title>
+					<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+				</Helmet>
+
 				{/* <NavBar/> */}
 				<div className="editor">
 					<ToolBox/>
