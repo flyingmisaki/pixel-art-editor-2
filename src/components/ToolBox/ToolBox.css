@@ -16,7 +16,7 @@
 .toolBar button {
     width: 3.5rem;
     height: 3.5rem;
-    background-color: var(--blueGray1);
+    /* background-color: var(--blueGray1); */
     color: var(--mediumGray1);
     border: none;
 }
@@ -35,13 +35,8 @@
     border-left: 2px solid var(--lightGray1);
 }
 
-.colorPickerDisplayContainer {
-    position: relative;
-}
-
-.colorPickerDisplay {
-    width: 56px;
-    height: 56px;
-    position: absolute;
-    background-color: red !important;
+button.activePicker {
+    border-left: 2px solid var(--lightGray1);
+    background: #eee url("data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' fill-opacity='.25' ><rect x='200' width='200' height='200' /><rect y='200' width='200' height='200' /></svg>");
+    background-size: 25%;
 }
