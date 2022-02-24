@@ -35,13 +35,17 @@
     border-left: 2px solid var(--lightGray1);
 }
 
-.colorPickerDisplayContainer {
-    position: relative;
+.ColorPickerMenu {
+    background: #eee url("data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' fill-opacity='.25' ><rect x='200' width='200' height='200' /><rect y='200' width='200' height='200' /></svg>");
+    background-size: 50%;
 }
 
-.colorPickerDisplay {
-    width: 56px;
-    height: 56px;
-    position: absolute;
-    background-color: red !important;
+.ColorPickerMenu > button.activePicker {
+    color: var(--lightGray1);
+    border-left: 2px solid var(--lightGray1);
+}
+
+button.inactivePicker > .ColorPickerMenu {
+    background: none !important;
+    background-color: var(--blueGray1);
 }
