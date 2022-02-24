@@ -136,7 +136,7 @@ export default function PixelCanvas() {
 
             document.removeEventListener("keydown", handleUndoRedo)
         }
-    }, [activeTool, setActiveTool, activeLayer, scale, setScale, width, height, brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory, setCanvasCursorPosition, previewLayerCanvasRef, undo, redo, pushEntryToHistory, layers])
+    }, [activeTool, setActiveTool, activeLayer, layers, scale, setScale, width, height, brushColor, setBrushColor, colorPickerColor, setColorPickerColor, pushColorToHistory, setCanvasCursorPosition, previewLayerCanvasRef, undo, redo, pushEntryToHistory])
 
     const render = function() {
         const elementWidth = width * scale

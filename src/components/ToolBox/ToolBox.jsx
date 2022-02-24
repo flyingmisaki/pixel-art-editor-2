@@ -42,13 +42,9 @@ export default function ToolBox() {
     const renderColorPicker = function() {
         return (
             <div className="ColorPickerMenu">
-                <button className={activeTool === colorPicker ? "active" : ""} onClick={useColorPicker}>
+                <button className={activeTool === colorPicker ? "active" : ""} onClick={useColorPicker} style={{background: colorPickerColor}}>
                     {colorPicker.renderIcon()}
-                    <div className="colorPickerDisplayContainer">
-                        <div className="colorPickerDisplay" style={{background: colorPickerColor}}/>
-                    </div>
                 </button>
-                
             </div>
         )
     }
