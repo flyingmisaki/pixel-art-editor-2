@@ -45,7 +45,12 @@
 
 .ColorPickerButton.active {
     background: #eee url("data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' fill-opacity='.25' ><rect x='200' width='200' height='200' /><rect y='200' width='200' height='200' /></svg>");
-    background-size: 50%;
+    background-size: 52%;
+    background-position-x: -2px;
+}
+
+.ColorPickerButton.active > div > svg {
+    mix-blend-mode: difference;
 }
 
 .colorPickerInner {
