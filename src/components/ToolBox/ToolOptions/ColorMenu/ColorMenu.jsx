@@ -4,7 +4,7 @@ import "./ColorMenu.css"
 import OptionWindow from "../../../common/OptionWindow/OptionWindow"
 import { ChromePicker } from "react-color"
 import { useActiveTool } from "../../../../hooks/useActiveTool"
-import ColorPicker from "../../../../core/options/ColorPicker"
+import ColorPicker from "../../../../core/tools/ColorPicker"
 
 export default function ColorMenu() {
     const {activeTool} = useActiveTool()

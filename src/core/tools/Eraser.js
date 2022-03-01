@@ -1,8 +1,8 @@
 import {BsEraser} from "react-icons/bs"
 
-class Erase {
+class Eraser {
     constructor() {
-        this.name = "Erase"
+        this.name = "Eraser"
         this.usesColors = false
 
         this.canvasContext = null
@@ -46,4 +46,4 @@ class Erase {
     }
 }
 
-export default new Erase()
+export default new Eraser()

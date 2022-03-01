@@ -15,7 +15,7 @@ export function BrushColorProvider(props) {
 
     const pushColorToHistory = function(colorToAdd) {
         const filteredHistory = colorHistory.filter(color => !colorsEqual(color, colorToAdd))
-        const newColorHistory = [colorToAdd, ...filteredHistory].slice(0, 16)
+        const newColorHistory = [colorToAdd, ...filteredHistory].slice(0, 32)
         setColorHistory(newColorHistory)
     }
 

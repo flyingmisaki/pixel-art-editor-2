@@ -19,9 +19,7 @@ const restoreLayerFromData = function(layer, layerData) {
     Object.assign(layer, layerData.metaData)
 
     const layerCanvas = layer.canvasRef.current
-    console.log(layer, layerData, layerCanvas)
     const layerCanvasContext = layerCanvas.getContext('2d')
-    console.log(layerData.imageData)
 
     const image = new Image()
     image.src = layerData.imageData

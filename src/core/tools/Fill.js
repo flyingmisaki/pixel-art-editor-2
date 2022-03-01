@@ -3,7 +3,7 @@ import {BsPaintBucket} from "react-icons/bs"
 
 class Fill {
     constructor(maxWidth, maxHeight) {
-        this.name = "Fill"
+        this.name = "Flood Fill"
         this.usesColors = true
         this.status = ""
         
@@ -71,13 +71,14 @@ class Fill {
     mouseDown(position, color, maxWidth, maxHeight) {
         this.position = position
         this.drawing = true
-        if (this.drawing) this.updateStatus(`Filling from ${position.x}, ${position.y}`)
+        if (this.drawing) this.updateStatus(`Flood filling from ${position.x}, ${position.y}`)
     }
 
     mouseUp(position, color, maxWidth, maxHeight) {
         this.drawing = false
-        this.floodFill(position, this.getColor(position), color, maxWidth, maxHeight)
-
+        const colorToBeFilled = this.getColor(position)
+        if (colorsEqual(colorToBeFilled, color)) return
+        this.floodFill(position, colorToBeFilled, color, maxWidth, maxHeight)
     }
 
     mouseMove(position, color) {}

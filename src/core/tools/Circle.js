@@ -1,9 +1,9 @@
 import {colorToCanvasColor} from "../utils/colors"
-import {BsStar} from "react-icons/bs"
+import {BsCircle} from "react-icons/bs"
 
-class Shapes {
+class Circle {
     constructor() {
-        this.name = "Shapes"
+        this.name = "Circle"
         this.usesColors = true
         this.status = ""
 
@@ -29,7 +29,7 @@ class Shapes {
     onStatusChange(status) {}
 
     renderIcon() {
-        return <BsStar/>
+        return <BsCircle/>
     }
 
     isDrawing() {
@@ -103,4 +103,4 @@ class Shapes {
     }
 }
 
-export default new Shapes()
+export default new Circle()
