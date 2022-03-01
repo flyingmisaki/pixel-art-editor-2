@@ -33,11 +33,12 @@ class ColorPicker {
     getColor(position) {
         const pixelData = this.canvasContext.getImageData(position.x, position.y, 1, 1)
         const [r, g, b, a] = pixelData.data
+        const prea = a/255
         return {
             r,
             g,
             b,
-            a: a/255
+            a: prea.toFixed(2)
         }
     }
 
