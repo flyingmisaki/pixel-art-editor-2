@@ -44,12 +44,13 @@ export default function Workspace() {
 
             const ctrl = event.ctrlKey ? event.ctrlKey : ((key === 17)  ? true : false)
             const shift = event.shiftKey ? event.shiftKey : ((key === 16)  ? true : false)
+            const meta = event.metaKey ? event.metaKey : ((key === 91)  ? true : false)
             
-            if (ctrl && !shift && key === 90) {
+            if ((ctrl && !shift && key === 90) || (meta && !shift && key === 90)) {
                 undo()
                 return
             }
-            if ((ctrl && key === 89) || (ctrl && shift && key === 90)) {
+            if ((ctrl && key === 89) || (ctrl && shift && key === 90) || (meta && key === 89) || (meta && shift && key === 90)) {
                 redo()
                 return
             }
