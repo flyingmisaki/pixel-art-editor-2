@@ -42,6 +42,7 @@ export default function Workspace() {
 
             const key = event.which || event.keyCode
 
+            // Undo Redo keys stuff
             const ctrl = event.ctrlKey ? event.ctrlKey : ((key === 17)  ? true : false)
             const shift = event.shiftKey ? event.shiftKey : ((key === 16)  ? true : false)
             const meta = event.metaKey ? event.metaKey : ((key === 91)  ? true : false)
@@ -55,6 +56,7 @@ export default function Workspace() {
                 return
             }
 
+            // Tools on number keys stuff
             switch (key) {
                 case 49 || 96:
                     setActiveTool(Brush)
