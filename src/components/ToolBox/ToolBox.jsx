@@ -32,6 +32,7 @@ export default function ToolBox() {
                 onClick={() => setActiveTool(tool)}
             >
                 {tool.renderIcon()}
+                <div className="number">{tools.indexOf(tool) + 1}</div>
             </button>
         )
     }
@@ -48,6 +49,7 @@ export default function ToolBox() {
             <button className={`ColorPickerButton ${active ? "active" : ""}`} onClick={useColorPicker}>
                 <div className="colorPickerInner" style={active ? {background: colorPickerColor} : {}}>
                     {ColorPicker.renderIcon()}
+                    <div className="number">8</div>
                 </div>
             </button>
         )

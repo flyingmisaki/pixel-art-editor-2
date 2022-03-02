@@ -9,6 +9,7 @@ import {clearCanvas, copyCanvasContents} from "../../../core/utils/canvas"
 import { useProjectSettings } from "../../../hooks/useProjectSettings"
 
 import { saveAs } from "file-saver"
+import { BsBoxArrowUpRight } from "react-icons/bs";
 
 export default function ExportPanel() {
     const {layers} = useLayers()
@@ -20,7 +21,7 @@ export default function ExportPanel() {
 		if(!exportCanvasRef.current) return
 		const imageUrl = exportCanvasRef.current.toDataURL("image/png")
 		console.log("Exported to url: ", imageUrl)
-		saveAs(imageUrl, "export.png")
+		saveAs(imageUrl, "pxlexport.png")
 	}
 
     useEffect(() => {
@@ -51,15 +52,15 @@ export default function ExportPanel() {
         return (
             <OptionWindow title="Export">
                 <div className="ExportPanel">
+                    <div className="panelTop">
+                        <button className="exportButton" onClick={exportImage}><BsBoxArrowUpRight/> Export from Layers</button>
+                    </div>
                     <canvas
                         className="exportPreviewCanvas"
                         ref={exportCanvasRef}
                         width={width}
                         height={height}
                     />
-                    <div className="panelBottom">
-                        <button className="exportButton" onClick={exportImage}>Export from Layers</button>
-                    </div>
                 </div>
             </OptionWindow>
         )

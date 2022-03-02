@@ -6,11 +6,9 @@ import "./SettingsPanel.css"
 export default function SettingsPanel() {
     const {width, setWidth, height, setHeight, scale, setScale} = useProjectSettings()
 
-
     const render = function() {
         return (
             <OptionWindow title="Settings">
-                <div className="settingsCategory">Canvas Settings:</div>
                 <div className="settings">
                     <div className="setting">
                         <input type="number" id="widthSetting" className="widthSettingInput" value={width} onChange={(event) => setWidth(parseInt(event.target.value))}/>

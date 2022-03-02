@@ -1,10 +1,9 @@
-import React from "react";
+import React from "react"
 import "./ProjectOptions.css"
 
-import LayersPanel from "./LayersPanel/LayersPanel";
-import FramesPanel from "./FramesPanel/FramesPanel"
-import ExportPanel from "./ExportPanel/ExportPanel";
-import SettingsPanel from "./SettingsPanel/SettingsPanel";
+import LayersPanel from "./LayersPanel/LayersPanel"
+import ExportPanel from "./ExportPanel/ExportPanel"
+import SettingsPanel from "./SettingsPanel/SettingsPanel"
 
 export default function ProjectOptions() {
     const render = function() {
@@ -12,7 +11,6 @@ export default function ProjectOptions() {
             <div className="ProjectOptions">
                 <SettingsPanel/>
                 <LayersPanel/>
-                <FramesPanel/>
                 <ExportPanel/>
             </div>
         )

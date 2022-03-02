@@ -13,7 +13,7 @@
 
 .LayerPreview .previewImage {
     background: #eee url("data:image/svg+xml, <svg xmlns='http://www.w3.org/2000/svg' width='400' height='400' fill-opacity='.25' ><rect x='200' width='200' height='200' /><rect y='200' width='200' height='200' /></svg>");
-    background-size: 8px 8px;
+    background-size: 20%;
     overflow: hidden;
     display: flex;
 }
@@ -39,6 +39,10 @@
     background-color: var(--blueGray2);
 }
 
+input {
+    margin-right: 0.2rem;
+}
+
 input:hover {
     border: none;
     color: var(--lightGray1);
@@ -55,7 +59,7 @@ input:focus {
 
 .layerPreviewTitle {
     margin-top: 0.3rem;
-    width: 3rem;
+    width: 3.2rem;
     color: var(--mediumGray1);
 }
 
@@ -65,6 +69,7 @@ input:focus {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
+    margin-right: 0.2rem;
 }
 
 .layerActionButton {

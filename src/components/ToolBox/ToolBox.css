@@ -19,10 +19,18 @@
     /* background-color: var(--blueGray1); */
     color: var(--mediumGray1);
     border: none;
+    position: relative;
 }
 
 .toolBar button svg {
     font-size: 1.5rem;
+}
+
+.toolBar button .number {
+    position: absolute;
+    right: 0.2rem;
+    bottom: 0.1rem;
+    font-size: 0.7rem;
 }
 
 .toolBar button:hover {
@@ -50,6 +58,10 @@
 }
 
 .ColorPickerButton.active > div > svg {
+    mix-blend-mode: difference;
+}
+
+.ColorPickerButton.active > div > .number {
     mix-blend-mode: difference;
 }
 

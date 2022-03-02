@@ -20,10 +20,12 @@ export default function LayersPanel() {
                     </div>
                     <div className="layers">
                         {[...layers].reverse().map(layer => 
-                            (<LayerPreview
-                                key={layer.id}
-                                layer={layer}
-                            />)
+                            (
+                                <LayerPreview
+                                    key={layer.id}
+                                    layer={layer}
+                                />
+                            )
                         )}
                     </div>
                 </div>

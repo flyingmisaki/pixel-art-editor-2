@@ -1,9 +1,9 @@
-.PreviewLayer {
-    opacity: 0%;
+.PreviewLayer:hover > canvas {
+    display: block;
 }
 
-.PreviewLayer:hover {
-    opacity: 100%;
+.PreviewLayer > canvas {
+    display: none;
 }
 
 .PreviewLayer {
