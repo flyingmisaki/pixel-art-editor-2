@@ -14,20 +14,25 @@ import Rectangle from "../../core/tools/Rectangle"
 import Triangle from "../../core/tools/Triangle"
 
 export default function Workspace() {
-    const {setScale} = useProjectSettings()
+    const {width, height, setScale} = useProjectSettings()
     const {undo, redo} = useHistory()
     const {setActiveTool} = useActiveTool()
 
     const workspaceRef = useRef(null)
-
 
     // Maybe bring these back locally, makes it a tiny bit laggy?
     const {canvasX, setCanvasX, canvasY, setCanvasY} = useProjectSettings()
 
     useEffect(() => {
         const handleMouseWheel = function(event) {
-            if (event.deltaY < 0) setScale((scale) => scale + 1)
-            if (event.deltaY > 0) setScale((scale) => scale - 1)
+            if (width >= 1000 || height >= 1000) {
+                if (event.deltaY < 0) setScale((scale) => scale + 0.25)
+                if (event.deltaY > 0) setScale((scale) => scale - 0.25)
+            }
+            else {
+                if (event.deltaY < 0) setScale((scale) => scale + 1)
+                if (event.deltaY > 0) setScale((scale) => scale - 1)
+            }   
         }
 
         const handleMouseMove = function(event) {
@@ -56,6 +61,8 @@ export default function Workspace() {
                 return
             }
 
+            // Don't use hotkeys when an input is focused
+            if (document.activeElement.tagName === "INPUT") return
             // Tools on number keys stuff
             switch (key) {
                 case 49 || 96:
@@ -85,7 +92,6 @@ export default function Workspace() {
                 default :
                     break
             }
-
         }
 
         if (!workspaceRef.current) return
@@ -102,7 +108,7 @@ export default function Workspace() {
 
             document.removeEventListener("keydown", handleKeys)
         }
-    }, [workspaceRef, setScale, setCanvasX, setCanvasY, undo, redo, setActiveTool])
+    }, [workspaceRef, width, height, setScale, setCanvasX, setCanvasY, undo, redo, setActiveTool])
 
     const render = function() {
         return (

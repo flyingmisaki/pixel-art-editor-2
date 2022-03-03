@@ -30,12 +30,15 @@ class Fill {
     }
 
     floodFill(position, oldColor, newColor) {
-
         if (colorsEqual(this.getColor(position), oldColor)) {
             if (position.x < 0 || position.y < 0 || position.x > this.canvasContext.canvas.width - 1 || position.y > this.canvasContext.canvas.height - 1) return
 
+            // Fill in the current pixel
             this.drawPixel(this.canvasContext, position, newColor)
+
+            if (colorsEqual(this.getColor(position), oldColor)) return
             
+            // Calculate all adjacent positions
             const {x, y} = position
             const adjacentPositions = [
                 {x : x + 1, y},
@@ -44,6 +47,7 @@ class Fill {
                 {x, y : y - 1}
             ]
 
+            // Rescurisvely call floodFill to fill in all adjacent positions
             adjacentPositions.forEach((adjacentPosition) => {
                 this.floodFill(adjacentPosition, oldColor, newColor)
             })

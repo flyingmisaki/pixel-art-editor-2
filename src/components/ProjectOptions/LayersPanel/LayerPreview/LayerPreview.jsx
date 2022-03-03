@@ -62,7 +62,10 @@ export default function LayerPreview(props) {
                 />
             </div>
             <div className="layerPreviewInner">
-                <input className="layerPreviewTitle" type="text" value={name} onChange={(event) => layer.setName(event.target.value)}/>
+                <input className="layerPreviewTitle" type="text" value={name} onChange={(event) => {
+                    layer.setName(event.target.value)
+                    event.stopPropagation()
+                }}/>
                 <div>
                     <button 
                         className="layerActionButton"
