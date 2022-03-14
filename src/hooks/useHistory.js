@@ -1,4 +1,5 @@
 import React, {createContext, useState, useContext} from "react"
+import { useEffect } from "react/cjs/react.production.min"
 import { useLayers } from "./useLayers"
 import { useProjectSettings } from "./useProjectSettings"
 
@@ -39,12 +40,12 @@ export function useHistory() {
 }
 
 export function HistoryProvider(props) {
-    const {layers, activeLayer} = useLayers()
+    const {layers, activeLayer, addLayer, removeLayer} = useLayers()
     const {width, height} = useProjectSettings()
     const [historyStack, setHistoryStack] = useState([])
     const [currentHistoryIndex, setCurrentHistoryIndex] = useState(-1)
 
-    const canUndo = currentHistoryIndex >= 0
+    const canUndo = currentHistoryIndex > 0
     const canRedo = currentHistoryIndex < historyStack.length - 1
     
     const undo = function() {
@@ -62,7 +63,6 @@ export function HistoryProvider(props) {
     }
 
     const pushEntryToHistory = function() {
-        console.log(layers)
         const entry = new HistoryEntry(layers)
         setCurrentHistoryIndex(currentHistoryIndex + 1)
         const previousEntries = historyStack.slice(0, currentHistoryIndex + 1)
@@ -75,17 +75,19 @@ export function HistoryProvider(props) {
     const restoreLayers = function(entry) {
         // Clear all the layers
         layers.forEach(layer => {
-            layer.canvasRef.current.getContext('2d').clearRect(0, 0, width, height)
-            layer.onUpdate()
+            // Check if the layer is in the history entry
+            if (entry.layers.some(layerData => layerData.metaData.id === layer.id)) {
+                layer.canvasRef.current.getContext('2d').clearRect(0, 0, width, height)
+                layer.onUpdate()
+            }
+            // If not, remove the layer
+            else {
+                removeLayer(layer)
+            }
         })
-        if (!entry) {
-            activeLayer.onUpdate()
-            return
-        }
 
         // Go through each of the layer data objs in the entry and restore the layers from those
         entry.layers.forEach(layerData => {
-
             // Find the layer that matches our layerData object (so we can restore it)
             const layerToRestore = layers.find(layer => layer.id === layerData.metaData.id)
             restoreLayerFromData(layerToRestore, layerData)

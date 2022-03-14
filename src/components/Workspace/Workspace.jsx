@@ -59,12 +59,12 @@ export default function Workspace() {
                 undo()
                 return
             }
+
             if ((ctrl && key === 89) || (ctrl && shift && key === 90) || (meta && key === 89) || (meta && shift && key === 90) || (key === 89)) {
                 redo()
                 return
             }
 
-            
             // Tools on number keys stuff
             switch (key) {
                 case 49 || 96:

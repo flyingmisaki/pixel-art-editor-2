@@ -7,16 +7,23 @@ import OptionWindow from "../../common/OptionWindow/OptionWindow";
 // import {saveAs} from "file-saver"
 import {BsPlusLg} from "react-icons/bs";
 import LayerPreview from "./LayerPreview/LayerPreview";
+import { useHistory } from "../../../hooks/useHistory";
 
 export default function LayersPanel() {
     const {layers, addLayer} = useLayers()
+    const {pushEntryToHistory} = useHistory()
+
+    const onAddLayer = function() {
+        addLayer()
+        pushEntryToHistory()
+    }
 
     const render = function() {
         return (
             <OptionWindow title="Layers">
                 <div className="LayersPanel">
                     <div className="panelTop">
-                        <button onClick={addLayer} className="addLayerButton"><BsPlusLg/> Add layer</button>
+                        <button onClick={onAddLayer} className="addLayerButton"><BsPlusLg/> Add layer</button>
                     </div>
                     <div className="layers">
                         {[...layers].reverse().map(layer => 

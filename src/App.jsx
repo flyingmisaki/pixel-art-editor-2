@@ -1,4 +1,4 @@
-import {React, useEffect} from "react"
+import {React, useEffect, useRef} from "react"
 import Helmet from "react-helmet"
 import './App.css'
 // import NavBar from "./components/NavBar/NavBar"
@@ -11,17 +11,28 @@ import StatusBar from "./components/StatusBar/StatusBar"
 
 import {BrushColorProvider} from "./hooks/useBrushColor"
 import {ActiveToolProvider} from "./hooks/useActiveTool"
-import {LayersProvider} from "./hooks/useLayers"
+import {LayersProvider, useLayers} from "./hooks/useLayers"
 import {ProjectSettingsProvider, useProjectSettings} from "./hooks/useProjectSettings"
-import { HistoryProvider } from "./hooks/useHistory"
+import { HistoryProvider, useHistory } from "./hooks/useHistory"
 
 
 function App() {
 	const {width, height, scale} = useProjectSettings()
+	const {pushEntryToHistory} = useHistory()
+	const {layers} = useLayers()
+
+	const isHistoryInitialised = useRef(false)
 
 	useEffect(() => {
 		window.addEventListener('contextmenu', function(e) {e.preventDefault()}, false)
-	})
+	}, [])
+
+	useEffect(() => {
+        if (!isHistoryInitialised.current && layers.length > 0) {
+			pushEntryToHistory()
+			isHistoryInitialised.current = true
+		}
+    }, [layers])
 	
   	const render = function() {
     	return (
