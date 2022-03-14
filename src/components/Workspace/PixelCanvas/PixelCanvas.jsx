@@ -103,6 +103,8 @@ export default function PixelCanvas() {
             }
         }
 
+        activeLayer.onUpdate()
+
         // Set up listeners
         pixelCanvasElement.addEventListener("mousedown", handleMouseDown)
         pixelCanvasElement.addEventListener("mouseup", handleMouseUp)

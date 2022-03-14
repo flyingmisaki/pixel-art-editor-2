@@ -48,6 +48,7 @@ class Brush {
 
         let drawing = true
         while(drawing) {
+            context.clearRect(currentPosition.x, currentPosition.y, this.options.scale, this.options.scale)
             context.fillRect(currentPosition.x, currentPosition.y, this.options.scale, this.options.scale)
 
             // If we have hit the end position, set drawing to false
@@ -80,7 +81,6 @@ class Brush {
 
     mouseMove(position, color) {
         const context = this.drawing ? this.canvasContext : this.previewCanvasContext
-
         this.drawPixel(context, position, color)
 
         if (this.drawing) {

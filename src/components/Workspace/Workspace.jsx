@@ -43,6 +43,9 @@ export default function Workspace() {
         }
 
         const handleKeys = function(event) {
+            // Don't use hotkeys when an input is focused
+            if (document.activeElement.tagName === "INPUT") return
+            
             event = event || window.event
 
             const key = event.which || event.keyCode
@@ -52,17 +55,16 @@ export default function Workspace() {
             const shift = event.shiftKey ? event.shiftKey : ((key === 16)  ? true : false)
             const meta = event.metaKey ? event.metaKey : ((key === 91)  ? true : false)
             
-            if ((ctrl && !shift && key === 90) || (meta && !shift && key === 90)) {
+            if ((ctrl && !shift && key === 90) || (meta && !shift && key === 90) || (key === 90)) {
                 undo()
                 return
             }
-            if ((ctrl && key === 89) || (ctrl && shift && key === 90) || (meta && key === 89) || (meta && shift && key === 90)) {
+            if ((ctrl && key === 89) || (ctrl && shift && key === 90) || (meta && key === 89) || (meta && shift && key === 90) || (key === 89)) {
                 redo()
                 return
             }
 
-            // Don't use hotkeys when an input is focused
-            if (document.activeElement.tagName === "INPUT") return
+            
             // Tools on number keys stuff
             switch (key) {
                 case 49 || 96:

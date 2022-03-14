@@ -16,6 +16,7 @@ class LayerData {
 }
 
 const restoreLayerFromData = function(layer, layerData) {
+    console.log(layer, layerData)
     Object.assign(layer, layerData.metaData)
 
     const layerCanvas = layer.canvasRef.current
@@ -25,7 +26,7 @@ const restoreLayerFromData = function(layer, layerData) {
     image.src = layerData.imageData
 
     image.onload = () => {
-        layerCanvasContext.clearRect(0, 0, layerCanvas.width, layerCanvas.height)
+        // layerCanvasContext.clearRect(0, 0, layerCanvas.width, layerCanvas.height)
         layerCanvasContext.drawImage(image, 0, 0)
         layer.onUpdate()
     }
@@ -61,6 +62,7 @@ export function HistoryProvider(props) {
     }
 
     const pushEntryToHistory = function() {
+        console.log(layers)
         const entry = new HistoryEntry(layers)
         setCurrentHistoryIndex(currentHistoryIndex + 1)
         const previousEntries = historyStack.slice(0, currentHistoryIndex + 1)
@@ -71,12 +73,12 @@ export function HistoryProvider(props) {
     }
 
     const restoreLayers = function(entry) {
+        // Clear all the layers
+        layers.forEach(layer => {
+            layer.canvasRef.current.getContext('2d').clearRect(0, 0, width, height)
+            layer.onUpdate()
+        })
         if (!entry) {
-            // Clear all the layers if there's no history entry
-            layers.forEach(layer => {
-                layer.canvasRef.current.getContext('2d').clearRect(0, 0, width, height)
-                layer.onUpdate()
-            })
             activeLayer.onUpdate()
             return
         }
