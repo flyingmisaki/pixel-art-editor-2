@@ -1,22 +1,31 @@
-import React from "react";
-import {useLayers} from "../../../hooks/useLayers";
+import React, {useEffect, useRef} from "react"
+import {useLayers} from "../../../hooks/useLayers"
 import "./LayersPanel.css"
 
-import OptionWindow from "../../common/OptionWindow/OptionWindow";
+import OptionWindow from "../../common/OptionWindow/OptionWindow"
 
 // import {saveAs} from "file-saver"
-import {BsPlusLg} from "react-icons/bs";
-import LayerPreview from "./LayerPreview/LayerPreview";
-import { useHistory } from "../../../hooks/useHistory";
+import {BsPlusLg} from "react-icons/bs"
+import LayerPreview from "./LayerPreview/LayerPreview"
+import { useHistory } from "../../../hooks/useHistory"
 
 export default function LayersPanel() {
     const {layers, addLayer} = useLayers()
     const {pushEntryToHistory} = useHistory()
 
+    const newLayerAddedRef = useRef(false)
+
     const onAddLayer = function() {
         addLayer()
-        pushEntryToHistory()
+        newLayerAddedRef.current = true
     }
+
+    useEffect(() => {
+        if (newLayerAddedRef.current) {
+            pushEntryToHistory()
+            newLayerAddedRef.current = false
+        }
+    }, [layers])
 
     const render = function() {
         return (

@@ -17,7 +17,6 @@ class LayerData {
 }
 
 const restoreLayerFromData = function(layer, layerData) {
-    console.log(layer, layerData)
     Object.assign(layer, layerData.metaData)
 
     const layerCanvas = layer.canvasRef.current
@@ -67,6 +66,7 @@ export function HistoryProvider(props) {
         setCurrentHistoryIndex(currentHistoryIndex + 1)
         const previousEntries = historyStack.slice(0, currentHistoryIndex + 1)
         const newHistoryStack = [...previousEntries, entry]
+        console.log(newHistoryStack)
         
         setHistoryStack(newHistoryStack)
         // console.log("pushing entry", entry, currentHistoryIndex + 1, historyStack)
