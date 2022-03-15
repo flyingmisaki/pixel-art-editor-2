@@ -7,8 +7,6 @@ import ProjectOptions from "./components/ProjectOptions/ProjectOptions"
 import Workspace from "./components/Workspace/Workspace"
 import StatusBar from "./components/StatusBar/StatusBar"
 
-// import {TransformWrapper, TransformComponent} from "react-zoom-pan-pinch"
-
 import {BrushColorProvider} from "./hooks/useBrushColor"
 import {ActiveToolProvider} from "./hooks/useActiveTool"
 import {LayersProvider, useLayers} from "./hooks/useLayers"
@@ -32,7 +30,7 @@ function App() {
 			pushEntryToHistory()
 			isHistoryInitialised.current = true
 		}
-    }, [layers])
+    }, [layers, pushEntryToHistory])
 	
   	const render = function() {
     	return (

@@ -28,6 +28,8 @@ export function LayersProvider(props){
 
         setLayers(newLayers)
 
+        return layer
+
         // console.log(`Added layer (id = ${layer.id})`)
     }
 

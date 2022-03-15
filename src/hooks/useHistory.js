@@ -1,5 +1,4 @@
 import React, {createContext, useState, useContext} from "react"
-import { useEffect } from "react/cjs/react.production.min"
 import { useLayers } from "./useLayers"
 import { useProjectSettings } from "./useProjectSettings"
 
@@ -39,7 +38,7 @@ export function useHistory() {
 }
 
 export function HistoryProvider(props) {
-    const {layers, activeLayer, addLayer, removeLayer} = useLayers()
+    const {layers, addLayer, removeLayer} = useLayers()
     const {width, height} = useProjectSettings()
     const [historyStack, setHistoryStack] = useState([])
     const [currentHistoryIndex, setCurrentHistoryIndex] = useState(-1)
@@ -66,14 +65,15 @@ export function HistoryProvider(props) {
         setCurrentHistoryIndex(currentHistoryIndex + 1)
         const previousEntries = historyStack.slice(0, currentHistoryIndex + 1)
         const newHistoryStack = [...previousEntries, entry]
-        console.log(newHistoryStack)
+        console.log("previous: ", previousEntries)
+        console.log("new: ",newHistoryStack)
         
         setHistoryStack(newHistoryStack)
-        // console.log("pushing entry", entry, currentHistoryIndex + 1, historyStack)
     }
 
     const restoreLayers = function(entry) {
         // Clear all the layers
+        console.log(entry)
         layers.forEach(layer => {
             // Check if the layer is in the history entry
             if (entry.layers.some(layerData => layerData.metaData.id === layer.id)) {
@@ -90,7 +90,14 @@ export function HistoryProvider(props) {
         entry.layers.forEach(layerData => {
             // Find the layer that matches our layerData object (so we can restore it)
             const layerToRestore = layers.find(layer => layer.id === layerData.metaData.id)
-            restoreLayerFromData(layerToRestore, layerData)
+            if (layerToRestore) {
+                console.log()
+                restoreLayerFromData(layerToRestore, layerData)
+            }
+            else {
+                const blankLayer = addLayer()
+                restoreLayerFromData(blankLayer, layerData)
+            }
         })
     }
 

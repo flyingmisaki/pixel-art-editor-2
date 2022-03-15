@@ -13,19 +13,23 @@ export default function LayersPanel() {
     const {layers, addLayer} = useLayers()
     const {pushEntryToHistory} = useHistory()
 
-    const newLayerAddedRef = useRef(false)
+    const layerAddedOrDeletedRef = useRef(false)
 
     const onAddLayer = function() {
         addLayer()
-        newLayerAddedRef.current = true
+        layerAddedOrDeletedRef.current = true
+    }
+
+    const onDeleteLayer = function(){
+        layerAddedOrDeletedRef.current = true
     }
 
     useEffect(() => {
-        if (newLayerAddedRef.current) {
+        if (layerAddedOrDeletedRef.current) {
             pushEntryToHistory()
-            newLayerAddedRef.current = false
+            layerAddedOrDeletedRef.current = false
         }
-    }, [layers])
+    }, [layers, pushEntryToHistory])
 
     const render = function() {
         return (
@@ -40,6 +44,7 @@ export default function LayersPanel() {
                                 <LayerPreview
                                     key={layer.id}
                                     layer={layer}
+                                    onDelete={onDeleteLayer}
                                 />
                             )
                         )}

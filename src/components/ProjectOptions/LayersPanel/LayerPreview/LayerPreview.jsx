@@ -5,22 +5,21 @@ import "./LayerPreview.css"
 
 import {copyCanvasContents} from "../../../../core/utils/canvas";
 import { useProjectSettings } from "../../../../hooks/useProjectSettings";
-import { useHistory } from "../../../../hooks/useHistory";
 
 export default function LayerPreview(props) {
     const layer = props.layer
+
+    // Take onDelete listener from props, if it doesn't exist use a dummy function
+    const onDelete = props.onDelete ? props.onDelete : () => {}
 
     const {activeLayer, setActiveLayer, removeLayer} = useLayers()
     
     const {width, height} = useProjectSettings()
 
-    const {clearHistory} = useHistory()
-
     const previewCanvasRef = useRef(null)
 
-    // eslint-disable-next-line
     const [visible, setVisible] = useState(layer.isVisible)
-    // eslint-disable-next-line
+
     const [lock, setLock] = useState(layer.isLocked)
 
     const [name, setName] = useState(layer.name)
@@ -87,7 +86,7 @@ export default function LayerPreview(props) {
                         onClick={(e) => {
                             e.stopPropagation()
                             removeLayer(layer)
-                            clearHistory()
+                            onDelete()
                         }}
                     >
                         {lock ? <BsTrash/> : <BsTrashFill/>}
