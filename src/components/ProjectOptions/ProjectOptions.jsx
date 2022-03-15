@@ -11,7 +11,7 @@ export default function ProjectOptions() {
             <div className="ProjectOptions">
                 <SettingsPanel/>
                 <LayersPanel/>
-                <ExportPanel/>
+                {/* <ExportPanel/> */}
             </div>
         )
     }

@@ -1,4 +1,4 @@
-import React, {createContext, useState, useContext} from "react"
+import React, {createContext, useState, useContext, useRef, useEffect} from "react"
 import { useLayers } from "./useLayers"
 import { useProjectSettings } from "./useProjectSettings"
 
@@ -43,8 +43,10 @@ export function HistoryProvider(props) {
     const [historyStack, setHistoryStack] = useState([])
     const [currentHistoryIndex, setCurrentHistoryIndex] = useState(-1)
 
+
     const canUndo = currentHistoryIndex > 0
     const canRedo = currentHistoryIndex < historyStack.length - 1
+
     
     const undo = function() {
         if (!canUndo) return
@@ -65,15 +67,14 @@ export function HistoryProvider(props) {
         setCurrentHistoryIndex(currentHistoryIndex + 1)
         const previousEntries = historyStack.slice(0, currentHistoryIndex + 1)
         const newHistoryStack = [...previousEntries, entry]
-        console.log("previous: ", previousEntries)
-        console.log("new: ",newHistoryStack)
+        // console.log("history index: ", currentHistoryIndex)
+        // console.log("pushEntryToHistory new: ", newHistoryStack)
         
         setHistoryStack(newHistoryStack)
     }
 
     const restoreLayers = function(entry) {
         // Clear all the layers
-        console.log(entry)
         layers.forEach(layer => {
             // Check if the layer is in the history entry
             if (entry.layers.some(layerData => layerData.metaData.id === layer.id)) {
@@ -91,12 +92,15 @@ export function HistoryProvider(props) {
             // Find the layer that matches our layerData object (so we can restore it)
             const layerToRestore = layers.find(layer => layer.id === layerData.metaData.id)
             if (layerToRestore) {
-                console.log()
+                console.log(layerToRestore, layerData, historyStack)
                 restoreLayerFromData(layerToRestore, layerData)
             }
             else {
                 const blankLayer = addLayer()
-                restoreLayerFromData(blankLayer, layerData)
+                setTimeout(() => {
+                    console.log(blankLayer, layerData)
+                    restoreLayerFromData(blankLayer, layerData)
+                }, 1000)
             }
         })
     }
