@@ -11,8 +11,8 @@ export default function UndoButtons() {
     const render = function() {
         return (
             <div className="UndoButtons">
-                <button className={`undoButton ${canUndo ? "" : "disabled"}`} onClick={undo}><BsArrowCounterclockwise/></button>
-                <button className={`redoButton ${canRedo ? "" : "disabled"}`} onClick={redo}><BsArrowClockwise/></button>
+                <button className={`undoButton ${canUndo ? "" : "disabled"}`} onClick={undo}><BsArrowCounterclockwise/><div className="letter">z</div></button>
+                <button className={`redoButton ${canRedo ? "" : "disabled"}`} onClick={redo}><BsArrowClockwise/><div className="letter">y</div></button>
             </div>
         )
     }

@@ -6,6 +6,13 @@
     margin-top: 3rem;
 }
 
+.toolBar button .letter {
+    position: absolute;
+    right: 0.2rem;
+    bottom: 0.1rem;
+    font-size: 0.7rem;
+}
+
 button.disabled {
 	opacity: 0.3;
 }
