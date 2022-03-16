@@ -31,7 +31,7 @@ export default function ExportPanel() {
             clearCanvas(exportPreviewCanvas)
             layers.forEach(layer => {
                 const layerCanvas = layer.canvasRef.current
-                copyCanvasContents(layerCanvas, exportPreviewCanvas, false)
+                if (layerCanvas) copyCanvasContents(layerCanvas, exportPreviewCanvas, false) 
             })
         }
 

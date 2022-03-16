@@ -1,4 +1,4 @@
-import React, {createContext, useState, useContext, useRef, useEffect} from "react"
+import React, {createContext, useState, useContext, useEffect, useRef} from "react"
 import { useLayers } from "./useLayers"
 import { useProjectSettings } from "./useProjectSettings"
 
@@ -12,23 +12,34 @@ class LayerData {
     constructor(layer) {
         this.imageData = layer.canvasRef.current.toDataURL("image/png")
         this.metaData = {...layer}
+        delete this.metaData.canvasRef
     }
 }
 
+const restoreCanvasFromLayerData = function(canvasElement, layerData){
+
+    return new Promise((resolve, reject) => {
+    
+        const canvasElementContext = canvasElement.getContext('2d')
+
+        const image = new Image()
+        image.src = layerData.imageData
+
+        image.onload = () => {
+            // layerCanvasContext.clearRect(0, 0, layerCanvas.width, layerCanvas.height)
+            canvasElementContext.drawImage(image, 0, 0)
+            resolve()
+        }
+    })
+}
+
 const restoreLayerFromData = function(layer, layerData) {
+    // console.log(layer, layerData)
     Object.assign(layer, layerData.metaData)
 
     const layerCanvas = layer.canvasRef.current
-    const layerCanvasContext = layerCanvas.getContext('2d')
-
-    const image = new Image()
-    image.src = layerData.imageData
-
-    image.onload = () => {
-        // layerCanvasContext.clearRect(0, 0, layerCanvas.width, layerCanvas.height)
-        layerCanvasContext.drawImage(image, 0, 0)
-        layer.onUpdate()
-    }
+    restoreCanvasFromLayerData(layerCanvas, layerData)
+        .then(() => layer.onUpdate())
 }
 
 const HistoryContext = createContext()
@@ -43,11 +54,11 @@ export function HistoryProvider(props) {
     const [historyStack, setHistoryStack] = useState([])
     const [currentHistoryIndex, setCurrentHistoryIndex] = useState(-1)
 
-
     const canUndo = currentHistoryIndex > 0
     const canRedo = currentHistoryIndex < historyStack.length - 1
 
-    
+    const layerToRestoreRef = useRef(null)
+
     const undo = function() {
         if (!canUndo) return
         setCurrentHistoryIndex(currentHistoryIndex - 1)
@@ -92,15 +103,16 @@ export function HistoryProvider(props) {
             // Find the layer that matches our layerData object (so we can restore it)
             const layerToRestore = layers.find(layer => layer.id === layerData.metaData.id)
             if (layerToRestore) {
-                console.log(layerToRestore, layerData, historyStack)
+                // console.log(layerToRestore, layerData, historyStack)
                 restoreLayerFromData(layerToRestore, layerData)
             }
             else {
                 const blankLayer = addLayer()
-                setTimeout(() => {
-                    console.log(blankLayer, layerData)
-                    restoreLayerFromData(blankLayer, layerData)
-                }, 1000)
+
+                layerToRestoreRef.current = [blankLayer, layerData]
+
+                restoreLayerFromData(blankLayer, layerData)
+                // restoreLayerFromData(blankLayer, layerData)
             }
         })
     }

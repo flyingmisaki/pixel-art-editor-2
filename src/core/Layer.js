@@ -35,13 +35,13 @@ class Layer {
 
     toggleVisibility() {
         this.isVisible = !this.isVisible
-        console.log("Visibility =", this.isVisible)
+        // console.log("Visibility =", this.isVisible)
         this.onUpdate()
     }
 
     toggleLock() {
         this.isLocked = !this.isLocked
-        console.log("Locked =", this.isLocked)
+        // console.log("Locked =", this.isLocked)
         this.onUpdate()
     }
 }

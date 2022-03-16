@@ -6,10 +6,9 @@ export default function CanvasLayer(props) {
 
     const canvasLayerRef = useRef(null)
     layer.canvasRef = canvasLayerRef
-    console.log("canvas layer render", layer, canvasLayerRef)
 
     const [visible, setVisible] = useState(layer.isVisible)
-    const [mounted, setMounted] = useState(false)
+    // const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
         function onUpdate() {
@@ -23,9 +22,10 @@ export default function CanvasLayer(props) {
         }
     }, [layer])
 
-    useEffect(() => {
-        setMounted(true)
-    }, [])
+    // useEffect(() => {
+    //     setMounted(true)
+    // }, [mounted])
+
 
     const render = function() {
         const className = `canvasLayer ${visible ? "" : "hidden"}`
