@@ -132,7 +132,7 @@ export default function PixelCanvas() {
         }
 
         return (
-            <div className="pixelCanvas" id="pixelCanvas" ref={pixelCanvasRef} style={canvasStyle}>
+            <div className={`pixelCanvas ${!activeLayer ? "invisible" : ""}`} id="pixelCanvas" ref={pixelCanvasRef} style={canvasStyle}>
                 {layers.map(layer => (
                     <CanvasLayer
                         key={layer.id} 
