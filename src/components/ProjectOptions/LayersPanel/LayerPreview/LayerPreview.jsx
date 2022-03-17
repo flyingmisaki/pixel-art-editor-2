@@ -13,15 +13,12 @@ export default function LayerPreview(props) {
     const onDelete = props.onDelete ? props.onDelete : () => {}
 
     const {activeLayer, setActiveLayer, removeLayer} = useLayers()
-    
     const {width, height} = useProjectSettings()
 
     const previewCanvasRef = useRef(null)
 
     const [visible, setVisible] = useState(layer.isVisible)
-
     const [lock, setLock] = useState(layer.isLocked)
-
     const [name, setName] = useState(layer.name)
 
     const isActive = activeLayer?.id === layer.id
@@ -47,7 +44,6 @@ export default function LayerPreview(props) {
     }, [layer])
     
     // const visibleClassName = `layerActionButton ${visible ? "active" : ""}`
-
     const lockedClassName = `layerActionButton ${layer.isLocked ? "inactive" : ""}`
     
     return (

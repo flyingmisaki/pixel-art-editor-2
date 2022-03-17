@@ -4,13 +4,13 @@ import "./NavBar.css"
 export default function NavBar() {
     const render = function() {
         return (
-            <div className="navBar">
-                <div>Logo</div>
-                <div>File</div>
-                <div>Edit</div>
-                <div>Selection</div>
-                <div>View</div>
-            </div>
+            <button className="navBar">
+                <button>Logo</button>
+                <button>File</button>
+                <button>Edit</button>
+                <button>Selection</button>
+                <button>View</button>
+            </button>
             
         )
     }

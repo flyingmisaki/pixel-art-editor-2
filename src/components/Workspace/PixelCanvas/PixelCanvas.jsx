@@ -1,15 +1,19 @@
 import {React, useRef, useEffect} from "react"
 import './PixelCanvas.css'
-import {useActiveTool} from "../../../hooks/useActiveTool"
-import {useBrushColor} from "../../../hooks/useBrushColor"
-import {useLayers} from "../../../hooks/useLayers"
-import {useProjectSettings} from "../../../hooks/useProjectSettings"
+
 import CanvasLayer from "./CanvasLayer/CanvasLayer"
-import {getCanvasRelativePosition} from "../../../core/utils/coordinates"
 import PreviewLayer from "./PreviewLayer/PreviewLayer"
 import colorPicker from "../../../core/tools/ColorPicker"
-import Brush from "../../../core/tools/Brush"
+
+import { getCanvasRelativePosition } from "../../../core/utils/coordinates"
 import { colorToCanvasColor } from "../../../core/utils/colors"
+
+import Brush from "../../../core/tools/Brush"
+
+import { useActiveTool } from "../../../hooks/useActiveTool"
+import { useBrushColor } from "../../../hooks/useBrushColor"
+import { useLayers } from "../../../hooks/useLayers"
+import { useProjectSettings } from "../../../hooks/useProjectSettings"
 import { useHistory } from "../../../hooks/useHistory"
 
 export default function PixelCanvas() {

@@ -1,10 +1,12 @@
 import React from "react"
-import {useBrushColor} from "../../../../hooks/useBrushColor"
 import "./ColorMenu.css"
+
 import OptionWindow from "../../../common/OptionWindow/OptionWindow"
-import { ChromePicker } from "react-color"
-import { useActiveTool } from "../../../../hooks/useActiveTool"
 import ColorPicker from "../../../../core/tools/ColorPicker"
+import { ChromePicker } from "react-color"
+
+import {useBrushColor} from "../../../../hooks/useBrushColor"
+import { useActiveTool } from "../../../../hooks/useActiveTool"
 
 export default function ColorMenu() {
     const {activeTool} = useActiveTool()
@@ -26,5 +28,6 @@ export default function ColorMenu() {
             </OptionWindow>
         )
     }
+    
     return render()
 }

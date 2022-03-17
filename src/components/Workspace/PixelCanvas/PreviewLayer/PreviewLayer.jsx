@@ -1,6 +1,7 @@
-import {React} from "react";
-import {useProjectSettings} from "../../../../hooks/useProjectSettings";
+import {React} from "react"
 import './PreviewLayer.css'
+
+import {useProjectSettings} from "../../../../hooks/useProjectSettings"
 
 export default function PreviewLayer() {
     const {previewLayerCanvasRef, width, height} = useProjectSettings()
@@ -17,5 +18,6 @@ export default function PreviewLayer() {
             </div>
         )
     }
+    
     return render()
 }

@@ -1,9 +1,8 @@
 import {React, useEffect, useRef} from "react"
 import "./Workspace.css"
+
 import PixelCanvas from "./PixelCanvas/PixelCanvas"
-import { useProjectSettings } from "../../hooks/useProjectSettings"
-import { useHistory } from "../../hooks/useHistory"
-import { useActiveTool } from "../../hooks/useActiveTool"
+
 import Brush from "../../core/tools/Brush"
 import Eraser from "../../core/tools/Eraser"
 import Line from "../../core/tools/Line"
@@ -12,6 +11,10 @@ import Fill from "../../core/tools/Fill"
 import Circle from "../../core/tools/Circle"
 import Rectangle from "../../core/tools/Rectangle"
 import Triangle from "../../core/tools/Triangle"
+
+import { useProjectSettings } from "../../hooks/useProjectSettings"
+import { useHistory } from "../../hooks/useHistory"
+import { useActiveTool } from "../../hooks/useActiveTool"
 
 export default function Workspace() {
     const {width, height, setScale} = useProjectSettings()
@@ -60,7 +63,7 @@ export default function Workspace() {
                 return
             }
 
-            if ((ctrl && key === 89) || (ctrl && shift && key === 90) || (meta && key === 89) || (meta && shift && key === 90) || (key === 89)) {
+            if ((ctrl && key === 89) || (ctrl && shift && key === 90) || (meta && key === 89) || (meta && shift && key === 90) || (key === 89) || (shift && key === 90)) {
                 redo()
                 return
             }

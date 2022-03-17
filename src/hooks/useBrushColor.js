@@ -1,4 +1,4 @@
-import React, {useState, useContext, createContext} from "react"
+import React, { useState, useContext, createContext } from "react"
 import { colorsEqual } from "../core/utils/colors"
 
 const BrushColorContext = createContext()

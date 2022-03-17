@@ -1,5 +1,6 @@
 import React from "react"
 import "./StrokeOptions.css"
+
 import OptionWindow from "../../../common/OptionWindow/OptionWindow"
 
 import {useActiveTool} from "../../../../hooks/useActiveTool"
@@ -25,5 +26,6 @@ export default function StrokeOptions() {
             </OptionWindow>
         )
     }
+    
     return render()
 }

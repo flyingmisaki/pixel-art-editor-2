@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react"
+import { useEffect, useRef, useState } from "react"
 import "./CanvasLayer.css"
 
 export default function CanvasLayer(props) {

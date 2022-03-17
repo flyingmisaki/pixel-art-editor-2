@@ -1,4 +1,4 @@
-import React, {createContext, useState, useContext, useRef} from "react"
+import React, { createContext, useState, useContext, useRef } from "react"
 import { useLayers } from "./useLayers"
 import { useProjectSettings } from "./useProjectSettings"
 
@@ -16,8 +16,7 @@ class LayerData {
     }
 }
 
-const restoreCanvasFromLayerData = function(canvasElement, layerData){
-
+const restoreCanvasFromLayerData = function(canvasElement, layerData) {
     return new Promise((resolve, reject) => {
     
         const canvasElementContext = canvasElement.getContext('2d')

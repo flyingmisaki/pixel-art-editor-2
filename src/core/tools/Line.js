@@ -9,6 +9,7 @@ class Line {
         
         this.previewCanvasContext = null
         this.canvasContext = null
+        
         this.options = {
             scale : 1
         }

@@ -1,4 +1,4 @@
-import React, {useState, useContext, createContext, useEffect} from "react"
+import React, { useState, useContext, createContext, useEffect } from "react"
 import Brush from "../core/tools/Brush"
 
 const ActiveToolContext = createContext()

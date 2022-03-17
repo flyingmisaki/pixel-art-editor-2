@@ -6,16 +6,13 @@ class Circle {
         this.name = "Circle"
         this.usesColors = true
         this.status = ""
-
-        this.availableShapes = ["Circle", "Triangle", "Rectangle"]
         
         this.previewCanvasContext = null
         this.canvasContext = null
+        
         this.options = {
             scale : 1
         }
-
-        this.shape = "Circle"
 
         this.startPosition = null
         this.radius = null
@@ -75,10 +72,6 @@ class Circle {
         context.fillStyle = colorToCanvasColor(color)
         // Clears before placing color again so it doesn't add up with transparency ect...
         context.fillRect(position.x, position.y, this.options.scale, this.options.scale)
-    }
-
-    toggleShape(availableShapes, shape) {
-        this.shape = availableShapes[+1]
     }
 
     mouseDown(position) {

@@ -5,6 +5,7 @@ class ColorPicker {
     constructor() {
         this.name = "Color Picker"
         this.usesColors = false
+        
         this.canvasContext = null
         
         this.options = {

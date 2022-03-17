@@ -1,7 +1,11 @@
-import {useBrushColor} from "../../../../hooks/useBrushColor"
+import React from "react"
 import "./RecentColors.css"
-import {colorsEqual, colorToCanvasColor} from "../../../../core/utils/colors"
+
 import OptionWindow from "../../../common/OptionWindow/OptionWindow"
+
+import {colorsEqual, colorToCanvasColor} from "../../../../core/utils/colors"
+
+import {useBrushColor} from "../../../../hooks/useBrushColor"
 
 export default function RecentColors() {
     const {brushColor, setBrushColor, colorHistory} = useBrushColor()
@@ -29,5 +33,6 @@ export default function RecentColors() {
             </OptionWindow>
         )
     }
+    
     return render()
 }

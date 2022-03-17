@@ -15,6 +15,7 @@ class Fill {
             AA : false,
             replace : false
         }
+        
         this.drawing = false
     }
 

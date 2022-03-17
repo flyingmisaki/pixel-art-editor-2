@@ -1,13 +1,12 @@
-import React, {useEffect, useRef} from "react"
-import {useLayers} from "../../../hooks/useLayers"
+import React, { useEffect, useRef } from "react"
 import "./LayersPanel.css"
 
 import OptionWindow from "../../common/OptionWindow/OptionWindow"
-
-// import {saveAs} from "file-saver"
-import {BsPlusLg} from "react-icons/bs"
 import LayerPreview from "./LayerPreview/LayerPreview"
+import { BsPlusLg } from "react-icons/bs"
+
 import { useHistory } from "../../../hooks/useHistory"
+import { useLayers } from "../../../hooks/useLayers"
 
 export default function LayersPanel() {
     const {layers, addLayer} = useLayers()

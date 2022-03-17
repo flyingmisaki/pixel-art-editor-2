@@ -1,5 +1,9 @@
 import React from "react"
 import "./ToolBox.css"
+
+import UndoButtons from "./UndoButtons/UndoButtons"
+import ToolOptions from "./ToolOptions/ToolOptions"
+
 import Brush from "../../core/tools/Brush.js"
 import Line from "../../core/tools/Line.js"
 import Rectangle from "../../core/tools/Rectangle"
@@ -9,19 +13,14 @@ import Eraser from "../../core/tools/Eraser.js"
 import Triangle from "../../core/tools/Triangle"
 import ColorPicker from "../../core/tools/ColorPicker.js"
 
-import UndoButtons from "./UndoButtons/UndoButtons"
-
-import ToolOptions from "./ToolOptions/ToolOptions"
-
-import {useActiveTool} from "../../hooks/useActiveTool"
+import { useActiveTool } from "../../hooks/useActiveTool"
 import { useBrushColor } from "../../hooks/useBrushColor"
 
-
 export default function ToolBox() {
-
     const {activeTool, setActiveTool} = useActiveTool()
     const {colorPickerColor} = useBrushColor()
 
+    const tools = [Brush, Eraser, Line, Triangle, Rectangle, Circle, Fill]
 
     const renderToolButton = function(tool) {
         // Check active tool and tell it its active
@@ -36,8 +35,6 @@ export default function ToolBox() {
             </button>
         )
     }
-    
-    const tools = [Brush, Eraser, Line, Triangle, Rectangle, Circle, Fill]
 
     const useColorPicker = function() {
         setActiveTool(ColorPicker)
@@ -45,6 +42,7 @@ export default function ToolBox() {
 
     const renderColorPicker = function() {
         const active = activeTool === ColorPicker
+        
         return (
             <button className={`ColorPickerButton ${active ? "active" : ""}`} onClick={useColorPicker}>
                 <div className="colorPickerInner" style={active ? {background: colorPickerColor} : {}}>
@@ -68,5 +66,6 @@ export default function ToolBox() {
             </div>
         )
     }
+
     return render()
 }

@@ -53,7 +53,6 @@ export function LayersProvider(props){
         layer.listeners = []
         const newLayers = layers.filter(l => l.id !== layer.id)
         setLayers(newLayers)
-
         // console.log(`Deleted layer (index = ${layers.indexOf(layer)}, id = ${layer.id})`)
     }
 

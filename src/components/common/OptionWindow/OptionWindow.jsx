@@ -4,7 +4,6 @@ import {BsCaretLeft, BsCaretDownFill} from "react-icons/bs"
 import "./OptionWindow.css"
 
 export default function OptionWindow(props) {
-    // eslint-disable-next-line
     const title = props.title
     const onExpand = props.onExpand ?? (() => {})
     const onCollapse = props.onCollapse ?? (() => {})
