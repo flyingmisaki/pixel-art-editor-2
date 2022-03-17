@@ -26,7 +26,6 @@ export default function CanvasLayer(props) {
     //     setMounted(true)
     // }, [mounted])
 
-
     const render = function() {
         const className = `canvasLayer ${visible ? "" : "hidden"}`
 

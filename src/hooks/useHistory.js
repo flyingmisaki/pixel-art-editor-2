@@ -1,4 +1,4 @@
-import React, {createContext, useState, useContext, useEffect, useRef} from "react"
+import React, {createContext, useState, useContext, useRef} from "react"
 import { useLayers } from "./useLayers"
 import { useProjectSettings } from "./useProjectSettings"
 
