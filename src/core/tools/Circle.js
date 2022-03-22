@@ -58,13 +58,7 @@ class Circle {
     }
 
     plotShape(shape, context, startPosition, endPosition, color) {
-        switch (shape) {
-            case "Circle":
-                this.plotCircle(context, startPosition, endPosition, color)
-                break
-            default:
-                return
-        }
+        this.plotCircle(context, startPosition, endPosition, color)
     }
 
     drawPixel(context, position, color) {
