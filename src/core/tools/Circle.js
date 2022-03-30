@@ -1,5 +1,5 @@
-import {colorToCanvasColor} from "../utils/colors"
-import {BsCircle} from "react-icons/bs"
+import { colorToCanvasColor } from "../utils/colors"
+import { BsCircle } from "react-icons/bs"
 
 class Circle {
     constructor() {
@@ -43,7 +43,6 @@ class Circle {
         let x = -radius, y = 0, err = 2 - 2 * radius                /* bottom left to top right */
 
         while (x < 0) {
-            
             context.fillRect(startPosition.x - x, startPosition.y + y, this.options.scale, this.options.scale)                            /*   I. Quadrant +x +y */
             context.fillRect(startPosition.x - y, startPosition.y - x, this.options.scale, this.options.scale)                            /*  II. Quadrant -x +y */
             context.fillRect(startPosition.x + x, startPosition.y - y, this.options.scale, this.options.scale)                            /* III. Quadrant -x -y */
@@ -57,7 +56,7 @@ class Circle {
         }
     }
 
-    plotShape(shape, context, startPosition, endPosition, color) {
+    plotShape(context, startPosition, endPosition, color) {
         this.plotCircle(context, startPosition, endPosition, color)
     }
 
