@@ -56,10 +56,6 @@ class Circle {
         }
     }
 
-    plotShape(context, startPosition, endPosition, color) {
-        this.plotCircle(context, startPosition, endPosition, color)
-    }
-
     drawPixel(context, position, color) {
         if (!context) return
         context.fillStyle = colorToCanvasColor(color)
@@ -73,14 +69,14 @@ class Circle {
 
     mouseUp(position, color) {
         // Draw the line from initial position to end position
-        this.plotShape(this.shape, this.canvasContext, this.startPosition, position, color)
+        this.plotCircle(this.canvasContext, this.startPosition, position, color)
         this.updateStatus(`Circle drawn at (${this.startPosition.x}, ${this.startPosition.y})`) //with radius of ${this.radius}
         this.startPosition = null
     }
 
     mouseMove(position, color) {
         if (this.isDrawing()) {
-            this.plotShape(this.shape, this.previewCanvasContext, this.startPosition, position, color)
+            this.plotCircle(this.previewCanvasContext, this.startPosition, position, color)
         }
         else {
             const context = this.previewCanvasContext

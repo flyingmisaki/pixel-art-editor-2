@@ -74,7 +74,7 @@ class Triangle {
         const p1 = startPosition
         const p2 = {x : endPosition.x, y : startPosition.y}
         const p3 = {x : Math.ceil((endPosition.x - startPosition.x) / 2 + startPosition.x), y : endPosition.y}
-        console.log(p1, p2, p3)
+        
         this.plotLine(context, p1, p2, color)
         this.plotLine(context, p2, p3, color)
         this.plotLine(context, p3, p1, color)
